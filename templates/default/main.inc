@@ -1,4 +1,4 @@
-<!-- $Id: main.inc,v 1.2 2005/03/04 00:59:14 runemaster Exp $ -->
+<!-- $Id: main.inc,v 1.3 2005/03/04 02:10:47 rswindell Exp $ -->
 
 <!-- Main Content --> 
 </td>
@@ -6,12 +6,12 @@
     <td class="main" valign="top"><br />
         <br />
        
+       <div align="center"><h3>Your sysop, <i>@@JS:system.operator@@</i>, welcomes you to 
+        <b>@@JS:system.name@@</b></h3></div>
                 
-        <div align="center"><h3>Some Stats for @@JS:system.name@@</h3></div>
-
         <table align="center">
           <tr>
-          <td align="center">Today<br /><br />
+          <td align="center">Today's Statistics<br /><br />
           
             <!--  Stats go here and table is closed by index.ssjs -->
             
