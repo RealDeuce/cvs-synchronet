@@ -1,4 +1,4 @@
-<!-- $Id: newuser.inc,v 1.5 2005/02/19 08:03:00 rswindell Exp $ -->
+<!-- $Id: newuser.inc,v 1.6 2005/02/20 03:26:35 deuce Exp $ -->
 <p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : New User Application</p>
 <center>
 	(%%required%% indicates required fields)<br>
@@ -6,6 +6,12 @@
 </center>
 	<form action="newuser.ssjs" method="post">
 		<table class="newuser" cellpadding="0" cellspacing="2">
+			@@nupstart@@
+			<tr>
+				<td class="newuser" align="right">%%errs:nupass%% %%nupass_required%% New User Password:</td>
+				<td class="newuser" align="left"><input type="password" name="nupass" size="25" maxlength="25" value="" /></td>
+			</tr>
+			@@nupend@@
 			<tr>
 				<td class="newuser" align="right">%%errs:alias%% %%alias_required%% Alias:</td>
 				<td class="newuser" align="left"><input type="text" name="alias" size="25" maxlength="25" value="%%posted:alias%%" /></td>
