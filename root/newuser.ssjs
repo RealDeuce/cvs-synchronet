@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.15 2005/01/11 06:08:24 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.16 2005/01/12 06:05:34 deuce Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -129,7 +129,7 @@ else
 if(system.newuser_questions & UQ_NONETMAIL)
 	template.email_required=optional_str;
 else {
-	required.push("email");
+	required.push("netmail");
 	template.email_required=required_str;
 }
 
