@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.12 2004/03/24 04:29:06 deuce Exp $
+# $Id: GNUmakefile,v 1.13 2004/03/24 04:36:11 deuce Exp $
 
 XSDK		=	../sdk
 XPDEV	?=	../../src/xpdev/
@@ -20,7 +20,7 @@ include $(XPDEV)Common.gmake
 CFLAGS	+=	-I$(XSDK)
 
 ifeq ($(os),sunos)
- LDFLAGS	+=	-lsocket -lnsl
+ LDFLAGS	+=	-lsocket -lnsl -lrt
 endif
 
 $(EXEODIR)$(SLASH)sbj: $(LIBODIR)$(SLASH)sbj.o $(OBJS)
