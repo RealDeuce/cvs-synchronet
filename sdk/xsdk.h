@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.8 2001/04/04 15:51:10 rswindell Exp $ */
+/* $Id: xsdk.h,v 1.9 2001/11/01 19:10:23 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -59,11 +59,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <malloc.h>
+#ifndef __FreeBSD__		/* FreeBSD uses stdlib.h for malloc() */
+	#include <malloc.h>
+#endif
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define GLOBAL extern	/* turns XSDKVAR.C into a header file */
+#define GLOBAL extern	/* turns XSDKVARS.C into a header file */
 #include "xsdkinet.h"
 #include "xsdkwrap.h"
 #include "xsdkvars.c"
