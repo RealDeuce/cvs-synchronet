@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.21 2004/04/03 01:17:25 rswindell Exp $
+# $Id: GNUmakefile,v 1.22 2004/04/07 20:03:32 rswindell Exp $
 
 # Macros
 XSDK		=	../sdk
@@ -18,7 +18,7 @@ ifndef XPDEV
  XPDEV		=	../../src/xpdev
 endif
 ifndef SBBS_SRC
- SBBS_SRC	:=	$(XPDEV)../sbbs3
+ SBBS_SRC	:=	$(XPDEV)/../sbbs3
 endif
 NEED_THREADS	:=	1
 include $(XPDEV)/Common.gmake
