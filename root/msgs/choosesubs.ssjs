@@ -1,4 +1,4 @@
-/* $Id: choosesubs.ssjs,v 1.1 2005/03/24 15:16:12 runemaster Exp $ */
+/* $Id: choosesubs.ssjs,v 1.2 2005/03/24 19:15:05 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -37,7 +37,7 @@ for(s in msg_area.grp[grp].sub_list) {
 }
 
 load("../web/lib/topnav_html.ssjs");
-write_template("leftnav.inc");
+load("../web/lib/leftnav_html.ssjs");
 write_template("msgs/choosesubs.inc");
 write_template("footer.inc");
 
