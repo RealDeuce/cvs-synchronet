@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.13 2005/02/16 23:32:11 rswindell Exp $
+// $Id: rss.ssjs,v 1.14 2005/02/17 23:38:19 rswindell Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.13 $".split(' ')[1];
+var REVISION = "$Revision: 1.14 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -180,7 +180,12 @@ if(msgbase.open()) {
 		writeln('\t\t\t\t<author>' + encode(hdr.from) + '</author>');
 		writeln('\t\t\t\t<guid>' + encode(hdr.id) + '</guid>');
 		writeln('\t\t\t\t<description>' + encode(body.slice(0,500)) + '</description>');
-		writeln('\t\t\t\t<link>' + link_root + '&amp;item=' + hdr.number + '</link>');
+
+        if(this.login==undefined)  // v3.12a 
+            writeln('\t\t\t\t<link>' + link_root + '&amp;item=' + hdr.number + '</link>');
+        else    // v3.12b
+            writeln('\t\t\t\t<link>' + 'http://' + http_request.header.host + '/msgs/msg.ssjs?msg_sub=' + 
+                    channel.name + '&amp;mesage=' + hdr.number + '</link>');
 		writeln('\t\t\t</item>');
 		msgs++;
 		if(msgs>=channel.maxmessages)
