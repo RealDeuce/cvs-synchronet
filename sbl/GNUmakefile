@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.8 2003/02/28 08:51:53 rswindell Exp $
+# $Id: GNUmakefile,v 1.9 2003/02/28 09:08:53 rswindell Exp $
 
 # Macros
 CC		=	gcc
@@ -22,6 +22,8 @@ endif
 ifndef SBBS_SRC
  SBBS_SRC	=	../../src/sbbs3
 endif
+
+vpath %.c $(XPDEV) $(XSDK)
 
 ifndef os
  os              =       $(shell uname)
@@ -46,14 +48,16 @@ CFLAGS	+=	-I$(XSDK) -I$(XPDEV) -I$(SBBS_SRC)
 
 all: sbl sbl2smb smb2sbl sblpack
 
-sbl: sbl.c $(XSDK)/xsdk.c $(XSDK)/xsdkvars.c $(XSDK)/xsdkwrap.c
+sbl: sbl.o xsdk.o xsdkvars.o xsdkwrap.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
 
-SMBIO	=	$(XPDEV)/genwrap.c $(XPDEV)/filewrap.c $(XPDEV)/dirwrap.c \
-		$(SBBS_SRC)/smblib.c $(SBBS_SRC)/lzh.c
+SMBIO	=	$(XPDEV)/genwrap.o $(XPDEV)/filewrap.o $(XPDEV)/dirwrap.o \
+		$(SBBS_SRC)/smblib.o $(SBBS_SRC)/lzh.o
 
-sbl2smb: sbl2smb.c $(SMBIO)
+sbl2smb: sbl2smb.o $(SMBIO)
 
-smb2sbl: smb2sbl.c $(SMBIO)
+smb2sbl: smb2sbl.o $(SMBIO)
 
-sblpack: sblpack.c
+sblpack: sblpack.o $(XPDEV)/filewrap.o
+
+clean: rm -f *.o
