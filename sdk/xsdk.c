@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.26 2004/05/30 07:10:35 deuce Exp $ */
+/* $Id: xsdk.c,v 1.27 2004/06/02 07:41:38 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1685,6 +1685,10 @@ void initdata(void)
 
 #ifdef __SC__
     setvbuf(stdout,NULL,_IONBF,0);
+	con_fp=stdout;
+#elif defined (__unix__)
+	setvbuf(stdout,NULL,_IONBF,0);
+	setvbuf(stderr,NULL,_IONBF,0);
 	con_fp=stdout;
 #else
 	con_fp=stderr;
