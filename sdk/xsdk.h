@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.15 2004/07/07 21:53:13 deuce Exp $ */
+/* $Id: xsdk.h,v 1.16 2004/09/17 04:51:01 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -71,9 +71,15 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#ifdef USE_XPDEV
+#include "semwrap.h"
+#endif
+
 #define GLOBAL extern	/* turns XSDKVARS.C into a header file */
 #include "xsdkinet.h"
+#ifndef USE_XPDEV
 #include "xsdkwrap.h"
+#endif
 #include "xsdkvars.c"
 
 #ifdef __cplusplus
@@ -195,11 +201,17 @@ int  nopen(char *str, int access);
 
 /* Truncate Space
 	- Removes white space characters from the end of a string */
+#ifdef USE_XPDEV
+#include <genwrap.h>
+#else
 void truncsp(uchar *str);
+#endif
 
-#ifndef USE_XPDEV
 /* Adds Backslash
 	- Adds backslash to end of string if it doesn't exist */
+#ifdef USE_XPDEV
+#include <dirwrap.h>
+#else
 void backslash(char *str);
 #endif
 
