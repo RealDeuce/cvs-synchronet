@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.8 2000/12/02 04:38:04 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.9 2000/12/02 04:53:29 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1429,7 +1429,7 @@ void cls(void)
 			bpause(); }
 
 	if(user_misc&ANSI)
-		bprintf("\x1b[2J");
+		bputs("\x1b[2J\x1b[H");	/* clear screen, home cursor */
 	else 
 		outchar(FF);
 	tos=1;
