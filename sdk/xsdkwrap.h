@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.3 2000/12/02 04:12:11 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.4 2000/12/02 04:35:40 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -42,6 +42,7 @@
 
 	int kbhit(void);
 	int getch(void);
+	#define ungetch(x)	/* !need a wrapper for this */
 
 #else	/* DOS-Based */
 
@@ -132,7 +133,13 @@
 	#define _rmdir(dir)			rmdir(dir)
 	#define tell(fd)			lseek(fd,0,SEEK_CUR)
 
-	char* _fullpath(char* absPath, const char* relPath
+	int		sopen(char *fn, int access, int share);
+	long	filelength(int fd);
+	char*	strupr(char* str);
+	char*	strlwr(char* str);
+
+	char*	strrev(char* str);
+	char*	_fullpath(char* absPath, const char* relPath
 								,size_t maxLength);
 
 #elif defined(__MSDOS__)
@@ -144,8 +151,6 @@
 	#warning "Unsupported Target: Need some macros of function prototypes here."
 
 #endif
-
-
 
 #ifndef BOOL
 	#define BOOL	int
@@ -166,13 +171,6 @@ extern "C" {
 #if !defined(__BORLANDC__)
 	int	lock(int fd, long pos, int len);
 	int	unlock(int fd, long pos, int len);
-#endif
-
-#if defined(__unix__)
-	int		sopen(char *fn, int access, int share);
-	long	filelength(int fd);
-	char*	strupr(char* str);
-	char*	strlwr(char* str);
 #endif
 
 #if !defined(_MSC_VER) && !defined(__BORLANDC__)
