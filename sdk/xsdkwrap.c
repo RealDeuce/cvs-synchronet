@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers (compiler & platform portability) */
 
-/* $Id: xsdkwrap.c,v 1.4 2000/12/02 04:44:15 rswindell Exp $ */
+/* $Id: xsdkwrap.c,v 1.5 2000/12/02 04:45:19 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -57,6 +57,7 @@
 #include <sys/stat.h>	/* struct stat */
 
 /* XSDK-specific */
+#include "xsdkdefs.h"	/* MAX_PATH */
 #include "xsdkwrap.h"	/* Verify prototypes */
 
 #ifdef _WIN32
