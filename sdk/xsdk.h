@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.16 2004/09/17 04:51:01 deuce Exp $ */
+/* $Id: xsdk.h,v 1.17 2004/09/17 04:52:49 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -73,6 +73,7 @@
 
 #ifdef USE_XPDEV
 #include "semwrap.h"
+#include "filewrap.h"
 #endif
 
 #define GLOBAL extern	/* turns XSDKVARS.C into a header file */
