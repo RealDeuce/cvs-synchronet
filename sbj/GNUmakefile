@@ -10,12 +10,14 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.5 2002/12/31 23:24:54 rswindell Exp $
+# $Id: GNUmakefile,v 1.6 2003/02/28 09:12:32 rswindell Exp $
 
 # Macros
 CC		=	gcc
 LD		=	ld
 XSDK		=	../sdk
+
+vpath %.c $(XSDK)
 
 ifndef os
  os              =       $(shell uname)
@@ -37,10 +39,15 @@ endif	#! FreeBSD
 
 CFLAGS	+=	-I$(XSDK)
 
+OBJS		= xsdk.o xsdkvars.o xsdkwrap.o
+
 all: sbj sbjclean
 
-sbj: sbj.c $(XSDK)/xsdk.c $(XSDK)/xsdkvars.c $(XSDK)/xsdkwrap.c
+sbj: sbj.o $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
 
-sbjclean: sbjclean.c $(XSDK)/xsdk.c $(XSDK)/xsdkvars.c $(XSDK)/xsdkwrap.c
+sbjclean: sbjclean.o $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+
+clean:
+	rm -f *.o
