@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Macros, constants, and type definitions */
 
-/* $Id: sbldefs.h,v 1.2 2000/10/12 05:39:26 rswindell Exp $ */
+/* $Id: sbldefs.h,v 1.3 2000/12/02 01:02:03 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -105,7 +105,8 @@ typedef struct {
 	char	userverified[26];			/* User who last vouched */
 	char	web_url[61];				/* Web-site address */
 	char	sysop_email[61];			/* Sysop's e-mail address */
-	char	unused[322];				/* Unused space */
+	time_t	exported;					/* Date last exported to SMB */
+	char	unused[318];				/* Unused space */
 } bbs_t;
 
 #ifdef _WIN32
