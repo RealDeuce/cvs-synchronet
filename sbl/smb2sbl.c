@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.3 2001/11/02 03:38:49 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.4 2001/11/02 05:30:58 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -287,9 +287,13 @@ int main(int argc, char **argv)
 			printf("\7Error %d reading msg #%lu\n",i,msg.idx.number);
 			continue; }
 		smb_unlockmsghdr(&smb,&msg);
-		if(!msg.from_net.type) {		/* ignore local message */
+		if(!msg.from_net.type			/* ignore local message */
+			|| msg.from[0]<=' '			/* corrupted? */
+			|| msg.subj[0]<=' '			/* corrupted */
+			) {
 			smb_freemsgmem(&msg);
-			continue; }
+			continue; 
+		}
 
 		printf("\nMessage #%lu by %s on %.24s\n"
 			,msg.hdr.number,msg.from,ctime(&(time_t)msg.hdr.when_written.time));
