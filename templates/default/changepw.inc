@@ -1,5 +1,5 @@
 
-<!-- $Id: changepw.inc,v 1.1 2005/03/22 04:05:39 runemaster Exp $ -->
+<!-- $Id: changepw.inc,v 1.2 2005/03/22 11:55:52 runemaster Exp $ -->
 
 <!-- Main Content --> 
 </td>
@@ -9,5 +9,5 @@
       <h1>@@resultmsg@@</h1>
       @@JS:if(success)'Please <a href="/logout.ssjs">Logout</a> and re-login with your new password.'; else'<a href="@@backurl@@">Back to Change Password Page</a>';@@
       <br />
-      @@JS:writeln(today);@@
+      
     
