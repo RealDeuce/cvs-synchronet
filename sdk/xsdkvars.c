@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK global variables */
 
-/* $Id: xsdkvars.c,v 1.2 2000/10/12 05:34:36 rswindell Exp $ */
+/* $Id: xsdkvars.c,v 1.3 2001/01/07 01:18:48 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -41,6 +41,10 @@
 
 #ifndef GLOBAL
 #define GLOBAL
+#endif
+
+#ifdef __cplusplus
+	extern "C" {
 #endif
 
 /*******************************/
@@ -127,3 +131,7 @@ GLOBAL uchar	name_len;		/* Length of name field in NAME.DAT */
 GLOBAL char 	aborted;		/* Aborted flag - if ctrl-c hit */
 GLOBAL char 	sysop_level;	/* Sysop Level */
 GLOBAL FILE 	*con_fp;		/* Console file pointer (stdout/stderr) */
+
+#ifdef __cplusplus
+	}
+#endif
