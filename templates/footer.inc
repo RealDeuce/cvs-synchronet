@@ -1,16 +1,16 @@
-<!-- $Id: footer.inc,v 1.9 2004/12/06 21:16:08 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.10 2004/12/07 04:02:28 runemaster Exp $ -->
 <br />
 <table width="100%" cellspacing="0" border="0" cellpadding="0" align="center">
   <tbody>
     <tr>
       <td>
           <div align="left">
-          <a href="http://www.synchro.net/"><img src="/graphics/sync_pb.gif" alt="Powered by: Synchronet" width="259" height="32" border="0" /></a></div>
+          <a href="http://www.synchro.net/"><img src="/graphics/sync_pb.gif" title="Powered by: Synchronet" alt="Powered by: Synchronet" width="259" height="32" border="0" /></a></div>
       </td>
       <td>
           <div align="right">
           <a href="http://validator.w3.org/check?uri=referer"><img
-             src="http://www.w3.org/Icons/valid-xhtml10"
+             src="http://www.w3.org/Icons/valid-xhtml10" title="Valid XHTML 1.0!"
              alt="Valid XHTML 1.0!" height="31" width="88" border="0" /></a><br />
           </div>
       </td>
