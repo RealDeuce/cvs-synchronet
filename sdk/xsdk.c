@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.21 2001/11/01 22:48:46 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.22 2002/08/29 08:58:13 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1630,9 +1630,10 @@ int nopen(char *str, int access)
 /****************************************************************************/
 void initdata(void)
 {
-	char str[256],tmp[256];
-	int i;
-	FILE *stream;
+	char	str[256],tmp[256];
+	char*	p;
+	int		i;
+	FILE*	stream;
 
 #ifdef _WINSOCKAPI_
     WSAStartup(MAKEWORD(1,1), &WSAData);
@@ -1662,6 +1663,10 @@ void initdata(void)
 		printf("Can't set console output to BINARY\n");
 		exit(1); }
 #endif
+
+	/* Sets node_dir to node directory environment variable defined by synchronet. */
+	if(node_dir[0]==0 && (p=getenv("SBBSNODE"))!=NULL)
+		sprintf(node_dir,"%.*s",sizeof(node_dir)-1,p); 
 
 	sprintf(str,"%sXTRN.DAT",node_dir);
 	if((stream=fopen(str,"rt"))==NULL) {
