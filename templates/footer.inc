@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.11 2004/12/08 21:36:35 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.12 2004/12/08 22:19:52 runemaster Exp $ -->
 <br />
 <table width="100%" cellspacing="0" border="0" cellpadding="0" align="center">
   <tbody>
@@ -19,4 +19,3 @@
 </table>
 </body>
 </html>
-<img src="../../html/graphics/sync_pbgj1_teal_bg.gif" width="175" height="85" border="0">
