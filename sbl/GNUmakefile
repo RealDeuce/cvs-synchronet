@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.14 2003/08/28 02:44:47 rswindell Exp $
+# $Id: GNUmakefile,v 1.15 2003/08/28 02:53:42 rswindell Exp $
 
 # Macros
 CC		=	gcc
@@ -71,7 +71,7 @@ all: sbl sbl2smb smb2sbl sblpack
 sbl: sbl.o xsdk.o xsdkvars.o xsdkwrap.o
 	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@ $(LIBS)
 
-SMBIO	=	genwrap.o filewrap.o $(XPDEV)/dirwrap.o smblib.o lzh.o
+SMBIO	=	genwrap.o filewrap.o dirwrap.o smblib.o lzh.o
 
 sbl2smb: sbl2smb.o $(SMBIO)
 
