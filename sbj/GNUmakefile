@@ -10,27 +10,28 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.16 2004/04/03 01:16:23 rswindell Exp $
+# $Id: GNUmakefile,v 1.17 2004/09/16 02:38:56 deuce Exp $
 
 XSDK		=	../sdk
-XPDEV	?=	../../src/xpdev
+SRC_ROOT	=	../../src
+include $(SRC_ROOT)/build/Common.gmake
+
 vpath %.c $(XSDK)
-NEED_THREADS	:=	1
-include $(XPDEV)/Common.gmake
-CFLAGS	+=	-I$(XSDK)
+
+CFLAGS	+=	-I$(XSDK) -DUSE_XPDEV $(XPDEV-MT_CFLAGS)
 
 ifeq ($(os),sunos)
  LDFLAGS	+=	-lsocket -lnsl -lrt
 endif
 
-$(EXEODIR)$(SLASH)sbj: $(LIBODIR)$(SLASH)sbj.o $(OBJS)
+$(SBJ): $(OBJS)
    ifndef bcc
 	@echo Linking $@
    endif
-	$(QUIET)$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(QUIET)$(CC) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(LDFLAGS) $^ -o $@ $(XPDEV-MT_LIBS)
 
-$(EXEODIR)$(SLASH)sbjclean: $(LIBODIR)$(SLASH)sbjclean.o $(OBJS)
+$(SBJCLEAN): sbjclean.c
    ifndef bcc
 	@echo Linking $@
    endif
-	$(QUIET)$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(QUIET)$(CC) $(CFLAGS) $(XPDEV_LDFLAGS) $(LDFLAGS) $^ -o $@ $(XPDEV_LIBS)
