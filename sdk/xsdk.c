@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.22 2002/08/29 08:58:13 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.23 2002/10/13 10:24:01 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -520,6 +520,18 @@ void mnemonics(char *str)
 			outchar(str[l++]); 
 	}
 	attr(LIGHTGRAY);
+}
+
+int keyhit()
+{
+#ifndef __16BIT__
+	int cnt=0;
+	if(ioctlsocket(client_socket,FIONREAD,&cnt))
+    	return(0);
+    return(cnt);
+#else
+	return(kbhit());
+#endif
 }
 
 /****************************************************************************/

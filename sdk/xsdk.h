@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.9 2001/11/01 19:10:23 rswindell Exp $ */
+/* $Id: xsdk.h,v 1.10 2002/10/13 10:24:01 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -44,9 +44,11 @@
 /*********************************************/
 #ifndef __unix__
 	#include <io.h>
-	#include <dos.h>
 	#include <share.h>
 	#include <conio.h>
+#endif
+#ifdef __16BIT__
+	#include <dos.h>
 #endif
 #ifdef _WIN32
 	#include <windows.h>
@@ -144,6 +146,10 @@ char noyes(char *str);
 	  key, otherwise it returns 0
 	- Does not wait for a keystroke */
 char inkey(long mode);
+
+/* Key hit?
+	- Returns non-zero if key hit, 0 otherwise */
+int keyhit(void);
 
 /* Get a Key
 	- Waits for the local or remote user to hit a valid key
