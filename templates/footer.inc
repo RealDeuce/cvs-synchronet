@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.6 2004/12/02 22:00:29 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.7 2004/12/03 16:49:03 runemaster Exp $ -->
 <br>
 <table width="100%" cellspacing="0" border="0" cellpadding="0" align="center">
   <tbody>
@@ -17,5 +17,5 @@
     </tr>
   </tbody>
 </table>
-</BODY>
-</HTML>
+</body>
+</html>

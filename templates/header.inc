@@ -1,10 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<!-- $Id: header.inc,v 1.7 2004/12/02 22:00:29 runemaster Exp $ -->
-<HEAD>
-<TITLE>%%title%%</TITLE>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<html>
+<!-- $Id: header.inc,v 1.8 2004/12/03 16:49:03 runemaster Exp $ -->
+<head>
+<title>%%title%%</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/synchronet.css" type="text/css">
-</HEAD>
+</head>
 <body>
-<div align="center"><H3>%%JS:system.name%%</H3></div>
+<div align="center"><h3>%%JS:system.name%%</h3></div>
