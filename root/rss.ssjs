@@ -1,8 +1,8 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.2 2005/02/14 23:20:44 rswindell Exp $
+// $Id: rss.ssjs,v 1.3 2005/02/14 23:23:14 rswindell Exp $
 
-var REVISION = "$Revision: 1.2 $".split(' ')[1];
+var REVISION = "$Revision: 1.3 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -78,12 +78,12 @@ writeln('\t\t<language>en-us</language>');
 
 function encode(str)
 {
-	return(html_encode(str
+	return(strip_ctrl(html_encode(str
 		,true	/* ex-ASCII */
 		,false	/* white-space */
 		,false	/* ANSI */
-		,true	/* Ctrl-A */
-		));
+		,false	/* Ctrl-A */
+		)));
 }
 
 var msgbase=new MsgBase(channel.sub);
