@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.9 2005/02/15 02:35:22 rswindell Exp $
+// $Id: rss.ssjs,v 1.10 2005/02/15 07:41:47 deuce Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.9 $".split(' ')[1];
+var REVISION = "$Revision: 1.10 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -126,7 +126,8 @@ if(channel.image_url==undefined)	channel.image_url		='graphics/sync_pbgj1_white_
 if(channel.image_title==undefined)	channel.image_title		=channel.title;
 if(channel.image_link==undefined)	channel.image_link		=channel.link;
 
-
+http_reply.header["Content-Type"]='application/rss+xml';
+writeln('<?xml version="1.0" ?>');
 writeln('<rss version="0.91">');
 writeln('\t<channel>');
 writeln('\t\t<title>'		+ channel.title			+ '</title>');
@@ -171,7 +172,7 @@ if(msgbase.open()) {
 		writeln('\t\t\t\t<author>' + encode(hdr.from) + '</author>');
 		writeln('\t\t\t\t<guid>' + encode(hdr.id) + '</guid>');
 		writeln('\t\t\t\t<description>' + encode(body.slice(0,500)) + '</description>');
-		writeln('\t\t\t\t<link>' + link_root + '&item=' + hdr.number + '</link>');
+		writeln('\t\t\t\t<link>' + link_root + '&amp;item=' + hdr.number + '</link>');
 		writeln('\t\t\t</item>');
 	}
     msgbase.close();
