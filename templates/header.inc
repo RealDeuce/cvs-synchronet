@@ -1,7 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
-<!-- $Id: header.inc,v 1.4 2004/11/29 02:37:52 deuce Exp $ -->
+<!-- $Id: header.inc,v 1.5 2004/11/29 03:38:02 deuce Exp $ -->
 <HEAD>
 <TITLE>%%title%%</TITLE>
 </HEAD>
