@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.3 2000/12/02 01:58:08 rswindell Exp $ */
+/* $Id: sbl.c,v 1.4 2000/12/02 03:30:17 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -279,14 +279,14 @@ time_t dstrtounix(char *str)
 /****************************************************************************/
 /* Converts unix time format (long - time_t) into a char str MM/DD/YY		*/
 /****************************************************************************/
-char * unixtodstr(time_t unix, char *str)
+char * unixtodstr(time_t t, char *str)
 {
 	struct tm* tm;
 
-	if(!unix)
+	if(t==0)
 		strcpy(str,"00/00/00");
 	else {
-		tm=gmtime(&unix);
+		tm=gmtime(&t);
 		if(tm==NULL) {
 			strcpy(str,"00/00/00");
 			return(str);
@@ -786,8 +786,7 @@ int main(int argc, char **argv)
 	if(maint)
 		user_misc=(ANSI|COLOR);
 
-	if((file=sopen("SBL.DAB",O_RDWR|O_BINARY|O_CREAT,SH_DENYNO
-		,S_IWRITE|S_IREAD))==-1) {
+	if((file=sopen("SBL.DAB",O_RDWR|O_BINARY|O_CREAT,SH_DENYNO))==-1) {
 		bprintf("\r\n\7Error opening/creating SBL.DAB\r\n");
 		exit(1); }
 	if((stream=fdopen(file,"w+b"))==NULL) {

@@ -9,7 +9,7 @@
 # Win32: make -f Makefile.gnu os=win32									#
 #########################################################################
 
-# $Id: Makefile.gnu,v 1.2 2000/12/02 02:20:31 rswindell Exp $
+# $Id: Makefile.gnu,v 1.3 2000/12/02 03:30:02 rswindell Exp $
 
 # Macros
 CC		=	gcc
@@ -41,5 +41,5 @@ CFLAGS	:=	$(CFLAGS) -I../sdk
 
 SBL: sbl$(EXEFILE)
 
-sbl$(EXEFILE) : sbl.c ../sdk/xsdk.c ../sdk/xsdkvars.c ../sdk/smbwrap.c
+sbl$(EXEFILE) : sbl.c ../sdk/xsdk.c ../sdk/xsdkvars.c ../sdk/xsdkwrap.c
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
