@@ -2,7 +2,7 @@
 
 /* Scans SBL database and posts any additions/updates into the an SMB base */
 
-/* $Id: sbl2smb.c,v 1.6 2001/11/02 05:30:58 rswindell Exp $ */
+/* $Id: sbl2smb.c,v 1.7 2002/10/23 00:29:29 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -373,6 +373,7 @@ int main(int argc, char **argv)
 		memcpy(msg.hdr.id,"SHD\x1a",4);
 		msg.hdr.version=smb_ver();
 		msg.hdr.when_written.time=time(NULL);
+		msg.hdr.when_imported.time=time(NULL);
     
 		msg.hdr.offset=offset;
 
