@@ -1,10 +1,13 @@
-<br />
+<!-- $Id: post.inc,v 1.5 2005/03/03 16:29:55 runemaster Exp $ -->
+
+<!-- Main Content -->  
+    
+    <td class="main" valign="top"><br />
+    
 <form action="savemsg.ssjs" method="post">
 <table class="postmsg" border="0" cellspacing="2" cellpadding="0">
 <input type="hidden" name="msg_sub" value="%%sub:code%%" />
   <tbody>
-    <tr>
-      <td class="postmsg" colspan="2">Posting in <b>@@group:name@@ : @@sub:description@@</b>
     <tr>
       <td class="postmsg">Subject: <input class="postmsg" type="text" name="subject" value="" /></td>
       <td class="postmsg">To: <input class="postmsg" type="text" name="to" 
@@ -25,4 +28,6 @@
   </tbody>
 </table>
 </form>
+
+<!-- end Main Content -->
 

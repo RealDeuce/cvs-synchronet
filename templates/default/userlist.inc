@@ -1,4 +1,9 @@
-<p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : User List</p>
+<!-- $Id: userlist.inc,v 1.4 2005/03/03 16:29:17 runemaster Exp $ -->
+
+<!-- Main Content -->  
+    
+    <td class="main" valign="top"><br />
+
 <table class="userlist" cellpadding="2" cellspacing="2">
 <tr>
     <th class="userlist"><a class="userlist" href="userlist.ssjs?sort=alias">Alias</a></th>

@@ -1,5 +1,9 @@
-<!-- $Id: newuser.inc,v 1.6 2005/02/20 03:26:35 deuce Exp $ -->
-<p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : New User Application</p>
+<!-- $Id: newuser.inc,v 1.7 2005/03/03 16:29:17 runemaster Exp $ -->
+
+<!-- Main Content -->  
+    
+    <td class="main" valign="top"><br />
+
 <center>
 	(%%required%% indicates required fields)<br>
 	%%err_message%%
@@ -64,3 +68,6 @@
             </tr>
 		</table>
 	</form>
+
+    <!-- end Main Content -->
+    

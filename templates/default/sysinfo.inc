@@ -1,4 +1,10 @@
-<p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : <a class="navigation" href="/members/info.ssjs">Information</a> : System Info</p>
+<!-- $Id: sysinfo.inc,v 1.4 2005/03/03 16:29:17 runemaster Exp $ -->
+
+<!-- Main Content -->  
+    
+    <td class="main" valign="top"><br />
+
+
 <table class="sysinfo" cellpadding="2" cellspacing="2">
   <tr>
 	<td class="sysinfo">
@@ -115,3 +121,5 @@ Version %%JS:system.full_version%%</p>
 </tr>
 </table>
 </div>
+
+<!-- end Main Content -->

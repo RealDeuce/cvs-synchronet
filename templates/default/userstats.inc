@@ -1,4 +1,8 @@
-<p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : <a class="navigation" href="/members/info.ssjs">Information</a> : Your Stats</p>
+<!-- $Id: userstats.inc,v 1.4 2005/03/03 16:29:17 runemaster Exp $ -->
+
+<!-- Main Content -->  
+  <td class="main" valign="top"><br />
+   
 <table class="userstats" border="0" cellpadding="2" cellspacing="2">
 <tr>
   <td class="userstats">First on:</td>
@@ -91,4 +95,8 @@
 	<td class="userstats" colspan="6">&nbsp;</td>
   </tr>
 </table>
+<br />
+<br />
+
+<!-- end Main Content -->
 
