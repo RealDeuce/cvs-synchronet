@@ -1,4 +1,4 @@
-<!-- $Id: leftnav.inc,v 1.13 2005/03/24 17:46:05 runemaster Exp $ -->
+<!-- $Id: leftnav.inc,v 1.14 2005/03/24 19:14:21 runemaster Exp $ -->
 
     <!-- Left Navigation (Includes Main table start) -->
         
@@ -14,10 +14,9 @@
         <div id="sectionLinks"> 
             <p>
                 <a href="/nodelist.ssjs">Who's Online</a>
-                @@JS:if(user.number==0 || user.security.restrictions&UFLAG_G)'<a href="/login.ssjs">Login</a><a href="/newuser.ssjs">New User'; else'<a href="/members/userlist.ssjs">User Listing</a><a href="/members/info.ssjs">Information</a><a href="/members/themes.ssjs">Change Theme</a><a href="/members/newpw.ssjs">Change Password</a><a href="/msgs/msgs.ssjs?msg_sub=mail">E-mail</a>';@@</a>  
-                @@JS:if(user.number || (this.login!=undefined && system.matchuser("Guest")))'<a href="/msgs">Message Groups</a>';@@
-                @@JS:if(user.number==0 || user.security.restrictions&UFLAG_G)''; else'<a href="/msgs/choosegroup.ssjs">Set Message Scan</a>';@@ 
-                @@JS:if(user.number==0 || user.security.restrictions&UFLAG_G)''; else'<a href="@@ftp_url@@%%ftpqwk%%">Download QWK Packet</a>';@@
+                <<REPEAT leftnav>>
+                    @@leftnav:html@@
+                <<END REPEAT leftnav>>
                 <a href="@@ftp_url@@%%ftpidx%%">File Libraries</a>
             </p>
         </div>
