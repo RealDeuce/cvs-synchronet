@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.19 2004/03/24 09:01:29 deuce Exp $
+# $Id: GNUmakefile,v 1.20 2004/03/24 09:07:41 deuce Exp $
 
 # Macros
 XSDK		=	../sdk
@@ -21,8 +21,8 @@ ifndef SBBS_SRC
  SBBS_SRC	:=	$(XPDEV)../sbbs3/
 endif
 NEED_THREADS	:=	1
-include $(XPDEV)/Common.gmake
-include $(SBBS_SRC)/Common.gmake
+include $(XPDEV)Common.gmake
+include $(SBBS_SRC)Common.gmake
 
 ifeq ($(os),sunos)
  LDFLAGS	+=	-lsocket -lnsl -lrt
