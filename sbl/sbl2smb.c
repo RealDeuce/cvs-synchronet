@@ -2,7 +2,7 @@
 
 /* Scans SBL database and posts any additions/updates into the an SMB base */
 
-/* $Id: sbl2smb.c,v 1.11 2002/11/30 23:11:41 rswindell Exp $ */
+/* $Id: sbl2smb.c,v 1.12 2004/05/30 07:07:19 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -66,7 +66,7 @@ static void truncsp(char *str)
 	uint c;
 
 	c=strlen(str);
-	while(c && (uchar)str[c-1]<=SP) c--;
+	while(c && (uchar)str[c-1]<=' ') c--;
 	str[c]=0;
 }
 
@@ -144,7 +144,7 @@ int main(int argc, char **argv)
 	smbmsg_t msg;
 	FILE	*stream;
 
-	sscanf("$Revision: 1.11 $" + 11, "%s", revision);
+	sscanf("$Revision: 1.12 $" + 11, "%s", revision);
 
 	fprintf(stderr,"\nSBL2SMB v2.%s-%s - Write SBL to SMB - Coyright 2002 "
 		"Rob Swindell\n\n",revision,PLATFORM_DESC);
