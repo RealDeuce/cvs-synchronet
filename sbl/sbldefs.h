@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Macros, constants, and type definitions */
 
-/* $Id: sbldefs.h,v 1.3 2000/12/02 01:02:03 rswindell Exp $ */
+/* $Id: sbldefs.h,v 1.4 2000/12/05 01:37:28 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -50,7 +50,7 @@
 #pragma pack(1)
 #endif
 
-typedef union {
+typedef union _PACK {
 
 		struct {
 			char	number[13]; 		/* Phone number */
@@ -69,7 +69,7 @@ typedef union {
 
 } number_t;
 
-typedef struct {
+typedef struct _PACK {
 	char	 name[26]					/* System name */
 			,user[26]					/* User who created entry */
 			,software[16]				/* BBS software */
