@@ -1,8 +1,8 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.1 2005/02/14 23:10:53 rswindell Exp $
+// $Id: rss.ssjs,v 1.2 2005/02/14 23:20:44 rswindell Exp $
 
-var REVISION = "$Revision: 1.1 $".split(' ')[1];
+var REVISION = "$Revision: 1.2 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -76,6 +76,16 @@ writeln("\t\t<description>" + sub.description	+ "</description>");
 writeln('\t\t<link>' + http_request.request_string + '</link>');
 writeln('\t\t<language>en-us</language>');
 
+function encode(str)
+{
+	return(html_encode(str
+		,true	/* ex-ASCII */
+		,false	/* white-space */
+		,false	/* ANSI */
+		,true	/* Ctrl-A */
+		));
+}
+
 var msgbase=new MsgBase(channel.sub);
 if(msgbase.open()) {
 
@@ -94,10 +104,10 @@ if(msgbase.open()) {
 			continue;
 		writeln('\t\t\t<item>');
 		writeln('\t\t\t\t<pubDate>' + hdr.date + '</pubDate>');
-		writeln('\t\t\t\t<title>' + html_encode(hdr.subject,false,false,false) + '</title>');
-		writeln('\t\t\t\t<author>' + html_encode(hdr.from,false,false,false) + '</author>');
-		writeln('\t\t\t\t<guid>' + html_encode(hdr.id,false,false,false) + '</guid>');
-		writeln('\t\t\t\t<description>' + html_encode(body,false,false,false) + '</description>');
+		writeln('\t\t\t\t<title>' + encode(hdr.subject) + '</title>');
+		writeln('\t\t\t\t<author>' + encode(hdr.from) + '</author>');
+		writeln('\t\t\t\t<guid>' + encode(hdr.id) + '</guid>');
+		writeln('\t\t\t\t<description>' + encode(body) + '</description>');
 //		writeln('\t\t\t\t<link>' + http_request.request_string + '?item=' + hdr.number + '</link>');
 		writeln('\t\t\t</item>');
 	}
