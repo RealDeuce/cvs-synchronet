@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.15 2001/11/02 05:29:49 rswindell Exp $ */
+/* $Id: sbl.c,v 1.16 2002/06/22 11:52:41 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -771,7 +771,11 @@ int main(int argc, char **argv)
 				case 'M':
 					maint=1;
 					xsdk_mode&=~XSDK_MODE_NOCONSOLE;
-					break; }
+					break; 
+				case 'W':
+					xsdk_mode&=~XSDK_MODE_NOCONSOLE;
+					break; 
+			}
 
 	p=getenv("SBBSNODE");
 	if(p)
