@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id $ */
+/* $Id: newuser.ssjs,v 1.3 2004/10/27 05:57:42 deuce Exp $ */
 
 load("sbbsdefs.js");
 

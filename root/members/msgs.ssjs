@@ -1,4 +1,4 @@
-/* $Id $ */
+/* $Id: msgs.ssjs,v 1.3 2004/10/27 05:57:42 deuce Exp $ */
 // Configuration
 var max_subs=10;
 var max_groups=10;
