@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.17 2002/10/13 10:22:44 rswindell Exp $ */
+/* $Id: sbl.c,v 1.18 2002/12/07 07:33:59 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -761,6 +761,7 @@ return(stricmp(str1->str,str2->str));
 int main(int argc, char **argv)
 {
 	char	str[512],name[128],*p,ch;
+	char*	database="sbl.dab";
 	short	i,j,file,done,sort_by_str;
 	int 	maint=0;
 	long	l,found;
@@ -770,7 +771,11 @@ int main(int argc, char **argv)
 	sortint_t *sortint;
 
 	for(i=1;i<argc;i++)
-		if(argv[i][0]=='/')
+		if(
+#ifndef __unix__
+			argv[i][0]=='/' || 
+#endif
+			argv[i][0]=='-') {
 			switch(toupper(argv[i][1])) {
 				case 'M':
 					maint=1;
@@ -780,6 +785,8 @@ int main(int argc, char **argv)
 					xsdk_mode&=~XSDK_MODE_NOCONSOLE;
 					break; 
 			}
+		} else
+			database=argv[i];
 
 	p=getenv("SBBSNODE");
 	if(p)
@@ -821,11 +828,11 @@ int main(int argc, char **argv)
 	if(maint)
 		user_misc=(ANSI|COLOR);
 
-	if((file=sopen("sbl.dab",O_RDWR|O_BINARY|O_CREAT,SH_DENYNO))==-1) {
-		bprintf("\r\n\7Error opening/creating sbl.dab\r\n");
+	if((file=sopen(database,O_RDWR|O_BINARY|O_CREAT,SH_DENYNO))==-1) {
+		bprintf("\r\n\7Error opening/creating %s\r\n",database);
 		exit(1); }
 	if((stream=fdopen(file,"w+b"))==NULL) {
-		bprintf("\r\n\7Error converting sbl.dab file handle to stream\r\n");
+		bprintf("\r\n\7Error converting %s file handle to stream\r\n",database);
 		exit(1); }
 	setvbuf(stream,0L,_IOFBF,2048);
 
