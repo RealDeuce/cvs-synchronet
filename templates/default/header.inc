@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <!-- $Id: header.inc,v 1.6 2005/03/04 00:59:14 runemaster Exp $ -->
+    <!-- $Id: header.inc,v 1.7 2005/03/09 06:31:52 deuce Exp $ -->
 <head>
 <title>%%title%%</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <h1 id="siteName">@@JS:system.name@@</h1> 
+  <h1 id="siteName">@@system:name@@</h1> 
    <div id="Greeting"> 
         @@JS:template.user_greeting@@
    </div>
