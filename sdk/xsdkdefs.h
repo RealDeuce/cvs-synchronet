@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK constants, macros, and type definitions */
 
-/* $Id: xsdkdefs.h,v 1.5 2000/12/05 01:36:40 rswindell Exp $ */
+/* $Id: xsdkdefs.h,v 1.6 2001/03/10 01:20:28 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -93,6 +93,9 @@
 #ifndef ulong
 #define ulong unsigned long
 #endif
+
+									/* Valid bits for xsdk_mode			*/
+#define XSDK_MODE_NOCONSOLE	(1<<0)	/* No Local Console					*/
 
 							/* Bits in 'mode' for getkey and getstr     */
 #define K_UPPER		(1<<0)	/* Converts all letters to upper case 		*/

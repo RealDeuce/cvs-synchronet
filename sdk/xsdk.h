@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.6 2000/12/02 04:12:11 rswindell Exp $ */
+/* $Id: xsdk.h,v 1.7 2001/03/10 01:20:17 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -71,6 +71,7 @@
 #endif
 
 extern char *xsdk_ver;	/* XSDK version number */
+extern ulong xsdk_mode;	/* XSDK mode bits */
 extern int mswtyp;		/* MSwait type */
 
 /***********************/
