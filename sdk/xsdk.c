@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.19 2001/11/01 13:34:20 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.20 2001/11/01 13:43:16 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1889,6 +1889,8 @@ void initdata(void)
 			printf("\r\n\7Error %d creating output_event\r\n",GetLastError());
 			exit(1);
 		}
+#else
+		sem_init(&output_sem,0,0);
 #endif
 		_beginthread(output_thread,0,NULL);
 	}
