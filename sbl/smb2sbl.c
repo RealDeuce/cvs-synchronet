@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.15 2003/05/01 09:34:32 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.16 2004/03/11 06:00:32 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -82,7 +82,7 @@ char *loadmsgtxt(smbmsg_t msg, int tails)
 			lzhlen=*(long *)lzhbuf;
 			if((buf=REALLOC(buf,l+lzhlen+3))==NULL) {
 				FREE(lzhbuf);
-				printf("ERR_ALLOC lzhoutbuf of %l\n",l+lzhlen+1);
+				printf("ERR_ALLOC lzhoutbuf of %ld\n",l+lzhlen+1);
 				return(buf); }
 			lzh_decode(lzhbuf,length,buf+l);
 			FREE(lzhbuf);
@@ -201,7 +201,7 @@ int main(int argc, char **argv)
 	smbmsg_t msg;
 	FILE	*stream;
 
-	sscanf("$Revision: 1.15 $", "%*s %s", revision);
+	sscanf("$Revision: 1.16 $", "%*s %s", revision);
 
 	fprintf(stderr,"\nSMB2SBL v2.%s-%s - Updates SBL via SMB - Copyright 2003 "
 		"Rob Swindell\n\n",revision,PLATFORM_DESC);
