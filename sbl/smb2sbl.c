@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.10 2002/12/07 07:32:28 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.11 2003/01/28 20:22:25 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -200,7 +200,7 @@ int main(int argc, char **argv)
 	smbmsg_t msg;
 	FILE	*stream;
 
-	sscanf("$Revision: 1.10 $" + 11, "%s", revision);
+	sscanf("$Revision: 1.11 $" + 11, "%s", revision);
 
 	fprintf(stderr,"\nSMB2SBL v2.%s-%s - Updates SBL via SMB - Copyright 2002 "
 		"Rob Swindell\n\n",revision,PLATFORM_DESC);
@@ -369,14 +369,19 @@ int main(int argc, char **argv)
 				truncsp(bbs.sysop[sysop]);
 				if(sysop<MAX_SYSOPS-1)
 					sysop++; }
-			if(!strnicmp(buf+l,"NUMBER:",7)) {
+			if(!strnicmp(buf+l,"NUMBER:",7) || !strnicmp(buf+l,"TELNET:",7)) {
 				l+=7;
 				while(buf[l] && buf[l]<=SP && buf[l]!=CR)
 					l++;
-				SAFECOPY(bbs.number[number].modem.number,buf+l);
-				truncsp(bbs.number[number].modem.number);
+				SAFECOPY(bbs.number[number].telnet.addr,buf+l);
+				truncsp(bbs.number[number].telnet.addr);
+				if(!strnicmp(buf+l,"TELNET:",7)) {
+					bbs.number[number].telnet.unused=0xffff;
+					bbs.number[number].telnet.port=23;
+				}
 				if(number<MAX_NUMBERS-1)
-					number++; }
+					number++; 
+			}
 			if(!strnicmp(buf+l,"MODEM:",6)) {
 				l+=6;
 				while(buf[l] && buf[l]<=SP && buf[l]!=CR)
@@ -407,6 +412,13 @@ int main(int argc, char **argv)
 				i=number;
 				if(i) i--;
 				bbs.number[i].modem.max_rate=atoi(buf+l); }
+			if(!strnicmp(buf+l,"PORT:",5)) {
+				l+=5;
+				while(buf[l] && buf[l]<=SP && buf[l]!=CR)
+					l++;
+				i=number;
+				if(i) i--;
+				bbs.number[i].telnet.port=atoi(buf+l); }
 			if(!strnicmp(buf+l,"NETWORK:",8)) {
 				l+=8;
 				while(buf[l] && buf[l]<=SP && buf[l]!=CR)
