@@ -1,5 +1,5 @@
-<!-- $Id: newuser.inc,v 1.3 2005/01/11 05:35:08 deuce Exp $ -->
-<p class="navigation"><a class="navigation" href="http://^^JS:system.inet_addr^^/">Home</a> : New User Application</p>
+<!-- $Id: newuser.inc,v 1.4 2005/02/17 02:48:18 rswindell Exp $ -->
+<p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : New User Application</p>
 <center>
 	(%%required%% indicates required fields)<br>
 	%%err_message%%
