@@ -1,3 +1,5 @@
+/* $Id: newpw.ssjs,v 1.2 2005/03/22 04:09:09 runemaster Exp $ */
+
 var sub="";
 
 load("sbbsdefs.js");

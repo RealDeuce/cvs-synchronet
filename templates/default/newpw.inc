@@ -1,5 +1,5 @@
 
-<!-- $Id: newpw.inc,v 1.1 2005/03/22 04:05:39 runemaster Exp $ -->
+<!-- $Id: newpw.inc,v 1.2 2005/03/22 04:09:11 runemaster Exp $ -->
 
 <!-- Main Content --> 
 </td>
