@@ -1,4 +1,4 @@
-/* $Id: changepw.ssjs,v 1.2 2005/03/22 04:09:09 runemaster Exp $ */
+/* $Id: changepw.ssjs,v 1.3 2005/03/22 20:49:49 runemaster Exp $ */
 
 var sub="";
 
@@ -35,10 +35,14 @@ if(newpw1 == '') {
     template.resultmsg="New password cannot be blank!  Please enter a new password.";   
 }
 else
+if(newpw1.length < 4) {
+    template.resultmsg="New Password must be a minimum of 4 characters. Please Re-Enter."
+}
+else
 if(newpw1 != newpw2) {
     template.resultmsg="New Passwords do not match. Please Re-Enter."
 }
-else {
+else  {
     template.resultmsg="Password Changed Successfully."
     user.security.password = newpw1;
     user.security.password_date = today;
