@@ -2,7 +2,7 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.8 2005/03/03 16:25:46 runemaster Exp $
+// $Id: userlist.ssjs,v 1.9 2005/03/04 00:39:12 runemaster Exp $
 
 load("sbbsdefs.js");
 load("../web/lib/template.ssjs");
