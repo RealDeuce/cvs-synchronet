@@ -10,14 +10,18 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.4 2002/11/26 02:57:16 rswindell Exp $
+# $Id: GNUmakefile,v 1.5 2002/12/19 20:29:40 rswindell Exp $
 
 # Macros
 CC		=	gcc
 LD		=	ld
 XSDK		=	../sdk
-XPDEV		=	/src/xpdev
-SBBS_SRC	=	/src/sbbs3
+ifndef XPDEV
+ XPDEV		=	/src/xpdev
+endif
+ifndef SBBS_SRC
+ SBBS_SRC	=	/src/sbbs3
+endif
 
 ifndef os
  os              =       $(shell uname)
