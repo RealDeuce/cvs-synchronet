@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.13 2003/02/28 08:54:51 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.14 2003/02/28 09:07:31 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -201,9 +201,9 @@ int main(int argc, char **argv)
 	smbmsg_t msg;
 	FILE	*stream;
 
-	sscanf("$Revision: 1.13 $" + 11, "%s", revision);
+	sscanf("$Revision: 1.14 $", "%*s %s", revision);
 
-	fprintf(stderr,"\nSMB2SBL v2.%s-%s - Updates SBL via SMB - Copyright 2002 "
+	fprintf(stderr,"\nSMB2SBL v2.%s-%s - Updates SBL via SMB - Copyright 2003 "
 		"Rob Swindell\n\n",revision,PLATFORM_DESC);
 
 #if 0
