@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.6 2003/02/28 09:12:32 rswindell Exp $
+# $Id: GNUmakefile,v 1.7 2003/03/04 10:56:01 rswindell Exp $
 
 # Macros
 CC		=	gcc
@@ -23,7 +23,10 @@ ifndef os
  os              =       $(shell uname)
  $(warning OS not specified on command line, setting to '$(os)'.)
 endif
-os      :=	$(shell echo $(os) | awk '/.*/ { print tolower($$1)}')
+os      :=	$(shell echo $(os) | tr "[A-Z]" "[a-z]")
+# remove '/' from "os/2"
+os      :=  $(shell echo $(os) | tr -d "/")
+
 
 LIBDIR	:=	/usr/lib
 DELETE	:=	rm -f -v
