@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.19 2003/02/28 09:23:57 rswindell Exp $ */
+/* $Id: sbl.c,v 1.20 2003/05/01 09:34:31 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -828,7 +828,7 @@ int main(int argc, char **argv)
 	if(maint)
 		user_misc=(ANSI|COLOR);
 
-	if((file=sopen(database,O_RDWR|O_BINARY|O_CREAT,SH_DENYNO))==-1) {
+	if((file=sopen(database,O_RDWR|O_BINARY|O_CREAT,SH_DENYNO,S_IREAD|S_IWRITE))==-1) {
 		bprintf("\r\n\7Error opening/creating %s\r\n",database);
 		exit(1); }
 	if((stream=fdopen(file,"w+b"))==NULL) {
