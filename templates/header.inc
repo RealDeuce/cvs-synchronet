@@ -1,11 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-    <!-- $Id: header.inc,v 1.10 2004/12/05 16:50:10 runemaster Exp $ -->
+    <!-- $Id: header.inc,v 1.11 2004/12/06 21:16:08 runemaster Exp $ -->
     <head>
         <title>%%title%%</title>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
             <link rel="stylesheet" href="/synchronet.css" type="text/css" />
     </head>
 <body>
+<p class="title">@@JS:system.name@@</p>
+
+
 
 
