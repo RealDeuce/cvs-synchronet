@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.4 2000/12/02 03:30:17 rswindell Exp $ */
+/* $Id: sbl.c,v 1.5 2000/12/02 04:47:00 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1226,7 +1226,7 @@ int main(int argc, char **argv)
 					pause(); }
 				ch=yesno("Display extended information");
 				cls();
-				while(!eof(file) && !aborted) {
+				while(/* !eof(file) && not on unix */ !aborted) {
 					if(read(file,&i,2)!=2)
 						break;
 					fseek(stream,(long)i*sizeof(bbs_t),SEEK_SET);
