@@ -2,7 +2,7 @@
 
 /* Scans SBL database and posts any additions/updates into the an SMB base */
 
-/* $Id: sbl2smb.c,v 1.12 2004/05/30 07:07:19 deuce Exp $ */
+/* $Id: sbl2smb.c,v 1.13 2004/09/16 03:02:29 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -57,18 +57,6 @@
 
 smb_t		smb;
 char		revision[16];
-
-/****************************************************************************/
-/* Truncates white-space chars off end of 'str'								*/
-/****************************************************************************/
-static void truncsp(char *str)
-{
-	uint c;
-
-	c=strlen(str);
-	while(c && (uchar)str[c-1]<=' ') c--;
-	str[c]=0;
-}
 
 /****************************************************************************/
 /* Updates 16-bit "rcrc" with character 'ch'                                */
@@ -144,7 +132,7 @@ int main(int argc, char **argv)
 	smbmsg_t msg;
 	FILE	*stream;
 
-	sscanf("$Revision: 1.12 $" + 11, "%s", revision);
+	sscanf("$Revision: 1.13 $" + 11, "%s", revision);
 
 	fprintf(stderr,"\nSBL2SMB v2.%s-%s - Write SBL to SMB - Coyright 2002 "
 		"Rob Swindell\n\n",revision,PLATFORM_DESC);
