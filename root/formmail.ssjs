@@ -1,6 +1,6 @@
 // Basic FormMail module
 
-// $Id: formmail.ssjs,v 1.3 2005/03/11 01:04:02 rswindell Exp $
+// $Id: formmail.ssjs,v 1.4 2005/03/11 21:34:00 rswindell Exp $
 
 // Requires query values: to, from, and subject
 // Message body text is contained in the post data
@@ -46,6 +46,9 @@ if(!msgbase.open())
 var hdr = { from: http_request.query.from,
 			to: http_request.query.to,
 			subject: http_request.query.subject };
+
+if(http_request.query.email)	// Use form-specified email address
+	hdr.from=http_request.query.email;
 
 hdr.to_net_type=netaddr_type(hdr.to);
 if(hdr.to_net_type!=NET_NONE)
