@@ -1,10 +1,10 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.4 2005/02/15 00:23:49 rswindell Exp $
+// $Id: rss.ssjs,v 1.5 2005/02/15 00:36:35 rswindell Exp $
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.4 $".split(' ')[1];
+var REVISION = "$Revision: 1.5 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -64,6 +64,27 @@ if(http_request.query["item"]) {
 			writeln('Error: ' + msgbase.error);
 		else
 			template.body= msgbase.get_msg_body(false, template.hdr.number);
+	}
+
+	msg=mime_decode(template.hdr,template.body);
+	template.body=msg.body;
+	if(msg.type=="plain") {
+		/* ANSI */
+		if(template.body.indexOf('\x1b[')>=0 || template.body.indexOf('\x01')>=0) {
+			template.body=html_encode(template.body,true,false,true,true);
+		}
+		/* Plain text */
+		else {
+			template.body=word_wrap(template.body,80);
+			template.body=html_encode(template.body,true,false,false,false);
+		}
+	}
+	if(msg.attachments!=undefined) {
+		template.attachments=new Object;
+		for(att in msg.attachments) {
+			template.attachments[att]=new Object;
+			template.attachments[att].name=msg.attachments[att];
+		}
 	}
 
 	write_template("header.inc");
