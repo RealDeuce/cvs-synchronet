@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK constants, macros, and type definitions */
 
-/* $Id: xsdkdefs.h,v 1.7 2002/12/17 20:55:24 rswindell Exp $ */
+/* $Id: xsdkdefs.h,v 1.8 2004/11/18 01:45:52 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -42,6 +42,10 @@
 /* Macros */
 /**********/
 
+#ifdef USE_XPDEV
+	#include "gen_defs.h"
+#else
+
 									/* Control characters */
 #define STX 	0x02				/* Start of text			^B	*/
 #define ETX 	0x03				/* End of text				^C	*/
@@ -52,6 +56,8 @@
 #define CR		0x0d				/* Carriage return			^M	*/
 #define ESC 	0x1b				/* Escape					^[	*/
 #define SP      0x20                /* Space                        */
+
+#endif
 
 
 #define DCD    0x8000		/* Data carrier detect bit in msr			*/
