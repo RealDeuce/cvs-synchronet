@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.8 2003/04/28 03:18:16 deuce Exp $
+# $Id: GNUmakefile,v 1.9 2003/04/28 05:48:52 deuce Exp $
 
 # Macros
 CC		=	gcc
@@ -36,10 +36,15 @@ else
  ifeq ($(os),openbsd)	# OpenBSD
   LIBS	+=	-pthread
  else
-  ifeq ($(os),qnx)	# QNX
-   LIBS	+=	-lsocket
-  else					# Linux / Generic UNIX
-   LIBS	+=	-lpthread
+  ifeq ($(os),netbsd)	#NetBSD
+   CFLAGS	+=	-D__unix__ -I/usr/pkg/include -I../../src/xpdev
+   LIBS	+=	-L/usr/pkg/lib -lpthread
+  else
+   ifeq ($(os),qnx)	# QNX
+    LIBS	+=	-lsocket
+   else					# Linux / Generic UNIX
+    LIBS	+=	-lpthread
+   endif
   endif #! QNX
  endif	#! OpenBSD
 endif	#! FreeBSD
@@ -47,6 +52,9 @@ endif	#! FreeBSD
 CFLAGS	+=	-I$(XSDK)
 
 OBJS		= xsdk.o xsdkvars.o xsdkwrap.o
+ifeq ($(os),netbsd)
+ OBJS	+=	../../src/xpdev/sem.o
+endif
 
 all: sbj sbjclean
 
