@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.7 2000/12/02 04:36:35 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.8 2000/12/02 04:38:04 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -352,8 +352,8 @@ void output_thread(void* arg)
 
 	while(client_socket!=INVALID_SOCKET) {
 		if(outbufbot==outbuftop) {
-			sem_init(&sbbs->output_sem,0,0);
-			sem_wait(&sbbs->output_sem);
+			sem_init(&output_sem,0,0);
+			sem_wait(&output_sem);
 			continue; 
 		}
 
