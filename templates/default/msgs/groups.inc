@@ -1,4 +1,4 @@
-<!-- $Id: groups.inc,v 1.9 2005/03/04 01:01:57 runemaster Exp $ -->
+<!-- $Id: groups.inc,v 1.10 2005/03/16 23:16:09 deuce Exp $ -->
 
 <!-- Main Content -->  
     
@@ -11,7 +11,7 @@
 <<REPEAT groups>>
 <tr>
     <td class="grouplist"><a class="grouplist" href="subs.ssjs?msg_grp=^^groups:name^^">%%groups:description%%</a></td>
-    <td class="grouplist" align="right">@@JS:msg_area.grp['@@groups:name@@'].sub_list.length@@</td>
+    <td class="grouplist" align="right">@@JS:msg_area.grp_list['@@groups:index@@'].sub_list.length@@</td>
 </tr>
 <<END REPEAT groups>>
 </table>
