@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK constants, macros, and type definitions */
 
-/* $Id: xsdkdefs.h,v 1.2 2000/10/12 05:34:36 rswindell Exp $ */
+/* $Id: xsdkdefs.h,v 1.3 2000/12/02 04:05:10 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -42,9 +42,6 @@
 /* Macros */
 /**********/
 
-#ifdef _WIN32
-#define mswait	Sleep		/* Win32 equivalent */
-#endif
 									/* Control characters */
 #define STX 	0x02				/* Start of text			^B	*/
 #define ETX 	0x03				/* End of text				^C	*/
@@ -300,6 +297,8 @@ enum {								/* Node Action */
 							lbuflen=0; }
 #define RESTORELINE 	{ lbuflen=0; attr(slatr[--slcnt]); \
 							bputs(slbuf[slcnt]); }
+
+#define pause bpause	/* backwards compatibility with pre-3.1 XSDK */
 
 /************/
 /* Typedefs */
