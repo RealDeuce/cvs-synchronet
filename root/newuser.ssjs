@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.10 2004/12/07 00:41:31 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.11 2004/12/09 06:46:01 runemaster Exp $ */
 
 load("sbbsdefs.js");
 load("html_inc/template.ssjs");
@@ -65,12 +65,12 @@ else {
 		template.errs["gender"]="Male or Female";
 	}
 	/* Validate date */
-	if(http_request.query["birthdate"].length<8) {
+	    if(http_request.query["birthdate"].toString().length<8) {
 		err=1;
 		template.err_message+="Bad date format (ie: 12/19/75)\r\n";
 	}
 	else {
-		brokendate=http_request.query["birthdate"].split('/');
+		brokendate=http_request.query["birthdate"].toString().split('/');
 		if(brokendate.length!=3) {
 			err=1;
 			template.err_message="Bad date format\r\n";
