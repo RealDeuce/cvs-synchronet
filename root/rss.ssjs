@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.11 2005/02/15 10:32:45 deuce Exp $
+// $Id: rss.ssjs,v 1.12 2005/02/16 23:21:54 rswindell Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.11 $".split(' ')[1];
+var REVISION = "$Revision: 1.12 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -149,12 +149,12 @@ writeln('\t\t</image>');
 
 function encode(str, wspace)
 {
-	return(strip_ctrl(html_encode(str
+	return(html_encode(strip_ctrl(str)
 		,true	/* ex-ASCII */
 		,wspace	/* white-space */
 		,false	/* ANSI */
 		,false	/* Ctrl-A */
-		)));
+		));
 }
 
 var msgbase=new MsgBase(channel.sub);
