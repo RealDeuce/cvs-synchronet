@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.9 2004/12/06 13:21:07 runemaster Exp $ */
+/* $Id: newuser.ssjs,v 1.10 2004/12/07 00:41:31 deuce Exp $ */
 
 load("sbbsdefs.js");
 load("html_inc/template.ssjs");
@@ -28,7 +28,7 @@ if(http_request.method=='GET') {
 else {
 	/* Create gender list drop-down */
 	if(http_request.query["gender"] != undefined)
-		gender=http_request.query["gender"].toUpperCase();
+		gender=http_request.query["gender"].toString().toUpperCase();
 	template.gender_list='<select name="gender">\n';
 	template.gender_list+='<option value="M"'+(gender=='M'?' selected':'')+'>Male</option>\n';
 	template.gender_list+='<option value="F"'+(gender=='F'?' selected':'')+'>Female</option>\n</select>';
