@@ -1,4 +1,4 @@
-<!-- $Id: newuser.inc,v 1.4 2005/02/17 02:48:18 rswindell Exp $ -->
+<!-- $Id: newuser.inc,v 1.5 2005/02/19 08:03:00 rswindell Exp $ -->
 <p class="navigation"><a class="navigation" href="/index.ssjs">Home</a> : New User Application</p>
 <center>
 	(%%required%% indicates required fields)<br>
@@ -47,7 +47,7 @@
 				<td class="newuser">@@gender_list@@</td>
 			</tr>
 			<tr>
-				<td class="newuser" align="right">%%errs:editor%% %%editor_required%% External Editor:</td>
+				<td class="newuser" align="right">%%errs:editor%% Message Editor:</td>
 				<td class="newuser">@@editor_list@@</td>
 			</tr>
             <tr>
