@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.20 2005/02/06 23:48:37 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.21 2005/02/10 05:24:42 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -339,7 +339,8 @@ function genpass() {
 	var pw='';
 
 	for(i=0;i<8;i++) {
-		pw+=pwchars.substr(random(pwchars.length),1);
+		pw+=pwchars.substr(parseInt(Math.random() * pwchars.length),1);
+
 	}
 	return(pw);
 }
