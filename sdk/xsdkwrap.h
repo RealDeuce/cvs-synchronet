@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.8 2001/11/01 13:08:31 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.9 2001/11/01 13:34:44 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -68,6 +68,12 @@
 
 	#define COMPILER_DESC(str) strcpy(str,"UNKNOWN COMPILER");
 
+#endif
+
+#if defined(__unix__)
+	#define BACKSLASH	'/'
+#else /* MS-DOS based OS */
+	#define BACKSLASH	'\\'
 #endif
 
 /* Target Platform Description */
