@@ -1,4 +1,4 @@
-<!-- $Id: newuser.inc,v 1.5 2004/12/05 16:50:10 runemaster Exp $ -->
+<!-- $Id: newuser.inc,v 1.6 2004/12/05 21:43:30 runemaster Exp $ -->
 <p class="navigation"><a class="navigation" href="http://^^JS:system.inet_addr^^/">Home</a> : New User Application</p>
 	%%err_message%%
 	<form action="newuser.ssjs" method="post">
@@ -46,7 +46,7 @@
             <tr>
             <td class="newuser">&nbsp;</td>
             <td class="newuser">
-                <button type="submit">Join!</button>
+                <input type="submit" value="Join!" />Join!
             </td>
             </tr>
 		</table>
