@@ -2,14 +2,14 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.17 2005/01/12 06:13:21 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.18 2005/01/22 19:47:46 deuce Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
 var	optional_str="";
 
 load("sbbsdefs.js");
-load("html_inc/template.ssjs");
+load("../web/lib/template.ssjs");
 
 template.required=required_str;
 template.date_format="MM/DD/YY";

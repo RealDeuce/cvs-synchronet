@@ -2,10 +2,10 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.4 2005/01/13 19:49:34 deuce Exp $
+// $Id: userlist.ssjs,v 1.5 2005/01/22 19:48:08 deuce Exp $
 
 load("sbbsdefs.js");
-load("html_inc/template.ssjs");
+load("../web/lib/template.ssjs");
 
 if(system.lastuser==undefined)	/* v3.10 */
 	lastuser=system.stats.total_users;
