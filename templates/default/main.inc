@@ -1,4 +1,4 @@
-<!-- $Id: main.inc,v 1.5 2005/04/04 20:56:55 runemaster Exp $ -->
+<!-- $Id: main.inc,v 1.6 2005/04/06 09:12:16 rswindell Exp $ -->
 
 <!-- Main Content --> 
 </td>
@@ -44,8 +44,12 @@
         <td class="main_stats">Files</td><td class="main_stats_bold">@@total_files@@</td>
       </tr>
     </table>
+	<br />
     </td>
     </tr>
+	<tr>
+    <td align="center">Additional Services<br /><br />@@additional_services@@</td>
+	</tr>
     </table>
     <br /><br />
 
