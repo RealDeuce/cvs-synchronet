@@ -10,13 +10,13 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.15 2004/03/24 09:07:41 deuce Exp $
+# $Id: GNUmakefile,v 1.16 2004/04/03 01:16:23 rswindell Exp $
 
 XSDK		=	../sdk
-XPDEV	?=	../../src/xpdev/
+XPDEV	?=	../../src/xpdev
 vpath %.c $(XSDK)
 NEED_THREADS	:=	1
-include $(XPDEV)Common.gmake
+include $(XPDEV)/Common.gmake
 CFLAGS	+=	-I$(XSDK)
 
 ifeq ($(os),sunos)
