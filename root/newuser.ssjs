@@ -2,10 +2,10 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.6 2004/10/29 07:10:42 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.7 2004/10/29 07:11:52 deuce Exp $ */
 
 load("sbbsdefs.js");
-load("/usr/bbs/sbbs/exec/html_inc/template.ssjs");
+load("html_inc/template.ssjs");
 
 var fields=new Array("alias","name","handle","netmail","address","location","zipcode","phone","birthdate","gender");
 var required=new Array("name","netmail","address","location","zipcode","phone","birthdate","gender");
