@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.5 2005/03/04 00:59:14 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.6 2005/03/09 06:31:05 deuce Exp $ -->
 
     </td>
     <td width="1%" valign="top" align="right"><img alt="" src="/graphics/tr_curve_grey.gif" height="6" width="6" /></td>
@@ -15,8 +15,8 @@
           <div align="left">
          <!-- <a href="http://www.synchro.net/"><img src="/graphics/sync_pbgj1_grey_bg.gif" title="Powered by: Synchronet" alt="Powered by: Synchronet" width="175" height="85" border="0" /></a></div> -->
           <font size="-3">
-            @@JS:server.version@@<br />
-            @@JS:system.version_notice@@
+            @@server:version@@<br />
+            @@system:version_notice@@
           </font>
         </div>    
         </td>
