@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.4 2001/11/02 05:30:58 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.5 2001/11/10 00:36:41 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -220,6 +220,10 @@ int main(int argc, char **argv)
 
 	fprintf(stderr,"\nSMB2SBL v%s - Updates SBL via SMB - Developed 1994-2000 "
 		"Rob Swindell\n\n",VERSION);
+
+	if(putenv("TZ=UCT0"))
+		fprintf(stderr,"!putenv() FAILED\n");
+	tzset();
 
 	if(checktime()) {
 		printf("Time problem!\n");
