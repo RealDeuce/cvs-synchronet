@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.10 2000/12/05 01:05:00 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.11 2000/12/05 01:21:36 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -738,11 +738,13 @@ void checkline(void)
 /* returned with the high bit set. If the return of this function has the	*/
 /* high bit set (&0x8000), just flip the bit (^0x8000) to get the number.	*/
 /****************************************************************************/
-int getkeys(char *str,int max)
+int getkeys(char *instr,int max)
 {
-	uchar ch,n=0;
-	int i=0;
+	char	str[256];
+	uchar	ch,n=0;
+	int		i=0;
 
+	sprintf(str,"%.*s",sizeof(str)-1,instr);
 	strupr(str);
 	while(!aborted) {
 		ch=getkey(K_UPPER);
@@ -1906,6 +1908,10 @@ void initdata(void)
 	else				/* Version 1a */
 		name_len=30;
 
+#ifdef __unix__
+	_termios_setup();
+#endif
+
 #ifndef __16BIT__
 	if(client_socket!=INVALID_SOCKET) {
 
@@ -2000,7 +2006,6 @@ void printfile(char *str)
 	int file;
 	ulong length;
 
-	strupr(str);
 	if(!tos)
 		CRLF;
 	if((file=nopen(str,O_RDONLY))==-1) {
