@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.7 2003/03/04 10:56:01 rswindell Exp $
+# $Id: GNUmakefile,v 1.8 2003/04/28 03:18:16 deuce Exp $
 
 # Macros
 CC		=	gcc
@@ -35,8 +35,12 @@ ifeq ($(os),freebsd)	# FreeBSD
 else
  ifeq ($(os),openbsd)	# OpenBSD
   LIBS	+=	-pthread
- else					# Linux / Generic UNIX
-  LIBS	+=	-lpthread
+ else
+  ifeq ($(os),qnx)	# QNX
+   LIBS	+=	-lsocket
+  else					# Linux / Generic UNIX
+   LIBS	+=	-lpthread
+  endif #! QNX
  endif	#! OpenBSD
 endif	#! FreeBSD
 
