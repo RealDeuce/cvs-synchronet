@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.2 2002/11/02 21:30:02 rswindell Exp $
+# $Id: GNUmakefile,v 1.3 2002/11/03 11:40:44 rswindell Exp $
 
 # Macros
 CC		=	gcc
@@ -47,7 +47,7 @@ else	# Linux
 
 endif
 
-CFLAGS	+=	$(CFLAGS) -I../sdk
+CFLAGS	+=	-I../sdk
 
 SBL: sbl$(EXEFILE)
 
