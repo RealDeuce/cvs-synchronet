@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.4 2002/11/26 03:03:24 rswindell Exp $
+# $Id: GNUmakefile,v 1.5 2002/12/31 23:24:54 rswindell Exp $
 
 # Macros
 CC		=	gcc
@@ -31,7 +31,7 @@ else
  ifeq ($(os),openbsd)	# OpenBSD
   LIBS	+=	-pthread
  else					# Linux / Generic UNIX
-  LIBS	+=	$(LIBDIR)/libpthread.a
+  LIBS	+=	-lpthread
  endif	#! OpenBSD
 endif	#! FreeBSD
 
