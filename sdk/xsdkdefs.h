@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK constants, macros, and type definitions */
 
-/* $Id: xsdkdefs.h,v 1.4 2000/12/02 04:44:15 rswindell Exp $ */
+/* $Id: xsdkdefs.h,v 1.5 2000/12/05 01:36:40 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -321,7 +321,13 @@ enum {								/* Node Action */
 #pragma pack(1)
 #endif
 
-typedef struct {						/* Node information kept in NODE.DAB */
+#ifdef __GNUC__ 
+	#define _PACK __attribute__ ((packed))
+#else
+	#define _PACK
+#endif
+
+typedef struct _PACK {					/* Node information kept in NODE.DAB */
 	uchar	status,						/* Current Status of Node */
 			errors,						/* Number of Critical Errors */
 			action;						/* Action User is doing on Node */
