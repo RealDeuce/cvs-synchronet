@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.22 2004/04/07 20:03:32 rswindell Exp $
+# $Id: GNUmakefile,v 1.23 2004/09/05 18:27:18 deuce Exp $
 
 # Macros
 XSDK		=	../sdk
@@ -36,7 +36,7 @@ $(EXEODIR)$(SLASH)sbl: $(OBJS)
 	@echo Linking $@
 	$(QUIET)$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ $(LIBS)
 SMBIO	=	$(LIBODIR)/genwrap.o $(LIBODIR)/filewrap.o $(LIBODIR)/dirwrap.o \
-		$(LIBODIR)/smblib.o $(LIBODIR)/lzh.o
+		$(LIBODIR)/smblib.o $(LIBODIR)/lzh.o $(LIBODIR)/crc32.o $(LIBODIR)/md5.o
 
 $(EXEODIR)$(SLASH)sbl2smb: $(LIBODIR)$(SLASH)sbl2smb.o $(SMBIO)
 	@echo Linking $@
