@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Macros, constants, and type definitions */
 
-/* $Id: sbldefs.h,v 1.7 2001/11/01 18:38:52 rswindell Exp $ */
+/* $Id: sbldefs.h,v 1.8 2001/11/02 03:39:04 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -45,6 +45,8 @@
 #ifndef IPPORT_TELNET
 #define IPPORT_TELNET 23
 #endif
+
+#define Y2K_2DIGIT_WINDOW	70
 
 /* Misc bits */
 
