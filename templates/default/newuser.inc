@@ -1,4 +1,4 @@
-<!-- $Id: newuser.inc,v 1.2 2005/01/11 05:28:43 deuce Exp $ -->
+<!-- $Id: newuser.inc,v 1.3 2005/01/11 05:35:08 deuce Exp $ -->
 <p class="navigation"><a class="navigation" href="http://^^JS:system.inet_addr^^/">Home</a> : New User Application</p>
 <center>
 	(%%required%% indicates required fields)<br>
@@ -39,7 +39,7 @@
 				<td class="newuser" align="left"><input type="text" name="phone" size="12" maxlength="12" value="%%posted:phone%%" /></td>
 			</tr>
 			<tr>
-				<td class="newuser" align="right">%%errs:birthdate%% %%bd_required%% Birthdate (MM/DD/YY):</td>
+				<td class="newuser" align="right">%%errs:birthdate%% %%bd_required%% Birthdate (%%date_format%%):</td>
 				<td class="newuser" align="left"><input type="text" name="birthdate" size="8" maxlength="8" value="%%posted:birthdate%%" /></td>
 			</tr>
 			<tr>
