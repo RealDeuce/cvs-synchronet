@@ -1,4 +1,4 @@
-<!-- $Id: leftnav.inc,v 1.2 2005/03/03 16:50:54 runemaster Exp $ -->
+<!-- $Id: leftnav.inc,v 1.3 2005/03/03 17:31:44 runemaster Exp $ -->
 
     <!-- Left Navigation (Includes Main table start) -->
         
@@ -25,6 +25,6 @@
       @@JS:if(template.show_nodelist)'Who\'s Online now ...<br /><br /><table class="main_nodelist"><tbody><tr><td class="main_nodelist"><a href="mailto:'+template.user_email+'">'+template.user_name+'</a> '+template.node_action+'</td></tr></tbody></table>';@@
  
 	 </div>
-	                         
+	 </td>                        
 <!-- end Left Navigation -->
             
