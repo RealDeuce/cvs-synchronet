@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.18 2002/12/07 07:33:59 rswindell Exp $ */
+/* $Id: sbl.c,v 1.19 2003/02/28 09:23:57 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -900,7 +900,7 @@ int main(int argc, char **argv)
 		attr(LIGHTGRAY);
 		cls();
 		COMPILER_DESC(str);
-		bprintf("\1n\1m\1hSynchronet \1wBBS List \1mv3.11 for %s\r\n (XSDK v%s %s %s) "
+		bprintf("\1n\1m\1hSynchronet \1wBBS List \1mv3.20 for %s\r\n (XSDK v%s %s %s) "
 			"\r\n\r\n"
 			,PLATFORM_DESC
 			,xsdk_ver
