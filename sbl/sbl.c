@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.7 2000/12/04 01:06:30 rswindell Exp $ */
+/* $Id: sbl.c,v 1.8 2000/12/04 01:58:36 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -586,11 +586,9 @@ for(i=0;i<MAX_NUMBERS;i++) {
 			strcpy(bbs->number[i].modem.location,user_location);
 		else
 			strcpy(bbs->number[i].modem.location,bbs->number[i-1].modem.location); }
-	bprintf("\1y\1hLocation (City, State): \1w");
-	if(!getstr(bbs->number[i].modem.location,30,K_EDIT|K_AUTODEL))
-		break;
 	if(aborted) return(0);
-	if(yesno("Is the above a Telnet address")) {
+	if(isalpha(bbs->number[i].telnet.addr[0]) 
+		|| yesno("Is the above a Telnet address")) {
 		bbs->number[i].modem.min_rate=0xffff;
 		if(bbs->number[i].telnet.port==0)
 			bbs->number[i].telnet.port=IPPORT_TELNET;
@@ -628,7 +626,13 @@ for(i=0;i<MAX_NUMBERS;i++) {
 			bbs->number[i].modem.max_rate=atoi(str);
 		if(aborted) return(0);
 		bprintf("\1y\1hModem Description (i.e. Hayes, HST, V.32, etc): \1w");
-		getstr(bbs->number[i].modem.desc,15,K_EDIT|K_AUTODEL);  }
+		getstr(bbs->number[i].modem.desc,15,K_EDIT|K_AUTODEL);  
+	}
+
+	bprintf("\1y\1hLocation (City, State): \1w");
+	if(!getstr(bbs->number[i].modem.location,30,K_EDIT|K_AUTODEL))
+		break;
+
 }
 if(!i)
 	return(0);
