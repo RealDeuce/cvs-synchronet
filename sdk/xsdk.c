@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.16 2001/03/10 01:23:45 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.17 2001/11/01 13:08:04 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -379,17 +379,18 @@ void outchar(char ch)
 {
 
 #ifndef __16BIT__
-	ulong	top=outbuftop+1;
+	if(client_socket!=INVALID_SOCKET) {
+		ulong	top=outbuftop+1;
 
-	if(top==sizeof(outbuf))
-		top=0;
-	if(top!=outbufbot) {
-		outbuf[outbuftop++]=ch;
-		if(outbuftop==sizeof(outbuf))
-			outbuftop=0;
-		sem_post(&output_sem);
+		if(top==sizeof(outbuf))
+			top=0;
+		if(top!=outbufbot) {
+			outbuf[outbuftop++]=ch;
+			if(outbuftop==sizeof(outbuf))
+				outbuftop=0;
+			sem_post(&output_sem);
+		}
 	}
-
 #endif
 
 	if(con_fp!=NULL)
