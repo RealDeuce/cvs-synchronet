@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.9 2001/11/01 13:34:44 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.10 2002/10/29 08:04:07 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -87,6 +87,8 @@
 	#define PLATFORM_DESC	"Linux"
 #elif defined(__FreeBSD__)
 	#define PLATFORM_DESC	"FreeBSD"
+#elif defined(__OpenBSD__)
+	#define PLATFORM_DESC	"OpenBSD"
 #elif defined(BSD)
 	#define PLATFORM_DESC	"BSD"
 #elif defined(__unix__)
