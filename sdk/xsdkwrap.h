@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.5 2001/03/10 01:21:02 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.6 2001/03/10 01:28:42 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -54,7 +54,7 @@
 
 #elif defined(__GNUC__) && defined(__GLIBC__)
 
-	#define COMPILER_DESC(str) sprintf(str,"GCC %u.%02u (GLIBC %u.%u)" \
+	#define COMPILER_DESC(str) sprintf(str,"GCC %u.%02u" /* " (GLIBC %u.%u)" */\
 		,__GNUC__,__GNUC_MINOR__,__GLIBC__,__GLIBC_MINOR__);
 
 #elif defined(__GNUC__)
