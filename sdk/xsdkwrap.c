@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers (compiler & platform portability) */
 
-/* $Id: xsdkwrap.c,v 1.5 2000/12/02 04:45:19 rswindell Exp $ */
+/* $Id: xsdkwrap.c,v 1.6 2000/12/04 01:07:53 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -36,19 +36,23 @@
  ****************************************************************************/
 
 /* OS-specific */
-#if defined(__unix__)
+#if defined(_WIN32)
 
-#include <glob.h>       /* glob() wildcard matching */
-#include <string.h>     /* strlen() */
-#include <unistd.h>     /* getpid() */
-#include <fcntl.h>      /* fcntl() file/record locking */
-#include <stdlib.h>
-#include <unistd.h>
-#include <termios.h>
-#include <sys/kd.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <signal.h>
+	#include <windows.h>	/* DWORD */
+
+#elif defined(__unix__)
+
+	#include <glob.h>       /* glob() wildcard matching */
+	#include <string.h>     /* strlen() */
+	#include <unistd.h>     /* getpid() */
+	#include <fcntl.h>      /* fcntl() file/record locking */
+	#include <stdlib.h>
+	#include <unistd.h>
+	#include <termios.h>
+	#include <sys/kd.h>
+	#include <sys/time.h>
+	#include <sys/types.h>
+	#include <signal.h>
 
 #endif
 
