@@ -1,10 +1,10 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.5 2005/02/15 00:36:35 rswindell Exp $
+// $Id: rss.ssjs,v 1.6 2005/02/15 00:39:48 rswindell Exp $
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.5 $".split(' ')[1];
+var REVISION = "$Revision: 1.6 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -54,6 +54,7 @@ if(sub==undefined) {
 if(http_request.query["item"]) {
 
 	load("../web/lib/template.ssjs");
+	load("../web/lib/mime_decode.ssjs");
 
 	var msgbase=new MsgBase(channel.sub);
 	if(!msgbase.open())
