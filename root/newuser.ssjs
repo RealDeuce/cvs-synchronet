@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.13 2005/01/11 05:35:14 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.14 2005/01/11 05:42:21 deuce Exp $ */
 
 var required_str="*";
 var	optional_str="";
@@ -168,8 +168,6 @@ else {
 			template.gender_list='<select name="gender">\n<option value="M">Male</option>\n<option value="F">Female</option>\n</select>';
 			err=1;
 			template.errs[fields[field]]="MISSING";
-write(fields[field]);
-write("Fields: "+fields);
 			template.err_message+="Some fields missing from POST data... possible browser issue.\r\n";
 		}
 		if(err)
