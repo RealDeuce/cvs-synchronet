@@ -1,4 +1,4 @@
-<!-- $Id: main.inc,v 1.3 2005/03/04 02:10:47 rswindell Exp $ -->
+<!-- $Id: main.inc,v 1.4 2005/03/09 06:35:56 deuce Exp $ -->
 
 <!-- Main Content --> 
 </td>
@@ -6,8 +6,8 @@
     <td class="main" valign="top"><br />
         <br />
        
-       <div align="center"><h3>Your sysop, <i>@@JS:system.operator@@</i>, welcomes you to 
-        <b>@@JS:system.name@@</b></h3></div>
+       <div align="center"><h3>Your sysop, <i>@@system:operator@@</i>, welcomes you to 
+        <b>@@system:name@@</b></h3></div>
                 
         <table align="center">
           <tr>
