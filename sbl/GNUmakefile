@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.10 2003/03/04 10:56:05 rswindell Exp $
+# $Id: GNUmakefile,v 1.11 2003/04/28 00:19:33 deuce Exp $
 
 # Macros
 CC		=	gcc
@@ -62,4 +62,5 @@ smb2sbl: smb2sbl.o $(SMBIO)
 
 sblpack: sblpack.o $(XPDEV)/filewrap.o
 
-clean: rm -f *.o
+clean:
+	rm -f *.o
