@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.12 2005/02/16 23:21:54 rswindell Exp $
+// $Id: rss.ssjs,v 1.13 2005/02/16 23:32:11 rswindell Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.12 $".split(' ')[1];
+var REVISION = "$Revision: 1.13 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -149,7 +149,7 @@ writeln('\t\t</image>');
 
 function encode(str, wspace)
 {
-	return(html_encode(strip_ctrl(str)
+	return(html_encode(strip_ctrl(str.replace(/\s+/g," "))
 		,true	/* ex-ASCII */
 		,wspace	/* white-space */
 		,false	/* ANSI */
