@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers (compiler & platform portability) */
 
-/* $Id: xsdkwrap.c,v 1.11 2002/10/29 08:08:12 rswindell Exp $ */
+/* $Id: xsdkwrap.c,v 1.12 2002/10/29 09:46:00 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -49,11 +49,9 @@
 	#include <stdlib.h>
 	#include <unistd.h>
 	#include <termios.h>
-	#ifdef __BSD
-	#ifndef __OpenBSD__
+	#if defined(__FreeBSD__)
 	#include <sys/kbio.h>
-	#endif
-	#else
+	#elif defined(__Linux__)
 	#include <sys/kd.h>
 	#endif
 	#include <sys/time.h>
