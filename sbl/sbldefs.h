@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Macros, constants, and type definitions */
 
-/* $Id: sbldefs.h,v 1.6 2001/07/10 22:03:07 rswindell Exp $ */
+/* $Id: sbldefs.h,v 1.7 2001/11/01 18:38:52 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -41,6 +41,10 @@
 #define MAX_TERMS	5
 #define DESC_LINES	5
 #define DEF_LIST_FMT "NSTP"
+
+#ifndef IPPORT_TELNET
+#define IPPORT_TELNET 23
+#endif
 
 /* Misc bits */
 
