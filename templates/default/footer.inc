@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.1 2005/01/09 23:40:28 deuce Exp $ -->
+<!-- $Id: footer.inc,v 1.2 2005/02/17 10:19:13 rswindell Exp $ -->
 <br />
 <table width="100%" cellspacing="0" border="0" cellpadding="0" align="center">
   <tbody>
@@ -6,6 +6,10 @@
       <td>
           <div align="left">
           <a href="http://www.synchro.net/"><img src="/graphics/sync_pbgj1_teal_bg.gif" title="Powered by: Synchronet" alt="Powered by: Synchronet" width="175" height="85" border="0" /></a></div>
+		  <font size=-3>
+			@@JS:server.version@@<br />
+			@@JS:system.version_notice@@
+		  </font>
       </td>
       <td>
           <div align="right">
