@@ -1,5 +1,5 @@
 /* CSS Document */
-/* $Id: synchronet.css,v 1.22 2005/03/04 00:39:13 runemaster Exp $ */
+/* $Id: synchronet.css,v 1.23 2005/03/04 02:11:47 rswindell Exp $ */
 
 body{ font-family: Arial,sans-serif; color: #333333; line-height: 1; margin: 0px; padding: 0px; background: #cccccc url("/graphics/bg_grad.jpg") fixed; }
 
@@ -58,8 +58,8 @@ table.main_nodelist { width: 95%; }
 td.main_nodelist { font-size:9px; }
 
 table.main_stats { font-size:medium; margin-left: auto; margin-right: auto; border-style:solid; border-width:thin; border-color: #cccccc; }
-td.main_stats { padding: 2px; background-color:#CCCCCC; }
-td.main_stats_bold { color: #7788FF; font-weight:bold; padding: 2px; background-color:#CCCCCC; }
+td.main_stats { text-align: right; padding: 2px; background-color:#CCCCCC; }
+td.main_stats_bold { text-align: right; color: #7788FF; font-weight:bold; padding: 2px; background-color:#CCCCCC; }
 
 #sectionLinks{ margin: 0px; padding: 0px 10px 0px 0px; }
 
