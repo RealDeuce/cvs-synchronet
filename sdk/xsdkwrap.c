@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers (compiler & platform portability) */
 
-/* $Id: xsdkwrap.c,v 1.8 2001/11/01 17:46:38 rswindell Exp $ */
+/* $Id: xsdkwrap.c,v 1.9 2001/11/01 18:24:28 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -230,7 +230,7 @@ void _termios_setup(void)
 
 int kbhit(void)
 {
-	if(!isatty(fileno(stdin)))
+	if(!isatty(0))
 		return(0);
 
 	// set up select() args
