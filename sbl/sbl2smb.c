@@ -2,7 +2,7 @@
 
 /* Scans SBL database and posts any additions/updates into the an SMB base */
 
-/* $Id: sbl2smb.c,v 1.3 2000/12/31 02:55:58 rswindell Exp $ */
+/* $Id: sbl2smb.c,v 1.4 2001/11/01 18:40:45 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -163,7 +163,7 @@ if(p) {
 		return(1); }
 	t=time(NULL);
 	if(read(file,&last,sizeof(time_t))!=sizeof(time_t))
-		last=t;
+		last=0;
 	lseek(file,0L,SEEK_SET);
 	write(file,&t,sizeof(time_t));
 	close(file); }
