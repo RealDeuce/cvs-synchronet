@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.5 2001/11/10 00:36:41 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.6 2002/10/29 08:08:28 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -45,7 +45,7 @@
 #include <sys/stat.h>	/* S_IWRITE */
 #include <ctype.h>		/* isdigit */
 #include <stdlib.h>		/* atoi */
-#ifndef __FreeBSD__
+#ifndef __BSD
 	#include <malloc.h>
 #endif
 #include <string.h>

@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.10 2002/10/13 10:24:01 rswindell Exp $ */
+/* $Id: xsdk.h,v 1.11 2002/10/29 08:08:12 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -61,7 +61,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#ifndef __FreeBSD__		/* FreeBSD uses stdlib.h for malloc() */
+#ifndef __BSD		/* FreeBSD uses stdlib.h for malloc() */
 	#include <malloc.h>
 #endif
 #include <sys/stat.h>

@@ -2,7 +2,7 @@
 
 /* Synchronet platform-specific Internet stuff */
 
-/* $Id: xsdkinet.h,v 1.2 2002/04/04 07:21:43 rswindell Exp $ */
+/* $Id: xsdkinet.h,v 1.3 2002/10/29 08:08:12 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -52,7 +52,7 @@
 
 #elif defined __unix__	/* Unix-variant */
 
-#ifdef __FreeBSD__
+#ifdef __BSD
 #include <sys/types.h>	/* u_intXX_t */
 #endif
 
