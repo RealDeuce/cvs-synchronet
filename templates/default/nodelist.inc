@@ -1,5 +1,5 @@
 
-<!-- $Id: nodelist.inc,v 1.4 2005/03/16 03:06:06 runemaster Exp $ -->
+<!-- $Id: nodelist.inc,v 1.5 2005/03/16 03:16:32 runemaster Exp $ -->
 
 </td>
 
@@ -36,7 +36,7 @@
         
         </tbody>
         </table>
-
+        <br />
 
 <!-- end Main Content-->
 
