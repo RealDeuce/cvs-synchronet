@@ -1,4 +1,4 @@
-<!-- $Id: newuser.inc,v 1.6 2004/12/05 21:43:30 runemaster Exp $ -->
+<!-- $Id: newuser.inc,v 1.1 2005/01/09 23:40:28 deuce Exp $ -->
 <p class="navigation"><a class="navigation" href="http://^^JS:system.inet_addr^^/">Home</a> : New User Application</p>
 	%%err_message%%
 	<form action="newuser.ssjs" method="post">

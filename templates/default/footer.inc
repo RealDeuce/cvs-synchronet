@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.12 2004/12/08 22:19:52 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.1 2005/01/09 23:40:28 deuce Exp $ -->
 <br />
 <table width="100%" cellspacing="0" border="0" cellpadding="0" align="center">
   <tbody>

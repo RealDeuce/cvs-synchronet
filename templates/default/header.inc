@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-    <!-- $Id: header.inc,v 1.11 2004/12/06 21:16:08 runemaster Exp $ -->
+    <!-- $Id: header.inc,v 1.1 2005/01/09 23:40:28 deuce Exp $ -->
     <head>
         <title>%%title%%</title>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
