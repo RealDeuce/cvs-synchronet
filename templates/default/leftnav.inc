@@ -1,4 +1,4 @@
-<!-- $Id: leftnav.inc,v 1.1 2005/03/03 16:29:17 runemaster Exp $ -->
+<!-- $Id: leftnav.inc,v 1.2 2005/03/03 16:50:54 runemaster Exp $ -->
 
     <!-- Left Navigation (Includes Main table start) -->
         
@@ -18,11 +18,13 @@
            		@@JS:if(user.number || (this.login!=undefined && system.matchuser("Guest")))'<a href="/msgs">Message Groups</a>'@@ 
            		<a href="%%ftp_url%%">File Libraries</a>
         	</p>
-		</div> 
-
+		</div>
+		
 <!-- start Nodelisting -->
 
-      @@JS:if(template.show_nodelist)'Who\'s Online now ...<br /><br /><table class="main_nodelist"><tbody><tr><td class="main_nodelist"><a href="mailto:'+template.user_email+'">'+template.user_name+'</a> '+template.node_action+'</td></tr></tbody></table></div>';@@
-                        
+      @@JS:if(template.show_nodelist)'Who\'s Online now ...<br /><br /><table class="main_nodelist"><tbody><tr><td class="main_nodelist"><a href="mailto:'+template.user_email+'">'+template.user_name+'</a> '+template.node_action+'</td></tr></tbody></table>';@@
+ 
+	 </div>
+	                         
 <!-- end Left Navigation -->
             
