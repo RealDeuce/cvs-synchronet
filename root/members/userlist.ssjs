@@ -2,7 +2,7 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.5 2005/01/22 19:48:08 deuce Exp $
+// $Id: userlist.ssjs,v 1.6 2005/02/08 03:27:01 deuce Exp $
 
 load("sbbsdefs.js");
 load("../web/lib/template.ssjs");
@@ -23,8 +23,8 @@ for(i=1;i<=lastuser;i++) {
 	usr.alias=u.alias.toString();
 	usr.location=u.location.toString();
 	usr.connection=u.connection.toString();
-	usr.logon=strftime("%m/%d/%y",u.logontime);
-	usr.laston=0-u.logontime;
+	usr.logon=strftime("%m/%d/%y",u.stats.laston_date);
+	usr.laston=0-u.stats.laston_date;
 	template.users.push(usr);
 }
 template.users.sort(alphasort);
