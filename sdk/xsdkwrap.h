@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.2 2000/12/02 04:04:25 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.3 2000/12/02 04:12:11 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -94,7 +94,9 @@
 
 #elif defined(_WIN32)	
 
-	/* POIX semaphores */
+	#include <process.h>	/* _beginthread() */
+
+	/* POSIX semaphores */
 	typedef HANDLE sem_t;
 	#define sem_init(psem,ps,v)			ResetEvent(*(psem))
 	#define sem_wait(psem)				WaitForSingleObject(*(psem),INFINITE)

@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.5 2000/12/02 04:05:02 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.6 2000/12/02 04:12:11 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -206,11 +206,6 @@
 			Eliminated warnings in ctrl_a() when compiled with VC++ 6.0.
 
 \****************************************************************************/
-
-#ifdef _WIN32
-#include <windows.h>	// Sleep()
-#include <process.h>	// _beginthread()
-#endif
 
 #include "xsdk.h"
 
