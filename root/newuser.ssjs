@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.24 2005/03/03 16:26:47 runemaster Exp $ */
+/* $Id: newuser.ssjs,v 1.25 2005/03/09 05:53:04 deuce Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -352,7 +352,7 @@ else {
 
 function showform() {
 	write_template("header.inc");
-	write_template("topnav.inc");
+	load("../web/lib/topnav_html.ssjs");
 	write_template("leftnav.inc");
 	write_template("newuser.inc");
 	write_template("footer.inc");
