@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Database Packer */
 
-/* $Id: sblpack.c,v 1.4 2003/03/01 22:05:00 rswindell Exp $ */
+/* $Id: sblpack.c,v 1.5 2004/07/16 18:02:41 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -41,8 +41,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include "filewrap.h"	/* sopen() */
-#include "xsdkwrap.h"	/* PLATFORM_DESC */
-#include "xsdkdefs.h"
+#include "genwrap.h"	/* PLATFORM_DESC */
 #include "sbldefs.h"
 
 int main(void)
@@ -55,7 +54,7 @@ int main(void)
 	ulong	deleted=0;
 	char	revision[16];
 
-	sscanf("$Revision: 1.4 $", "%*s %s", revision);
+	sscanf("$Revision: 1.5 $", "%*s %s", revision);
 
 	printf("\nSBLPACK %s-%s  Copyright 2003 Rob Swindell\n\n"
 		,revision,PLATFORM_DESC);

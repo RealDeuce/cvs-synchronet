@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Macros, constants, and type definitions */
 
-/* $Id: sbldefs.h,v 1.8 2001/11/02 03:39:04 rswindell Exp $ */
+/* $Id: sbldefs.h,v 1.9 2004/07/16 18:02:41 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -55,6 +55,14 @@
 #ifdef _WIN32	/* necessary for compatibility with SBL */
 #pragma pack(push)
 #pragma pack(1)
+#endif
+
+#ifndef _PACK
+	#ifdef __GNUC__
+		#define _PACK __attribute__ ((packed))
+	#else
+		#define _PACK
+	#endif
 #endif
 
 typedef union _PACK {
