@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.4 2004/10/27 06:28:40 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.5 2004/10/27 06:31:16 deuce Exp $ */
 
 load("sbbsdefs.js");
 
@@ -111,6 +111,7 @@ else {
 	}
 	hdrs.from=system.name;
 	hdrs.from_net_addr='sysop@'+system.inet_addr;
+	hdrs.from_net_type=NET_INTERNET;
 	hdrs.subject="New user signup";
 	var msgbase = new MsgBase("mail");
 	if(msgbase.open!=undefined && msgbase.open()==false) {
