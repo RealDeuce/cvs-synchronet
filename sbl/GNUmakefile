@@ -10,11 +10,14 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.3 2002/11/03 11:40:44 rswindell Exp $
+# $Id: GNUmakefile,v 1.4 2002/11/26 02:57:16 rswindell Exp $
 
 # Macros
 CC		=	gcc
 LD		=	ld
+XSDK		=	../sdk
+XPDEV		=	/src/xpdev
+SBBS_SRC	=	/src/sbbs3
 
 ifndef os
  os              =       $(shell uname)
@@ -22,34 +25,29 @@ ifndef os
 endif
 os      :=	$(shell echo $(os) | awk '/.*/ { print tolower($$1)}')
 
-ifeq ($(os),win32)	# Windows
-
- EXEFILE	:=	.exe
- LIBDIR	:=	/gcc/i386-mingw32/lib
- CFLAGS	+=	-mno-cygwin
- LFLAGS  +=	--target=i386-mingw32 -mno-cygwin
- DELETE	:=	echo y | del 
- LIBS	+=	$(LIBDIR)/libwsock32.a
-
-else	# Linux
-
- LIBDIR	:=	/usr/lib
- DELETE	:=	rm -f -v
- ifeq ($(os),freebsd)	# FreeBSD
+LIBDIR	:=	/usr/lib
+DELETE	:=	rm -f -v
+ifeq ($(os),freebsd)	# FreeBSD
+ LIBS	=	-pthread
+else
+ ifeq ($(os),openbsd)	# OpenBSD
   LIBS	=	-pthread
- else
-  ifeq ($(os),openbsd)	# OpenBSD
-   LIBS	=	-pthread
-  else					# Linux / Other UNIX
-   LIBS	=	$(LIBDIR)/libpthread.a
-  endif
+ else					# Linux / Other UNIX
+  LIBS	=	$(LIBDIR)/libpthread.a
  endif
-
 endif
 
-CFLAGS	+=	-I../sdk
 
-SBL: sbl$(EXEFILE)
+CFLAGS	+=	-I$(XSDK) -I$(XPDEV) -I$(SBBS_SRC)
 
-sbl$(EXEFILE) : sbl.c ../sdk/xsdk.c ../sdk/xsdkvars.c ../sdk/xsdkwrap.c
+all: sbl sbl2smb smb2sbl
+
+sbl: sbl.c $(XSDK)/xsdk.c $(XSDK)/xsdkvars.c $(XSDK)/xsdkwrap.c
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+
+SMBIO	=	$(XPDEV)/genwrap.c $(XPDEV)/filewrap.c $(XPDEV)/dirwrap.c \
+		$(SBBS_SRC)/smblib.c $(SBBS_SRC)/lzh.c
+
+sbl2smb: sbl2smb.c $(SMBIO)
+
+smb2sbl: smb2sbl.c $(SMBIO)
