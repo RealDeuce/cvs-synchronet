@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.4 2005/03/03 16:29:17 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.5 2005/03/04 00:59:14 runemaster Exp $ -->
 
     </td>
     <td width="1%" valign="top" align="right"><img alt="" src="/graphics/tr_curve_grey.gif" height="6" width="6" /></td>
@@ -14,25 +14,25 @@
       <td>
           <div align="left">
          <!-- <a href="http://www.synchro.net/"><img src="/graphics/sync_pbgj1_grey_bg.gif" title="Powered by: Synchronet" alt="Powered by: Synchronet" width="175" height="85" border="0" /></a></div> -->
-		  <font size="-3">
-			@@JS:server.version@@<br />
-			@@JS:system.version_notice@@
-		  </font>
-	  	</div>	  
-      	</td>
-      	<td>
-        	<div align="right">
-          	<a href="http://validator.w3.org/check?uri=referer"><img
+          <font size="-3">
+            @@JS:server.version@@<br />
+            @@JS:system.version_notice@@
+          </font>
+        </div>    
+        </td>
+        <td>
+            <div align="right">
+            <a href="http://validator.w3.org/check?uri=referer"><img
             src="http://www.w3.org/Icons/valid-xhtml10" title="Valid XHTML 1.0!"
             alt="Valid XHTML 1.0!" height="31" width="88" border="0" /></a><br />
-          	</div>
-      	</td>
-    	</tr>
-  	</tbody>
-	</table>
+            </div>
+        </td>
+        </tr>
+    </tbody>
+    </table>
 </td>
 </tr>
-</table>	
+</table>    
 <br />
 </body>
 </html>

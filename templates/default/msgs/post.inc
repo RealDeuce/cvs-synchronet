@@ -1,4 +1,4 @@
-<!-- $Id: post.inc,v 1.5 2005/03/03 16:29:55 runemaster Exp $ -->
+<!-- $Id: post.inc,v 1.6 2005/03/04 01:01:57 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -13,12 +13,12 @@
       <td class="postmsg">To: <input class="postmsg" type="text" name="to" 
         @@JS:template.sub.code=='mail' ? "" : "value='All'"@@ /></td>
     </tr>
-	<tr>
-	  <td class="postmsg" colspan="2">@@anonnote@@</td>
-	</tr>
-	<tr>
-	  <td class="postmsg" colspan="2">@@privnote@@</td>
-	</tr>
+    <tr>
+      <td class="postmsg" colspan="2">@@anonnote@@</td>
+    </tr>
+    <tr>
+      <td class="postmsg" colspan="2">@@privnote@@</td>
+    </tr>
     <tr>
       <td class="postmsg" colspan="2"><textarea class="postmsg" name=body rows="20" cols="80" wrap="hard"></textarea></td>
       </tr>

@@ -1,4 +1,4 @@
-<!-- $Id: error.inc,v 1.2 2005/03/03 16:29:17 runemaster Exp $ -->
+<!-- $Id: error.inc,v 1.3 2005/03/04 00:59:14 runemaster Exp $ -->
 
     <!-- Top Navigation -->
     
@@ -37,7 +37,7 @@
         </p>
         </div>
      </div>
-	 </td>
+     </td>
 
    
            
