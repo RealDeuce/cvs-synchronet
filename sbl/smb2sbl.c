@@ -2,7 +2,7 @@
 
 /* Scans SMB message base for messages to "SBL" and adds them to the SBL    */
 
-/* $Id: smb2sbl.c,v 1.11 2003/01/28 20:22:25 rswindell Exp $ */
+/* $Id: smb2sbl.c,v 1.12 2003/02/28 08:31:42 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -200,7 +200,7 @@ int main(int argc, char **argv)
 	smbmsg_t msg;
 	FILE	*stream;
 
-	sscanf("$Revision: 1.11 $" + 11, "%s", revision);
+	sscanf("$Revision: 1.12 $" + 11, "%s", revision);
 
 	fprintf(stderr,"\nSMB2SBL v2.%s-%s - Updates SBL via SMB - Copyright 2002 "
 		"Rob Swindell\n\n",revision,PLATFORM_DESC);
@@ -502,7 +502,8 @@ int main(int argc, char **argv)
 		bbs.total_networks=network;
 		bbs.total_terminals=terminal;
 		bbs.total_numbers=number;
-		fwrite(&bbs,sizeof(bbs_t),1,stream);
+		if(fwrite(&bbs,1,sizeof(bbs_t),stream)!=sizeof(bbs_t))
+			fprintf(stderr,"!WRITE ERROR %d\n",errno);
 		FREE(buf);
 		smb_freemsgmem(&msg);
 		}
