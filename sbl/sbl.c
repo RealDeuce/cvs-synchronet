@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.6 2000/12/02 04:50:21 rswindell Exp $ */
+/* $Id: sbl.c,v 1.7 2000/12/04 01:06:30 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -849,7 +849,7 @@ int main(int argc, char **argv)
 			close(file); }
 
 	if(maint)
-		return;
+		return(0);
 
 	strcpy(list_fmt,DEF_LIST_FMT);
 	while(1) {
