@@ -1,10 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.6 2005/02/15 00:39:48 rswindell Exp $
+// $Id: rss.ssjs,v 1.7 2005/02/15 01:12:43 rswindell Exp $
+
+// Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.6 $".split(' ')[1];
+var REVISION = "$Revision: 1.7 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -114,13 +116,28 @@ if(http_request.query["item"]) {
 	exit();
 }
 
+/* Setup default values (over-rideable in rss.ini) */
+if(channel.title==undefined)		channel.title			=sub.name;
+if(channel.description==undefined)	channel.description		=sub.description;
+if(channel.link==undefined)			channel.link			=link_root;
+if(channel.language==undefined)		channel.language		='en-us';
+
+if(channel.image_url==undefined)	channel.image_url		='graphics/sync_pbgj1_white_bg.gif';
+if(channel.image_title==undefined)	channel.image_title		=channel.title;
+if(channel.image_link==undefined)	channel.image_link		=channel.link;
+
+
 writeln('<rss version="0.91">');
 writeln('\t<channel>');
-writeln('\t\t<title>'		+ sub.name			+ '</title>');
-writeln("\t\t<description>" + sub.description	+ "</description>");
-
-writeln('\t\t<link>' + link_root + '</link>');
-writeln('\t\t<language>en-us</language>');
+writeln('\t\t<title>'		+ channel.title			+ '</title>');
+writeln('\t\t<description>' + channel.description	+ '</description>');
+writeln('\t\t<link>'		+ channel.link			+ '</link>');
+writeln('\t\t<language>'	+ channel.language		+ '</language>');
+writeln('\t\t<image>');
+	writeln('\t\t\t<url>'	+ channel.image_url		+ '</url>');
+	writeln('\t\t\t<title>'	+ channel.image_title	+ '</title>');
+	writeln('\t\t\t<link>'	+ channel.image_link	+ '</link>');
+writeln('\t\t</image>');
 
 function encode(str, wspace)
 {
