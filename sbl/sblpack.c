@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Database Packer */
 
-/* $Id: sblpack.c,v 1.3 2003/02/28 09:07:56 rswindell Exp $ */
+/* $Id: sblpack.c,v 1.4 2003/03/01 22:05:00 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -55,7 +55,7 @@ int main(void)
 	ulong	deleted=0;
 	char	revision[16];
 
-	sscanf("$Revision: 1.3 $", "%*s %s", revision);
+	sscanf("$Revision: 1.4 $", "%*s %s", revision);
 
 	printf("\nSBLPACK %s-%s  Copyright 2003 Rob Swindell\n\n"
 		,revision,PLATFORM_DESC);
@@ -84,7 +84,8 @@ int main(void)
 		}
 		fwrite(&bbs,sizeof(bbs_t),1,out); 
 	}
-	fcloseall();
+	fclose(in);
+	fclose(out);
 	putchar('\n');
 	if(remove("sbl.dab")) {
 		printf("\n\7Data file in use, can't remove.\n");
