@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.14 2004/05/30 07:10:35 deuce Exp $ */
+/* $Id: xsdk.h,v 1.15 2004/07/07 21:53:13 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -43,7 +43,9 @@
 /* Standard Borland/Turbo C/C++ Header Files */
 /*********************************************/
 #ifdef __unix__
+ #ifdef __solaris__
 	#include <sys/filio.h>	/* FIONREAD on SunOS */
+ #endif
 #else
 	#include <io.h>
 	#include <share.h>
