@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.18 2005/01/22 19:47:46 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.19 2005/02/01 08:34:47 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -293,7 +293,7 @@ else {
 			showform();
 		}
 		var msg="Your account on "+system.name+" has been created!\n\n";
-		msg += "User name: "+http_request.query.name+"\n";
+		msg += "User name: "+http_request.query.alias+"\n";
 		msg += "Password: "+newpw+"\n";
 
 		if(!msgbase.save_msg(hdrs,msg))  {
