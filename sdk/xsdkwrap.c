@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers (compiler & platform portability) */
 
-/* $Id: xsdkwrap.c,v 1.3 2000/12/02 04:35:58 rswindell Exp $ */
+/* $Id: xsdkwrap.c,v 1.4 2000/12/02 04:44:15 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -143,14 +143,14 @@ char* strrev(char* str)
 /* This is a bit of a hack, but it works */
 char* _fullpath(char* absPath, const char* relPath, size_t maxLength)
 {
-	char *curdir = (char *) malloc(PATH_MAX+1);
+	char *curdir = (char *) malloc(MAX_PATH+1);
 
 	if(curdir == NULL) {
 		strcpy(absPath,relPath);
 		return(absPath);
 	}
 
-    getcwd(curdir, PATH_MAX);
+    getcwd(curdir, MAX_PATH);
     if(chdir(relPath)!=0) /* error, invalid dir */
 		strcpy(absPath,relPath);
 	else {
