@@ -1,7 +1,7 @@
 <HTML>
-<!-- $Id: header.inc,v 1.2 2004/11/28 07:42:56 deuce Exp $ -->
+<!-- $Id: header.inc,v 1.3 2004/11/28 20:51:29 deuce Exp $ -->
 <HEAD>
 <TITLE>%%title%%</TITLE>
 </HEAD>
-<BODY>
+<body bgcolor=teal text=white link=yellow vlink=lime alink=white>
 <P align="center"><H3>%%JS:system.name%%</H3></P>
