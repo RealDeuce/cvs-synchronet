@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.7 2001/03/10 01:33:39 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.8 2001/11/01 13:08:31 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -142,7 +142,7 @@
 
 	#include <pthread.h>	/* POSIX threads and mutexes */
 	#include <semaphore.h>	/* POSIX semaphores */
-	ulong _beginthread(void( *start_address )( void * )
+	unsigned long _beginthread(void( *start_address )( void * )
 		,unsigned stack_size, void *arglist);
 
 #elif defined(_WIN32)	
