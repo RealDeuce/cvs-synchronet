@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.14 2000/12/05 01:39:20 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.15 2000/12/05 02:07:31 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -566,6 +566,9 @@ char inkey(long mode)
 			keybufbot=0; }
 	else if(kbhit()) {
 		i=getch();
+#ifdef __unix__
+		if(i==LF) i=CR;	/* Enter key returns Ctrl-J on Unix! (ohmygod) */
+#endif
 		if(i==0 || i==0xE0) {			/* Local Alt or Function key hit */
 			i=getch();
 			switch(i) {
