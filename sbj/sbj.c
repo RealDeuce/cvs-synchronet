@@ -1,6 +1,6 @@
 /* SBJ.C */
 
-/* $Id: sbj.c,v 1.13 2003/02/28 10:04:01 rswindell Exp $ */
+/* $Id: sbj.c,v 1.14 2003/08/29 21:51:52 rswindell Exp $ */
 
 /************************/
 /* Synchronet Blackjack */
@@ -1746,7 +1746,7 @@ void create_gamedab()
 {
 
 if((gamedab=sopen("game.dab"
-	,O_WRONLY|O_CREAT|O_BINARY,SH_DENYNO))==-1) {
+	,O_WRONLY|O_CREAT|O_BINARY,SH_DENYNO,S_IREAD|S_IWRITE))==-1) {
 	bputs("Error creating game.dab\r\n");
 	pause();
 	exit(1); }
