@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.7 2001/03/10 01:20:17 rswindell Exp $ */
+/* $Id: xsdk.h,v 1.8 2001/04/04 15:51:10 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -46,8 +46,10 @@
 	#include <io.h>
 	#include <dos.h>
 	#include <share.h>
-	#include <windows.h>
 	#include <conio.h>
+#endif
+#ifdef _WIN32
+	#include <windows.h>
 #endif
 #include <time.h>
 #include <ctype.h>
