@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.12 2003/04/28 03:33:57 deuce Exp $
+# $Id: GNUmakefile,v 1.13 2003/04/28 03:48:17 deuce Exp $
 
 # Macros
 CC		=	gcc
@@ -38,10 +38,12 @@ DELETE	:=	rm -f -v
 ifeq ($(os),freebsd)	# FreeBSD
  CFLAGS	+= -D_THREAD_SAFE
  LFLAGS	:=	-pthread
+ BSD	=	1
 else
  ifeq ($(os),openbsd)	# OpenBSD
   CFLAGS	+= -D_THREAD_SAFE
   LFLAGS	:=	-pthread
+  BSD		=	1
  else
   ifeq ($(os),netbsd)	# NetBSD
   CFLAGS	+= -D_THREAD_SAFE -D__unix__ -D_NEED_SEM -I/usr/pkg/include
@@ -67,7 +69,7 @@ CFLAGS	+=	-I$(XSDK) -I$(XPDEV) -I$(SBBS_SRC)
 all: sbl sbl2smb smb2sbl sblpack
 
 sbl: sbl.o xsdk.o xsdkvars.o xsdkwrap.o
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@ $(LIBS)
 
 SMBIO	=	$(XPDEV)/genwrap.o $(XPDEV)/filewrap.o $(XPDEV)/dirwrap.o \
 		$(SBBS_SRC)/smblib.o $(SBBS_SRC)/lzh.o
