@@ -2,7 +2,7 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.2 2004/11/28 21:55:48 deuce Exp $
+// $Id: userlist.ssjs,v 1.3 2004/12/12 20:39:19 runemaster Exp $
 
 load("sbbsdefs.js");
 load("html_inc/template.ssjs");
@@ -14,7 +14,7 @@ else							/* v3.11 */
 var u = new User(1);
 template = new Object;
 template.users = new Array;
-template.title = "User List";
+template.title = system.name+ " - User List";
 
 for(i=1;i<=lastuser;i++) {
 	usr=new Object;
