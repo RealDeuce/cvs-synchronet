@@ -1,10 +1,11 @@
-<!-- $Id: footer.inc,v 1.5 2004/11/30 12:03:55 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.6 2004/12/02 22:00:29 runemaster Exp $ -->
+<br>
 <table width="100%" cellspacing="0" border="0" cellpadding="0" align="center">
   <tbody>
     <tr>
       <td>
-            <br><div align="left">
-            <a href="http://www.synchro.net/"><img alt="Powered by: Synchronet" src="/graphics/sync_pb.gif" border=0></a></div>
+      <div align="left">
+            <a href="http://www.synchro.net/"><img src="/graphics/sync_pb.gif" alt="Powered by: Synchronet" width="259" height="32" border="0"></a></div>
       </td>
       <td>
       <div align="right">
