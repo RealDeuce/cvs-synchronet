@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK constants, macros, and type definitions */
 
-/* $Id: xsdkdefs.h,v 1.6 2001/03/10 01:20:28 rswindell Exp $ */
+/* $Id: xsdkdefs.h,v 1.7 2002/12/17 20:55:24 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -303,7 +303,7 @@ enum {								/* Node Action */
 
 #define SYSOP (user_level>=sysop_level) /* Is current user sysop t/f macro	 */
 
-#define bgotoxy(x,y)	printf("\x1b[%d;%dH",y,x)   /* place the cursor at   */
+#define bgotoxy(x,y)	bprintf("\x1b[%d;%dH",y,x)   /* place the cursor at   */
 													/* location x,y via ANSI */
 
 #define SAVELINE		{ slatr[slcnt]=latr; \
