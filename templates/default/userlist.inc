@@ -1,8 +1,8 @@
-<!-- $Id: userlist.inc,v 1.4 2005/03/03 16:29:17 runemaster Exp $ -->
+<!-- $Id: userlist.inc,v 1.5 2005/03/03 17:32:17 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
-    <td class="main" valign="top"><br />
+<td class="main" valign="top"><br />
 
 <table class="userlist" cellpadding="2" cellspacing="2">
 <tr>
@@ -20,4 +20,4 @@
 </tr>
 <<END REPEAT users>>
 </table>
-
+<br />
