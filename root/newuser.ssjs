@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.19 2005/02/01 08:34:47 rswindell Exp $ */
+/* $Id: newuser.ssjs,v 1.20 2005/02/06 23:48:37 deuce Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -170,7 +170,7 @@ else {
 			template.err_message+="Some fields missing from POST data... possible browser issue.\r\n";
 		}
 		else {
-			if((system.newuser_questions & UQ_NOEXASC) && http_request.query[fields[field]].search(/[^\x20-\x7f]/)!=-1) {
+			if((system.newuser_questions & UQ_NOEXASC) && http_request.query[fields[field]][0].search(/[^\x20-\x7f]/)!=-1) {
 				err=1;
 				template.errs[fields[field]]="No Extended ASCII characters are allowed";
 				template.err_message+="Extended ASCII characters used.\r\n";
@@ -190,7 +190,7 @@ else {
 			showform()
 	}
 	if(system.newuser_questions & UQ_LOCATION && !(system.newuser_questions & UQ_NOCOMMAS)) {
-		if(http_request.query["location"].search(/,./)==-1) {
+		if(http_request.query["location"][0].search(/,./)==-1) {
 			err=1;
 			template.errs[fields[field]]='Format should be "City, State"';
 			template.err_message+="Bad location format.\r\n";
