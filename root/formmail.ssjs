@@ -1,6 +1,6 @@
 // Basic FormMail script, emulates Matt's FormMail.pl Script
 
-// $Id: formmail.ssjs,v 1.6 2005/03/12 13:11:00 rswindell Exp $
+// $Id: formmail.ssjs,v 1.7 2005/03/12 13:18:13 rswindell Exp $
 
 load("sbbsdefs.js");
 
@@ -73,7 +73,7 @@ var body="Form fields follow:\r\n\r\n";
 for(i in http_request.query) {
 	if(hidden_fields[i])
 		continue;
-	if(http_request.query[i].length)
+	if(String(http_request.query[i]).length)
 		body += format("%-10s = %s\r\n", i, http_request.query[i]);
 }
 	
