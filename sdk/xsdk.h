@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.13 2004/03/24 04:31:23 deuce Exp $ */
+/* $Id: xsdk.h,v 1.14 2004/05/30 07:10:35 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -195,9 +195,11 @@ int  nopen(char *str, int access);
 	- Removes white space characters from the end of a string */
 void truncsp(uchar *str);
 
+#ifndef USE_XPDEV
 /* Adds Backslash
 	- Adds backslash to end of string if it doesn't exist */
 void backslash(char *str);
+#endif
 
 /* Check Time Left
 	- Checks the amount of time the user has left and sets the timeleft
