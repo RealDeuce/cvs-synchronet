@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.13 2000/12/05 01:36:59 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.14 2000/12/05 01:39:20 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1131,8 +1131,7 @@ int getstr(char *strout, size_t maxlen, long mode)
 					if(i) {
 						i--;
 						l--;
-						if(!(mode&K_NOECHO))
-							bputs("\b \b");
+						bputs("\b \b");
 					}
 					break;
 				}
