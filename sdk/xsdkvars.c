@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK global variables */
 
-/* $Id: xsdkvars.c,v 1.3 2001/01/07 01:18:48 rswindell Exp $ */
+/* $Id: xsdkvars.c,v 1.4 2001/11/01 22:50:02 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -37,6 +37,7 @@
 
 #include <time.h>
 #include <stdio.h>
+#include "xsdkinet.h"	/* SOCKET */
 #include "xsdkdefs.h"
 
 #ifndef GLOBAL
@@ -131,6 +132,12 @@ GLOBAL uchar	name_len;		/* Length of name field in NAME.DAT */
 GLOBAL char 	aborted;		/* Aborted flag - if ctrl-c hit */
 GLOBAL char 	sysop_level;	/* Sysop Level */
 GLOBAL FILE 	*con_fp;		/* Console file pointer (stdout/stderr) */
+
+#ifndef __16BIT__	/* Sockets */
+
+GLOBAL SOCKET	client_socket;
+
+#endif
 
 #ifdef __cplusplus
 	}
