@@ -1,6 +1,6 @@
 /* SBJ.C */
 
-/* Developed 1990-1997 by Rob Swindell; PO Box 501, Yorba Linda, CA 92885 */
+/* $Id: sbj.c,v 1.13 2003/02/28 10:04:01 rswindell Exp $ */
 
 /************************/
 /* Synchronet Blackjack */
