@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.16 2005/01/12 06:05:34 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.17 2005/01/12 06:13:21 deuce Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -175,7 +175,7 @@ else {
 				template.errs[fields[field]]="No Extended ASCII characters are allowed";
 				template.err_message+="Extended ASCII characters used.\r\n";
 			}
-			if(!(system.newuser_questions & UQ_NOUPRLWR)) {
+			if((!(system.newuser_questions & UQ_NOUPRLWR)) && fields[field] != "netmail") {
 				http_request.query[fields[field]][0]=http_request.query[fields[field]][0].replace(/^(\s*)(.)/g,
 					function (matched, ws, ch, offset, s) {
 						return(ws+ch.toUpperCase());
