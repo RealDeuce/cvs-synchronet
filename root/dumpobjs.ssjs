@@ -1,10 +1,10 @@
 // dumpobjs.ssjs
 
-// $Id: dumpobjs.ssjs,v 1.1 2005/02/12 01:05:47 rswindell Exp $
+// $Id: dumpobjs.ssjs,v 1.2 2005/02/17 01:24:24 rswindell Exp $
 
 // Used for debugging (and possibly documenting) the Synchronet web server's JS objects
 
-write("<html><body>");
+writeln("<html><body>");
 function dump(obj, name)
 {
 	var i;
@@ -20,7 +20,8 @@ function dump(obj, name)
 	}
 }
 
-dump(http_request,"http_request");
-dump(http_reply,"http_reply");
+dump(client, "client"),             writeln("<br>");
+dump(http_request,"http_request"),  writeln("<br>");
+dump(http_reply,"http_reply"),      writeln("<br>");
 
-write("</body></html>");
+writeln("</body></html>");
