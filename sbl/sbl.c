@@ -2,7 +2,7 @@
 
 /* Synchronet BBS List Door */
 
-/* $Id: sbl.c,v 1.12 2001/07/16 23:09:15 rswindell Exp $ */
+/* $Id: sbl.c,v 1.13 2001/11/01 18:50:28 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -204,6 +204,12 @@ unsigned _stklen=16000; 		  /* Set stack size in code, not header */
 
 #define Y2K_2DIGIT_WINDOW	70
 #define VERIFICATION_MOD	FALSE
+
+#ifndef __16BIT__	/* Sockets */
+
+extern SOCKET client_socket;
+
+#endif
 
 typedef struct {
 
