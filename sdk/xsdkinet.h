@@ -2,7 +2,7 @@
 
 /* Synchronet platform-specific Internet stuff */
 
-/* $Id: xsdkinet.h,v 1.1 2000/12/02 03:29:37 rswindell Exp $ */
+/* $Id: xsdkinet.h,v 1.2 2002/04/04 07:21:43 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -51,6 +51,10 @@
 #endif
 
 #elif defined __unix__	/* Unix-variant */
+
+#ifdef __FreeBSD__
+#include <sys/types.h>	/* u_intXX_t */
+#endif
 
 #include <netdb.h>		/* gethostbyname */
 #include <netinet/in.h>	/* IPPROTO_IP */
