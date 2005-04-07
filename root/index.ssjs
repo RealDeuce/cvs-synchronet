@@ -1,4 +1,4 @@
-/* $Id: index.ssjs,v 1.23 2005/04/06 21:14:10 rswindell Exp $ */
+/* $Id: index.ssjs,v 1.24 2005/04/07 23:04:35 rswindell Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -39,6 +39,8 @@ load("../web/lib/leftnav_html.ssjs");
 
     if((host = http_request.vhost)==undefined)
         host = http_request.host;
+    if(host==undefined || !host.length)
+        host = system.host_name;
 
     template.additional_services ='[' + ("telnet".link("telnet://"+host)) + '] ';
     template.additional_services+='[' + ("rlogin".link("rlogin://"+host)) + '] ';
