@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.8 2005/03/30 22:12:41 rswindell Exp $ -->
+<!-- $Id: footer.inc,v 1.9 2005/04/08 08:29:23 rswindell Exp $ -->
 
     </td>
     <td width="1%" valign="top" align="right"><img alt="" src="/graphics/tr_curve_grey.gif" height="6" width="6" /></td>
@@ -15,7 +15,7 @@
           <div align="left">
          <!-- <a href="http://www.synchro.net/"><img src="/graphics/sync_pbgj1_grey_bg.gif" title="Powered by: Synchronet" alt="Powered by: Synchronet" width="175" height="85" border="0" /></a></div> -->
           <font size="-3">
-            @@server:version@@<br />
+            <a href="http://www.synchro.net/" style="text-decoration: none">@@server:version@@</a><br />
             <a href="http://www.synchro.net/" style="text-decoration: none">@@system:version_notice@@</a>
           </font>
         </div>    
