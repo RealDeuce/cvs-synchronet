@@ -1,5 +1,5 @@
 /* CSS Document */
-/* $Id: synchronet.css,v 1.27 2005/04/11 00:30:40 runemaster Exp $ */
+/* $Id: synchronet.css,v 1.28 2005/04/11 00:49:53 runemaster Exp $ */
 
 body{ font-size:10pt; font-family: Arial,sans-serif; color: #333333; line-height: 1; margin: 0px; padding: 0px; background: #cccccc url("/graphics/bg_grad.jpg") fixed; }
 
@@ -104,8 +104,8 @@ td.userstats { background-color: #DDDDDD; }
 table.sysinfo { margin-left: auto; margin-right: auto; background-color: #CCCCCC; }
 td.sysinfo { background-color: #DDDDDD; } 
 
-pre { background-color: black; color: #aaaaaa; font-family: monospace; padding: 3px; font-size:10pt; }
-pre.leftalign { background-color: black; color: #aaaaaa; text-align: left; padding: 3px; font-size:10pt; }
+pre { background-color: black; color: #aaaaaa; font-family: monospace; padding: 3px; font-size:9pt; }
+pre.leftalign { background-color: black; color: #aaaaaa; text-align: left; padding: 3px; font-size:9pt; }
 
 table.userlist { margin-left: auto; margin-right: auto; background-color: #BBBBBB; }
 th.userlist { background-color: #DDDDDD; color: black; }
