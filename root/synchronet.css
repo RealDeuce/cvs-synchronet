@@ -1,4 +1,4 @@
-/* $Id: synchronet.css,v 1.29 2005/04/11 03:01:22 runemaster Exp $ */
+/* $Id: synchronet.css,v 1.30 2005/04/11 23:54:51 runemaster Exp $ */
 
 body { 
     font-size:10pt; 
@@ -357,6 +357,22 @@ table.sysinfo {
 td.sysinfo { 
     background-color: #dddddd; 
 } 
+
+/* Last Callers */
+
+table.lastcallers {
+    padding: 0px; 
+    border-top: 2px solid #000000; 
+    border-left: 2px solid #000000; 
+    border-bottom: 2px solid #ffffff; 
+    border-right: 2px solid #ffffff; 
+    font-size: 10pt; 
+    margin-left: auto; 
+    margin-right: auto; 
+    background-color: #bbbbbb;
+}
+
+
 
 /* User Listing */
 
