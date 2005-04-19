@@ -2,7 +2,7 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.12 2005/04/19 15:01:32 deuce Exp $
+// $Id: userlist.ssjs,v 1.13 2005/04/19 15:12:19 deuce Exp $
 
 http_reply.fast=true;
 load("sbbsdefs.js");
@@ -34,7 +34,8 @@ for(i=1;i<=lastuser;i++) {
 	usr.laston=0-u.stats.laston_date;
 	template.users.push(usr);
 }
-template.users.sort(alphasort);
+if(http_request.query["sort"]!=undefined)
+	template.users.sort(alphasort);
 
 write_template("header.inc");
 load("../web/lib/topnav_html.ssjs");
