@@ -1,4 +1,4 @@
-<!-- $Id: msgs.inc,v 1.17 2005/04/19 02:47:51 deuce Exp $ -->
+<!-- $Id: msgs.inc,v 1.18 2005/04/19 14:13:02 deuce Exp $ -->
 
 <!-- Main Content -->  
     
@@ -6,7 +6,7 @@
 
 
 <div align="center">
-@@JS:template.can_post?'<form name="PostMsg" action="post.ssjs?msg_sub=^^sub:code^^&amp;post=new" method="post"><input type="submit" value="'+template.post_button+'" /></form>':''@@
+@@JS:template.can_post?'<form name="PostMsg" action="post.ssjs?msg_sub='+template.sub.code+'&amp;post=new" method="post"><input type="submit" value="'+template.post_button+'" /></form>':''@@
 @@JS:template.show_choice==undefined ? '' : '(' + template.show_choice + ')<br /><br />'@@
 </div>
 
