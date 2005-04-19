@@ -1,4 +1,4 @@
-<!-- $Id: msgs.inc,v 1.18 2005/04/19 14:13:02 deuce Exp $ -->
+<!-- $Id: msgs.inc,v 1.19 2005/04/19 14:18:17 deuce Exp $ -->
 
 <!-- Main Content -->  
     
@@ -25,7 +25,7 @@
     <!-- %%JS:template.color=0%% -->
     <<REPEAT messages>>
     <tr class=@@JS:((template.color++)%2==0)?'"msglist1"':'"msglist2"';@@>
-    @@JS:template.can_delete?'<td align=center><input name="number" value="^^messages:number^^" type="checkbox"></td>':''@@
+    @@JS:template.can_delete?'<td align=center><input name="number" value="'+RepeatObj.number+'" type="checkbox"></td>':''@@
        <td align="center">
             @@JS:if(RepeatObj.attachments>0) '<img alt="Attachment" src="/graphics/attach_black.gif" />'; else '&nbsp;';@@
        </td>
