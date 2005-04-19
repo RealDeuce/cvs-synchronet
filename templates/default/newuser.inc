@@ -1,4 +1,4 @@
-<!-- $Id: newuser.inc,v 1.8 2005/03/04 00:59:14 runemaster Exp $ -->
+<!-- $Id: newuser.inc,v 1.9 2005/04/19 02:47:49 deuce Exp $ -->
 
 <!-- Main Content -->  
     
@@ -63,7 +63,7 @@
             <tr>
             <td class="newuser">&nbsp;</td>
             <td class="newuser">
-                <input type="submit" value="Join!" />Join!
+                <input type="submit" value="Join!" />
             </td>
             </tr>
         </table>
