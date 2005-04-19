@@ -2,11 +2,13 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.11 2005/03/24 19:15:04 runemaster Exp $
+// $Id: userlist.ssjs,v 1.12 2005/04/19 15:01:32 deuce Exp $
 
 http_reply.fast=true;
 load("sbbsdefs.js");
 load("../web/lib/template.ssjs");
+
+var show_qnet=false;
 
 var sub="";
 
@@ -22,6 +24,8 @@ for(i=1;i<=lastuser;i++) {
 	usr=new Object;
 	u.number=i;
 	if(u.settings&USER_DELETED)
+		continue;
+	if(!show_qnet && (u.security.restrictions & UFLAG_Q))
 		continue;
 	usr.alias=u.alias.toString();
 	usr.location=u.location.toString();
