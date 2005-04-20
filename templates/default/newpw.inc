@@ -1,13 +1,14 @@
 
-<!-- $Id: newpw.inc,v 1.2 2005/03/22 04:09:11 runemaster Exp $ -->
+<!-- $Id: newpw.inc,v 1.3 2005/04/20 20:39:01 rswindell Exp $ -->
 
 <!-- Main Content --> 
 </td>
 
     <td class="main" valign="top"><br /><br />
     <p>Your password was last changed on <b>@@pwchangedate@@</b><br /><br />
-    Please Enter your existing password and well as your new password.  Re-Enter your new password to confirm.<br /><br />
-    Your password is currently coverted to UPPERCASE for Legacy compatibility.  Remember this when checking your E-Mail.</p>
+    Please enter your existing password as well as your new password.  Re-enter your new password to confirm.<br /><br />
+    Your password is case insensitive for <b>most</b> of the BBS servers, but some authentication protocols
+    (e.g. POP3-APOP and certain SMTP authentication schemes) will require you specify the password in the proper case. </p>
     <br /><br />
     <form action="changepw.ssjs" method="post">
       <table border="1" align="center">
