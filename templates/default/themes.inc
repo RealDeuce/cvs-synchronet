@@ -1,4 +1,4 @@
-<!-- $Id: themes.inc,v 1.6 2005/03/04 00:59:14 runemaster Exp $ -->
+<!-- $Id: themes.inc,v 1.7 2005/04/20 23:35:50 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -12,7 +12,7 @@
             <form action="picktheme.ssjs" method="post">
                 <br />
                 @@theme_list@@<br /><br />
-                <input type="submit" name="Select Theme" value="Select Theme" />
+                <input type="image" src="/graphics/select_theme.gif" name="Select Theme" value="Select Theme" />
             </form>
         </td>
         </tr>

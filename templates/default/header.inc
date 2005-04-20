@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <!-- $Id: header.inc,v 1.10 2005/04/10 04:24:19 deuce Exp $ -->
+    <!-- $Id: header.inc,v 1.11 2005/04/20 23:35:50 runemaster Exp $ -->
 <head>
 <title>%%title%%</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -9,7 +9,13 @@
 </head>
 <body>
 
-  <h1 id="siteName">@@system:name@@</h1> 
+<!-- Remove comment tages for text System Name below -->
+<!-- <h1 id="siteName">@@system:name@@</h1> -->
+
+<!-- Comment out or delete below <span> for no logo display -->
+
+@@name_logo@@
+
    <div id="Greeting"> 
         @@user_greeting@@
    </div>
