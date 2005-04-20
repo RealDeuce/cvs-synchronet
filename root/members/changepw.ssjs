@@ -1,4 +1,4 @@
-/* $Id: changepw.ssjs,v 1.5 2005/04/20 20:23:58 runemaster Exp $ */
+/* $Id: changepw.ssjs,v 1.6 2005/04/20 20:43:30 runemaster Exp $ */
 
 var sub="";
 
@@ -50,7 +50,7 @@ else  {
 }
 
 if(success)
-    template.reponse='Please <a href="/login.ssjs">Re-Login</a>.';
+    template.response='Please <a href="/login.ssjs">Re-Login</a>.';
 else
     template.response='<a href="' + backurl + '">Back to Change Password Page</a>';
 
