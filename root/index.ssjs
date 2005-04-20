@@ -1,7 +1,6 @@
-/* $Id: index.ssjs,v 1.26 2005/04/09 15:48:09 runemaster Exp $ */
+/* $Id: index.ssjs,v 1.27 2005/04/20 23:33:30 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
-load("../web/lib/siteutils.ssjs");
 
 var sub='';
 
