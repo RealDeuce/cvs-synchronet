@@ -1,4 +1,4 @@
-/* $Id : $ */
+/* $Id: picktheme.ssjs,v 1.5 2005/04/20 23:48:01 runemaster Exp $ */
 
 /* 
  * Write new theme file BEFORE loading the template lib so the
