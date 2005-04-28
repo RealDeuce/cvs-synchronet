@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.27 2005/04/20 20:53:39 runemaster Exp $ */
+/* $Id: newuser.ssjs,v 1.28 2005/04/28 01:02:40 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -225,7 +225,7 @@ else {
         }
     }
     for(len in maxlengths) {
-        if(http_request.query[len].length>maxlengths[len]) {
+        if(http_request.query[len]!=undefined && http_request.query[len].length>maxlengths[len]) {
             err=1;
             template.err_message+=len+" data too long (Length: "+http_request.query[len].length+" Max: "+maxlengths[len]+")\r\n";
             template.errs[titles[len]]='Max length: '+maxlengths[len];
