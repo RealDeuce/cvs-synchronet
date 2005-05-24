@@ -1,4 +1,4 @@
-<!-- $Id: msgs.inc,v 1.21 2005/05/24 18:45:51 runemaster Exp $ -->
+<!-- $Id: msgs.inc,v 1.22 2005/05/24 20:12:37 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -53,7 +53,7 @@
     <<END REPEAT messages>>
     </table>
     <br />
-    @@JS:template.can_delete?'<div align="center"><input class="msg" type="image" src="/graphics/delete_messages.gif" name="Action" value="Delete" /></div>':''@@
+    @@JS:template.can_delete?'<div align="center"><input class="msg" type="image" src="/graphics/delete_messages.gif" /></div>':''@@
 </form>
         
 <script type="text/javascript">
