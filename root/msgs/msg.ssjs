@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.35 2005/05/24 18:45:44 runemaster Exp $ */
+/* $Id: msg.ssjs,v 1.36 2005/06/24 10:54:16 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -111,14 +111,14 @@ if(template.hdr.thread_first!=0) {
     }
 }
 if(tmp!=undefined)
-    template.nextlink='<a href="msg.ssjs?msg_sub='+sub+'&amp;message='+tmp+'">'+next_msg_html+'</a>';
-else
-    template.nextlink=no_next_msg_html;
-tmp=find_np_message(template.idx.offset,false);
-if(tmp!=undefined)
     template.prevlink='<a href="msg.ssjs?msg_sub='+sub+'&amp;message='+tmp+'">'+prev_msg_html+'</a>';
 else
     template.prevlink=no_prev_msg_html;
+tmp=find_np_message(template.idx.offset,false);
+if(tmp!=undefined)
+    template.nextlink='<a href="msg.ssjs?msg_sub='+sub+'&amp;message='+tmp+'">'+next_msg_html+'</a>';
+else
+    template.nextlink=no_next_msg_html;
 
 write_template("header.inc");
 load("../web/lib/topnav_html.ssjs");
