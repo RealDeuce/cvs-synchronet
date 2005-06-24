@@ -1,4 +1,4 @@
-<!-- $Id: msgs.inc,v 1.22 2005/05/24 20:12:37 runemaster Exp $ -->
+<!-- $Id: msgs.inc,v 1.23 2005/06/24 10:59:25 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -19,7 +19,7 @@
     <th class="msglist">Subject</th>
     <th class="msglist">From</th>
     <th class="msglist">To</th>
-    <th class="msglist">Date</th>
+    <th class="msglist">@@sort_date@@</th>
 </tr>
 
     <!-- %%JS:template.color=0%% -->
