@@ -1,4 +1,4 @@
-/* $Id: picktheme.ssjs,v 1.5 2005/04/20 23:48:01 runemaster Exp $ */
+/* $Id: picktheme.ssjs,v 1.6 2005/06/24 08:55:12 runemaster Exp $ */
 
 /* 
  * Write new theme file BEFORE loading the template lib so the
@@ -10,11 +10,11 @@ var sub='';
 var sq="'";
 var dq='"';
 var pl='+';
-themefile=new File(system.data_dir+'user/'+format("%04d.html_theme",user.number));
+themefile=new File(system.data_dir+'user/'+format("%04d.html_prefs",user.number));
 themefile.open("w",false);
 ctheme=http_request.query.theme[0];
 ctheme=ctheme.replace(/"/g,dq+pl+sq+dq+sq+pl+dq);   /* "+'"'+" */
-themefile.writeln('CurrTheme="'+ctheme+'";');
+themefile.iniSetValue(null, 'CurrTheme', ctheme);
 themefile.close();
 
 load('../web/lib/template.ssjs');
