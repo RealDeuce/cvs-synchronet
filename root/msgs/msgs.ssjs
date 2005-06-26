@@ -1,4 +1,4 @@
-/* $Id: msgs.ssjs,v 1.37 2005/06/26 19:30:50 runemaster Exp $ */
+/* $Id: msgs.ssjs,v 1.38 2005/06/26 19:48:03 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -16,7 +16,7 @@ if(file_exists(system.data_dir+'user/'+format("%04d.html_prefs",user.number))) {
   prefsfile.close();
   }
 } else {
-  SortDate="Descending";
+  SortDate="descending";
 }
 
 if(SortDate=="ascending")
