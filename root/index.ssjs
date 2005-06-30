@@ -1,4 +1,4 @@
-/* $Id: index.ssjs,v 1.27 2005/04/20 23:33:30 runemaster Exp $ */
+/* $Id: index.ssjs,v 1.28 2005/06/30 20:48:31 rswindell Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -41,6 +41,9 @@ load("../web/lib/leftnav_html.ssjs");
         host = http_request.host;
     if(host==undefined || !host.length)
         host = system.host_name;
+    var port = host.indexOf(':');
+    if(port>=0)
+        host=host.slice(0,port);
     
     if(telnet_port=="23")
       telnet_port="";
