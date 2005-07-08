@@ -1,4 +1,4 @@
-<!-- $Id: msg.inc,v 1.15 2005/05/24 18:45:51 runemaster Exp $ -->
+<!-- $Id: msg.inc,v 1.16 2005/07/08 22:55:43 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -19,9 +19,7 @@
 </tr>
 <tr><td colspan="4"><hr width="90%" /></td></tr>
 <tr>
-    <td bgcolor="Black" colspan="4">
-    <!-- <hr /> -->
-            <pre class="leftalign">@@body@@</pre>
+    @@JS:template.txtbodybgwht?'<td class="txtbodywht" colspan="4"><pre class="leftalignwht">':'<td class="txtbody" colspan="4"><pre class="leftalign">'@@@@body@@</pre>
     <!-- <hr /> -->
     </td>
 </tr>

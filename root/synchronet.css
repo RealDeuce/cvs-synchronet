@@ -1,4 +1,4 @@
-/* $Id: synchronet.css,v 1.33 2005/04/20 23:33:50 runemaster Exp $ */
+/* $Id: synchronet.css,v 1.34 2005/07/08 22:55:36 runemaster Exp $ */
 
 body { 
     font-size:10pt; 
@@ -688,6 +688,23 @@ pre.leftalign {
     padding: 3px; 
     font-size:9pt; 
 }
+
+pre.leftalignwht { 
+    background-color: white; 
+    color: #000000; 
+    text-align: left; 
+    padding: 3px; 
+    font-size:9pt; 
+}
+
+.txtbodywht { 
+background-color: #ffffff;
+}
+
+.txtbody { 
+background-color: #000000;
+}
+
 
 /* Footer */
 
