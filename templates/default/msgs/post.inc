@@ -1,4 +1,4 @@
-<!-- $Id: post.inc,v 1.7 2005/04/20 23:35:43 runemaster Exp $ -->
+<!-- $Id: post.inc,v 1.8 2005/07/16 00:31:38 rswindell Exp $ -->
 
 <!-- Main Content -->  
     
@@ -20,7 +20,7 @@
       <td class="postmsg" colspan="2">@@privnote@@</td>
     </tr>
     <tr>
-      <td class="postmsg" colspan="2"><textarea class="postmsg" name=body rows="20" cols="80" wrap="hard"></textarea></td>
+      <td class="postmsg" colspan="2"><textarea class="postmsg" name=body rows="20" cols="79" wrap="hard"></textarea></td>
       </tr>
     <tr>
       <td align="center" class="postmsg" colspan="2"><input type="image" src="/graphics/@@post_button@@" value=@@JS:template.sub.code=='mail'? '"Send E-Mail"' : '"Post Message"' @@/></td>

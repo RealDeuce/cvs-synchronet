@@ -1,4 +1,4 @@
-<!-- $Id: reply.inc,v 1.5 2005/04/20 23:35:43 runemaster Exp $ -->
+<!-- $Id: reply.inc,v 1.6 2005/07/16 00:31:38 rswindell Exp $ -->
 
 <!-- Main Content -->  
     
@@ -20,7 +20,7 @@
       <td class="postmsg" colspan="2">@@privnote@@</td>
     </tr>
     <tr>
-      <td class="replymsg" colspan="2"><textarea class="replymsg" name=body rows="20" cols="80" wrap="hard">%%body%%</textarea></td>
+      <td class="replymsg" colspan="2"><textarea class="replymsg" name=body rows="20" cols="79" wrap="hard">%%body%%</textarea></td>
       </tr>
     <tr>
       <td align="center" class="replymsg" colspan="2"><input type="image" src="/graphics/@@reply_button@@" value="Post Reply" /></td>
