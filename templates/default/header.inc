@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <!-- $Id: header.inc,v 1.11 2005/04/20 23:35:50 runemaster Exp $ -->
+    <!-- $Id: header.inc,v 1.12 2005/08/15 02:33:14 runemaster Exp $ -->
 <head>
 <title>%%title%%</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-@@JS:if(http_request.virtual_path=="/nodelist.ssjs")'<meta http-equiv=refresh content="30">';@@
+@@JS:if(http_request.virtual_path=="/nodelist.ssjs")'<meta http-equiv="refresh" content="30" />';@@
 <link rel="stylesheet" href="@@Theme_CSS_File@@" type="text/css" />
 </head>
 <body>

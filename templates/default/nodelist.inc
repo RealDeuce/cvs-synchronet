@@ -1,7 +1,5 @@
 
-<!-- $Id: nodelist.inc,v 1.6 2005/04/19 02:47:49 deuce Exp $ -->
-
-</td>
+<!-- $Id: nodelist.inc,v 1.7 2005/08/15 02:33:14 runemaster Exp $ -->
 
     <td class="main" valign="top"><br />
         <br />
@@ -20,7 +18,6 @@
         @@JS:if(show_gender)'<th class="main_nodelist">Gender</th>'@@
         <th class="main_nodelist">Time</th>  
     </tr>
-    <tr>    
 
 <<REPEAT who_online>>
             <tr>
