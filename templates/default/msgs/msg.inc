@@ -1,4 +1,4 @@
-<!-- $Id: msg.inc,v 1.16 2005/07/08 22:55:43 runemaster Exp $ -->
+<!-- $Id: msg.inc,v 1.17 2005/08/15 02:45:35 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -30,8 +30,8 @@
 <tr>
     <td width="1%" class="msgnavleft" nowrap="nowrap">@@prevlink@@</td>
     <td width="1%" class="msgnavmid">@@JS:template.can_post?'<a href="reply.ssjs?msg_sub='+template.sub.code+'&amp;reply_to='+template.hdr.number+'"><img src="/graphics/reply.gif" alt="Reply" width="150" height="20" border="0" title="Reply" /></a>':'&nbsp;'@@</td>
-    <td width="1%"class="msgnavmid">@@JS:template.can_post?'<a href="post.ssjs?msg_sub='+template.sub.code+'&amp;post=new"><img src="/graphics/post_new.gif" alt="Post New" width="150" height="20" border="0" title="Post New" /></a>':'&nbsp;'@@</td>
-    @@JS:template.can_delete?'<td width="1%" class="msgnavmid"><a href="management.ssjs?Action=Delete&amp;msg_sub='+template.sub.code+'&amp;number='+template.hdr.number+'"><img src="/graphics/delete.gif" alt="Delete" width="150" height="20" border="0" title="Delete" /></a>':'&nbsp;'@@</td>
+    <td width="1%" class="msgnavmid">@@JS:template.can_post?'<a href="post.ssjs?msg_sub='+template.sub.code+'&amp;post=new"><img src="/graphics/post_new.gif" alt="Post New" width="150" height="20" border="0" title="Post New" /></a>':'&nbsp;'@@</td>
+    <td width="1%" class="msgnavmid">@@JS:template.can_delete?'<a href="management.ssjs?Action=Delete&amp;msg_sub='+template.sub.code+'&amp;number='+template.hdr.number+'"><img src="/graphics/delete.gif" alt="Delete" width="150" height="20" border="0" title="Delete" /></a>':'&nbsp;'@@</td>
     <td width="1%" class="msgnavright" nowrap="nowrap">@@nextlink@@</td>
 </tr>
 @@JS:if(template.replyto!=undefined && sub!='mail') '<tr class="msg"><td class="msg" colspan="5"><b>In Reply To: </b><a href="msg.ssjs?msg_sub='+sub+'&amp;message='+template.replyto.number+'">'+template.replyto.subject+'</a> ('+template.replyto.from+')</td></tr>'; else '';@@
