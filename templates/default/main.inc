@@ -1,7 +1,6 @@
-<!-- $Id: main.inc,v 1.8 2005/04/21 01:33:54 rswindell Exp $ -->
+<!-- $Id: main.inc,v 1.9 2005/08/15 02:26:15 runemaster Exp $ -->
 
 <!-- Main Content --> 
-</td>
 
     <td class="main" valign="top"><br />
         <br />

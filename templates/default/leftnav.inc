@@ -1,4 +1,4 @@
-<!-- $Id: leftnav.inc,v 1.15 2005/04/19 02:47:49 deuce Exp $ -->
+<!-- $Id: leftnav.inc,v 1.16 2005/08/15 02:26:15 runemaster Exp $ -->
 
     <!-- Left Navigation (Includes Main table start) -->
         
@@ -19,15 +19,16 @@
                 <<END REPEAT leftnav>>
                 <a href="@@ftp_url@@%%ftpidx%%">File Libraries</a>
             </p>
-        </div>
-        
+    	</div>
+
 <!-- start Nodelisting -->
 
       @@JS:if(!template.node_list.length || http_request.virtual_path=="/nodelist.ssjs")'<!--';@@
 Who's Online now ...<br /><table class="left_nodelist"><tbody><<REPEAT node_list>><tr><td class="left_nodelist"><a href="mailto:@@node_list:email@@">%%node_list:name%%</a> %%node_list:action%%</td></tr><<END REPEAT node_list>></tbody></table>
 @@JS:if(!template.node_list.length || http_request.virtual_path=="/nodelist.ssjs")'-->';@@
- 
      </div>
-     </td>                        
+   </td>
+ 
+                          
 <!-- end Left Navigation -->
             
