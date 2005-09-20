@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.29 2005/09/20 06:00:38 deuce Exp $ */
+/* $Id: xsdk.c,v 1.30 2005/09/20 08:00:10 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1989,7 +1989,9 @@ void initdata(void)
 	else				/* Version 1a */
 		name_len=30;
 
+#ifdef __unix__
 	_termios_setup();
+#endif
 
 	if(client_socket==INVALID_SOCKET)
 		xsdk_mode&=~XSDK_MODE_NOCONSOLE;
