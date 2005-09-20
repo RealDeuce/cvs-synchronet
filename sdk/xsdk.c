@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.30 2005/09/20 08:00:10 deuce Exp $ */
+/* $Id: xsdk.c,v 1.31 2005/09/20 08:21:58 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -380,6 +380,7 @@ void output_thread(void* arg)
 /****************************************************************************/
 void outchar(char ch)
 {
+	static char lastch;
 
 #ifndef __16BIT__
 	if(client_socket!=INVALID_SOCKET) {
@@ -428,6 +429,10 @@ void outchar(char ch)
 		lncntr=0;
 		bpause(); 
 	}
+	/* Fix for unix-formatted text, expand sole LF to CRLF */
+	if(ch=='\n' && lastch!='\r')
+		outchar('\r');
+	lastch=ch;
 }
 
 /****************************************************************************/
