@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.31 2005/09/20 08:21:58 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.32 2005/09/20 19:15:51 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -382,6 +382,10 @@ void outchar(char ch)
 {
 	static char lastch;
 
+	/* Fix for unix-formatted text, expand sole LF to CRLF */
+	if(ch=='\n' && lastch!='\r')
+		outchar('\r');
+
 #ifndef __16BIT__
 	if(client_socket!=INVALID_SOCKET) {
 		ulong	top=outbuftop+1;
@@ -429,9 +433,6 @@ void outchar(char ch)
 		lncntr=0;
 		bpause(); 
 	}
-	/* Fix for unix-formatted text, expand sole LF to CRLF */
-	if(ch=='\n' && lastch!='\r')
-		outchar('\r');
 	lastch=ch;
 }
 
