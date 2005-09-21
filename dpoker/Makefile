@@ -1,16 +1,12 @@
-# Makefile.gnu
+# Makefile
 
 #########################################################################
-# Makefile for Synchronet Blackjack										#
-# For use with GNU make and GNU C Compiler								#
+# Makefile for Domain Poker												#
+# For use with Borland make and Borland Compiler						#
 # @format.tab-size 4, @format.use-tabs true								#
-#																		#
-# Linux: make -f Makefile.gnu											#
-# Win32: make -f Makefile.gnu os=win32									#
-# FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: Makefile,v 1.3 2005/09/21 06:37:44 deuce Exp $
+# $Id: Makefile,v 1.4 2005/09/21 06:43:55 deuce Exp $
 
 XSDK		=	..\sdk
 SRC_ROOT	=	..\..\src
