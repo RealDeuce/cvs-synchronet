@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: Makefile,v 1.2 2005/09/20 08:03:24 deuce Exp $
+# $Id: Makefile,v 1.3 2005/09/21 06:37:44 deuce Exp $
 
 XSDK		=	..\sdk
 SRC_ROOT	=	..\..\src
@@ -18,7 +18,7 @@ SRC_ROOT	=	..\..\src
 
 .path.c = .;$(XSDK)
 
-CFLAGS	=	$(CFLAGS) -I$(XSDK) -DUSE_XPDEV $(XPDEV_CFLAGS)
+CFLAGS	=	$(CFLAGS) -I$(XSDK) -DUSE_XPDEV $(XPDEV-MT_CFLAGS) $(UIFC-MT_CFLAGS) $(CIOLIB-MT_CFLAGS)
 
 $(DPOKER): $(OBJS)
 	@echo Linking $@
@@ -27,3 +27,7 @@ $(DPOKER): $(OBJS)
 $(DPCLEAN): $(DPCLEAN_OBJS)
 	@echo Linking $@
 	$(QUIET)$(CC) $(CFLAGS) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(LDFLAGS) $** -e$@ $(XPDEV-MT_LIBS)
+
+$(DPCONFIG): $(DPCONFIG_OBJS)
+	@echo Linking $@
+	$(QUIET)$(CC) $(CFLAGS) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(CIOLIB-MT_LDFLAGS) $(UIFC-MT_LDFLAGS) $(LDFLAGS) $** -e$@ $(UIFC-MT_LIBS) $(CIOLIB-MT_LIBS) $(XPDEV-MT_LIBS)
