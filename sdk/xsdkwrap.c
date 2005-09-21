@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers (compiler & platform portability) */
 
-/* $Id: xsdkwrap.c,v 1.18 2004/06/02 08:23:07 deuce Exp $ */
+/* $Id: xsdkwrap.c,v 1.19 2005/09/21 01:04:16 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -396,7 +396,7 @@ BOOL fexist(char *filespec)
 
 #else
 
-#warning "fexist() port needs to support wildcards!"
+	#error "fexist() port needs to support wildcards!"
 
 	return(FALSE);
 

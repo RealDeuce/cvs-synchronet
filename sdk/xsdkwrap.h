@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.14 2005/09/20 06:00:38 deuce Exp $ */
+/* $Id: xsdkwrap.h,v 1.15 2005/09/21 01:04:16 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -96,8 +96,7 @@
 #elif defined(__unix__)
 	#define PLATFORM_DESC	"Unix"
 #else
-	#warning "Need to describe target platform"
-	#define PLATFORM_DESC	"UNKNOWN"
+	#error "Need to describe target platform"
 #endif
 
 #if defined(__unix__)
@@ -172,7 +171,7 @@
 	#define pthread_mutex_unlock(pmtx)	ReleaseMutex(*(pmtx))
 	#define	pthread_mutex_destroy(pmtx)	CloseHandle(*(pmtx))
 
-	#warning "Need semaphore wrappers."
+/*	#warning "Need semaphore wrappers." */
 
 #endif
 
@@ -208,7 +207,7 @@
 
 #else	/* Unsupported OS */
 
-	#warning "Unsupported Target: Need some macros of function prototypes here."
+	#error "Unsupported Target: Need some macros of function prototypes here."
 
 #endif
 
