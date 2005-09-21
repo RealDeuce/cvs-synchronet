@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK system-call wrappers */
 
-/* $Id: xsdkwrap.h,v 1.15 2005/09/21 01:04:16 rswindell Exp $ */
+/* $Id: xsdkwrap.h,v 1.16 2005/09/21 02:18:07 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -171,7 +171,9 @@
 	#define pthread_mutex_unlock(pmtx)	ReleaseMutex(*(pmtx))
 	#define	pthread_mutex_destroy(pmtx)	CloseHandle(*(pmtx))
 
-/*	#warning "Need semaphore wrappers." */
+#else
+
+	#warning "Need semaphore wrappers."
 
 #endif
 
