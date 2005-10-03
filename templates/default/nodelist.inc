@@ -1,5 +1,5 @@
 
-<!-- $Id: nodelist.inc,v 1.7 2005/08/15 02:33:14 runemaster Exp $ -->
+<!-- $Id: nodelist.inc,v 1.8 2005/10/03 06:53:07 rswindell Exp $ -->
 
     <td class="main" valign="top"><br />
         <br />
@@ -25,6 +25,7 @@
                 <td class="main_nodelist"><a href="mailto:@@who_online:email@@">@@who_online:name@@</a></td>
                 <td class="main_nodelist">@@who_online:action@@</td>
                 @@JS:if(show_location)'<td class="main_nodelist" width="25%">'+Nz(RepeatObj.location)+'</td>'@@
+				@@JS:if(show_age)'<td class="main_nodelist" width="1%">'+Nz(RepeatObj.age)+'</td>'@@
                 @@JS:if(show_gender)'<td class="main_nodelist" width="1%">'+Nz(RepeatObj.gender)+'</td>'@@    
                 <td class="main_nodelist" width="1%">@@who_online:timeon@@</td>     
             </tr>
