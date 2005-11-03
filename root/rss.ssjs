@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.15 2005/02/17 23:41:02 rswindell Exp $
+// $Id: rss.ssjs,v 1.16 2005/11/03 03:36:55 rswindell Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.15 $".split(' ')[1];
+var REVISION = "$Revision: 1.16 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -53,9 +53,9 @@ if(channel==undefined) {
 	exit();
 }
 
-var sub = msg_area.sub[channel.sub];
+var sub = msg_area.sub[channel.sub.toLowerCase()];
 if(sub==undefined) {
-    write("!unknown sub-board: " + channel.sub);
+    writeln(log(LOG_ERR,"!unknown sub-board: " + channel.sub));
 	exit();
 }
 
@@ -66,11 +66,11 @@ if(http_request.query["item"]) {
 
 	var msgbase=new MsgBase(channel.sub);
 	if(!msgbase.open())
-		writeln('Error: ' + msgbase.error);
+		writeln(log(LOG_ERR,'Error: ' + msgbase.error));
 	else {
 		template.hdr = msgbase.get_msg_header(false,Number(http_request.query["item"]));
 		if(!template.hdr)
-			writeln('Error: ' + msgbase.error);
+			writeln(log(LOG_ERR,'Error: ' + msgbase.error));
 		else
 			template.body= msgbase.get_msg_body(false, template.hdr.number);
 	}
@@ -105,11 +105,11 @@ if(http_request.query["item"]) {
 	writeln('<body>');
 	var msgbase=new MsgBase(channel.sub);
 	if(!msgbase.open())
-		writeln('Error: ' + msgbase.error);
+		writeln(log(LOG_ERR,'Error: ' + msgbase.error));
 	else {
 		var hdr = msgbase.get_msg_header(false,Number(http_request.query["item"]));
 		if(!hdr)
-			writeln('Error: ' + msgbase.error);
+			writeln(log(LOG_ERR,'Error: ' + msgbase.error));
 		else {
 			for(h in hdr)
 				writeln(h + ": " + hdr[h] + '<br>');
