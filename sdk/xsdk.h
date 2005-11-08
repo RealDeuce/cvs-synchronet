@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.21 2004/09/17 05:01:25 deuce Exp $ */
+/* $Id: xsdk.h,v 1.22 2005/11/08 19:59:46 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -288,6 +288,7 @@ void nodemsg(void);
 void ungetkey(char ch);
 
 /* Check to see if the user has hung-up */
+int isconnected(void);
 void checkline(void);
 
 /* Display a line (with ctrl-A codes) centered on the screen */

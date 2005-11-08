@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.33 2005/11/08 06:09:18 deuce Exp $ */
+/* $Id: xsdk.c,v 1.34 2005/11/08 19:59:46 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -740,6 +740,44 @@ char getkey(long mode)
 	bputs("\r\nInactive too long.\r\n");
 	exit(0);
 	return(0);	/* never gets here, but makes compiler happy */
+}
+
+/****************************************************************************/
+/* If remote user, checks DCD to see if user has hung up or not.			*/
+/****************************************************************************/
+int isconnected(void)
+{
+#ifdef __16BIT__
+	if(com_port && !((*msr)&DCD)) return(0);
+#else
+	char	str[256];
+	char	ch;
+	int		i;
+	fd_set	socket_set;
+	struct timeval timeout;
+
+	if(client_socket!=INVALID_SOCKET) {
+		FD_ZERO(&socket_set);
+		FD_SET(client_socket,&socket_set);
+		timeout.tv_sec=0;
+		timeout.tv_usec=100;
+
+		if((i=select(client_socket+1,&socket_set,NULL,NULL,&timeout))>0) {
+			if((i=recv(client_socket,&ch,1,MSG_PEEK))!=1) {
+				sprintf(str,"!XSDK Error %d (%d) checking state of socket %d\n"
+					,i,ERROR_VALUE,client_socket);
+	#ifdef _WIN32
+				OutputDebugString(str);
+	#else
+				fprintf(stderr,"%s",str);
+				fflush(stderr);
+	#endif
+				return(0);
+			}
+		}
+	}
+#endif
+	return(1);
 }
 
 /****************************************************************************/
