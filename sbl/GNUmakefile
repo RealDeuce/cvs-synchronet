@@ -10,11 +10,11 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.24 2004/09/16 03:02:29 deuce Exp $
+# $Id: GNUmakefile,v 1.25 2005/11/11 20:04:37 deuce Exp $
 
 # Macros
 XSDK		=	../sdk
-SRC_ROOT	=	../../src
+SRC_ROOT	?=	../../src
 include $(SRC_ROOT)/build/Common.gmake
 
 ifeq ($(os),sunos)

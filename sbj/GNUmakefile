@@ -10,10 +10,10 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.17 2004/09/16 02:38:56 deuce Exp $
+# $Id: GNUmakefile,v 1.18 2005/11/11 20:04:30 deuce Exp $
 
 XSDK		=	../sdk
-SRC_ROOT	=	../../src
+SRC_ROOT	?=	../../src
 include $(SRC_ROOT)/build/Common.gmake
 
 vpath %.c $(XSDK)
