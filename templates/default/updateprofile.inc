@@ -1,10 +1,10 @@
-<!-- $Id: updateprofile.inc,v 1.1 2006/01/08 02:12:38 runemaster Exp $ -->
+<!-- $Id: updateprofile.inc,v 1.2 2006/01/09 14:55:47 runemaster Exp $ -->
 
 <!-- Main Content --> 
 </td>
 
     <td class="main" valign="top"><br />
     
-      <h1>@@update_message@@</h1>
+      <h3>@@update_message@@</h3>
         @@backurl@@
       <br />
