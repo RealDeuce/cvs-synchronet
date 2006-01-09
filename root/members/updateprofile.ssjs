@@ -1,4 +1,4 @@
-/* $Id: updateprofile.ssjs,v 1.2 2006/01/09 14:55:22 runemaster Exp $ */
+/* $Id: updateprofile.ssjs,v 1.3 2006/01/09 19:16:25 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -13,7 +13,7 @@ template.title=system.name + " - Profile Updated";
 
 if(is_sysop) {
 
-var usr = new User(http_request.query.edituser[0]);
+	var usr = new User(http_request.query.edituser[0]);
 
 	if(http_request.query["name"]!=usr.name)
 		usr.name=http_request.query["name"];
