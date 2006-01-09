@@ -2,7 +2,7 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.13 2005/04/19 15:12:19 deuce Exp $
+// $Id: userlist.ssjs,v 1.14 2006/01/09 03:28:34 runemaster Exp $
 
 http_reply.fast=true;
 load("sbbsdefs.js");
@@ -27,7 +27,10 @@ for(i=1;i<=lastuser;i++) {
 		continue;
 	if(!show_qnet && (u.security.restrictions & UFLAG_Q))
 		continue;
+	if(u.security.restrictions & UFLAG_G) /* Don't Show Guest Account in User List */
+		continue;
 	usr.alias=u.alias.toString();
+	usr.alias='<a href="/members/viewprofile.ssjs?showuser=' + u.number + '">' + usr.alias + '</a>';
 	usr.location=u.location.toString();
 	usr.connection=u.connection.toString();
 	usr.logon=strftime("%b-%d-%y",u.stats.laston_date);
