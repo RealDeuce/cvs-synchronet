@@ -1,4 +1,4 @@
-/* $Id: & */
+/* $Id: viewprofile.ssjs,v 1.5 2006/01/09 19:18:07 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
