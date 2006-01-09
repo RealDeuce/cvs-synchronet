@@ -1,4 +1,4 @@
-<!-- $Id: infomenu.inc,v 1.7 2006/01/09 19:25:49 runemaster Exp $ -->
+<!-- $Id: infomenu.inc,v 1.8 2006/01/09 19:27:36 runemaster Exp $ -->
 
 <!-- Main Content -->  
 
@@ -7,7 +7,7 @@
     <tbody>
         <tr>
         <td class="info">
-            From here you can <a class="tlink2" href="userstats.ssjs">View your stats</a>, <a class="tlink2" href="editprofile.ssjs">Edit your profile</a> or view the <a class="tlink2" href="sysinfo.ssjs">System information</a>.
+            From here you can <a class="tlink2" href="userstats.ssjs">View your stats</a>, <a class="tlink2" href="editprofile.ssjs">Edit your profile</a>, or view the <a class="tlink2" href="sysinfo.ssjs">System information</a>.
         </td>
         </tr>
     </tbody>
