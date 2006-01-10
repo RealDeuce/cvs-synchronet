@@ -1,4 +1,4 @@
-/* $Id: viewprofile.ssjs,v 1.5 2006/01/09 19:18:07 runemaster Exp $ */
+/* $Id: viewprofile.ssjs,v 1.6 2006/01/10 15:53:22 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -138,8 +138,8 @@ if(is_sysop) {
 	template.profile.push({html: '<tr><td class="userstats" align="right">AIM: </td><td class="userstats" align="left">' + usr.aim + '</td></tr>' });
 	template.profile.push({html: '<tr><td class="userstats" align="right">Homepage: </td><td class="userstats" align="left">' + usr.homepage + '</td></tr>' });
 	template.profile.push({html: '<tr><td class="userstats" align="right">Hobbies: </td><td class="userstats" align="left">' + usr.hobbies + '</td></tr>' });
-	template.profile.push({html: '<tr><td class="userstats" align="right">Picture (Link): </td><td class="userstats" align="left">' + usr.picture + '</td></tr>' });
-	template.profile.push({html: '<tr><td class="userstats" align="right">Avatar (Link): </td><td class="userstats" align="left">' + usr.avatar + '</td></tr>' });
+	template.profile.push({html: '<tr><td class="userstats" align="right">Picture (Link): </td><td class="userstats" align="left"><a href="' + usr.picture + '">View Picture</a></td></tr>' });
+	template.profile.push({html: '<tr><td class="userstats" align="right">Avatar (Link): </td><td class="userstats" align="left"><a href="' + usr.avatar + '">View Avatar</a></td></tr>' });
 	template.profile.push({html: '</table><br />' });
 }
 
