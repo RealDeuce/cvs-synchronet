@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.28 2005/04/28 01:02:40 rswindell Exp $ */
+/* $Id: newuser.ssjs,v 1.29 2006/01/10 20:32:03 runemaster Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 var required_str="*";
@@ -349,6 +349,16 @@ else {
         template.response=format("<p>Your account has been created and the password is: %s </p>" ,newpw);
     write_template("newuser_created.inc");
     write_template("footer.inc");
+
+prefs_dir=system.data_dir + 'user/';
+
+prefsfile=new File(prefs_dir + '/'+format("%04d.html_prefs",nuser.number));
+	if(prefsfile.open("w+",false)) {
+		prefsfile.iniSetValue('Messaging', 'SortDate', 'descending');
+		prefsfile.iniSetValue('Theme', 'CurrTheme', CurrTheme);
+		prefsfile.close();
+	}
+
 }
 
 function showform() {
