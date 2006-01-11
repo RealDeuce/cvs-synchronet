@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.18 2005/11/11 20:04:30 deuce Exp $
+# $Id: GNUmakefile,v 1.19 2006/01/11 02:18:57 deuce Exp $
 
 XSDK		=	../sdk
 SRC_ROOT	?=	../../src
@@ -21,7 +21,7 @@ vpath %.c $(XSDK)
 CFLAGS	+=	-I$(XSDK) -DUSE_XPDEV $(XPDEV-MT_CFLAGS)
 
 ifeq ($(os),sunos)
- LDFLAGS	+=	-lsocket -lnsl -lrt
+ LDFLAGS	+=	-lnsl -lrt
 endif
 
 $(SBJ): $(OBJS)
