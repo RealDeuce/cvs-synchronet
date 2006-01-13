@@ -1,11 +1,11 @@
-<!-- $Id: management.inc,v 1.4 2005/07/13 20:00:24 runemaster Exp $ -->
+<!-- $Id: management.inc,v 1.5 2006/01/13 07:52:45 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
     <td class="main" valign="top"><br />
 
 <center>
-%%detail%%<br>
+%%detail%%<br />
 <a href="msgs.ssjs?msg_sub=^^sub_code^^">Back to message index.</a>
 </center>
 
