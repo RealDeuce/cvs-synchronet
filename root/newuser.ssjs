@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.30 2006/01/16 03:38:53 deuce Exp $ */
+/* $Id: newuser.ssjs,v 1.31 2006/01/17 23:51:55 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 
@@ -234,7 +234,7 @@ else {
         }
     }
     if(gender != 'M' && gender != 'F') {
-		if(template.sex_required==required_str || template.sex_required ne '') {
+		if(template.sex_required==required_str /* || template.sex_required ne '' */) {
 	        err=1;
     	    template.err_message+="Please specify gender (M or F)\r\n";
         	template.errs["gender"]="Male or Female";
