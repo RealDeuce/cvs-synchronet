@@ -1,5 +1,5 @@
 
-<!-- $Id: newpw.inc,v 1.3 2005/04/20 20:39:01 rswindell Exp $ -->
+<!-- $Id: newpw.inc,v 1.4 2006/01/28 20:25:41 rswindell Exp $ -->
 
 <!-- Main Content --> 
 </td>
@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <td>New Password: </td><td><input type="password" name="newpass1" size="8" maxlength="8" value="" />
-      Retype New Password: <input type="password" name="newpass2" size="8" maxlength="8" value="" /></td>
+      Retype New Password: <input type="password" name="newpass2" size="8" maxlength="16" value="" /></td>
       </tr>
       <tr>
         <td colspan="2" align="center"><input type="submit" value="Change Password" /></td>
