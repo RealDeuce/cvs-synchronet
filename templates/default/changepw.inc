@@ -1,5 +1,4 @@
-
-<!-- $Id: changepw.inc,v 1.4 2005/04/20 20:24:02 runemaster Exp $ -->
+<!-- $Id: changepw.inc,v 1.5 2006/01/31 23:13:43 runemaster Exp $ -->
 
 <!-- Main Content --> 
 </td>

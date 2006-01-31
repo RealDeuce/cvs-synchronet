@@ -1,4 +1,4 @@
-<!-- $Id: subs.inc,v 1.7 2005/03/04 01:01:57 runemaster Exp $ -->
+<!-- $Id: subs.inc,v 1.8 2006/01/31 23:14:21 runemaster Exp $ -->
 
 <!-- Main Content -->  
     

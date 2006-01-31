@@ -1,4 +1,4 @@
-<!-- $Id: post.inc,v 1.8 2005/07/16 00:31:38 rswindell Exp $ -->
+<!-- $Id: post.inc,v 1.9 2006/01/31 23:14:21 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -23,7 +23,7 @@
       <td class="postmsg" colspan="2"><textarea class="postmsg" name=body rows="20" cols="79" wrap="hard"></textarea></td>
       </tr>
     <tr>
-      <td align="center" class="postmsg" colspan="2"><input type="image" src="/graphics/@@post_button@@" value=@@JS:template.sub.code=='mail'? '"Send E-Mail"' : '"Post Message"' @@/></td>
+      <td align="center" class="postmsg" colspan="2"><input type="image" src="@@image_dir@@/@@post_button@@" value=@@JS:template.sub.code=='mail'? '"Send E-Mail"' : '"Post Message"' @@/></td>
     </tr>
   </tbody>
 </table>

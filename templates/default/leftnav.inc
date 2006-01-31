@@ -1,10 +1,10 @@
-<!-- $Id: leftnav.inc,v 1.16 2005/08/15 02:26:15 runemaster Exp $ -->
+<!-- $Id: leftnav.inc,v 1.17 2006/01/31 23:13:43 runemaster Exp $ -->
 
     <!-- Left Navigation (Includes Main table start) -->
         
 <table align="center" bgcolor="#EEEEEE" width="90%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="1%" valign="top" align="left"><img alt="" src="/graphics/tl_curve_grey.gif" height="6" width="6" /></td>
+    <td width="1%" valign="top" align="left"><img alt="" src="@@image_dir@@/tl_curve_grey.gif" height="6" width="6" /></td>
     <td>
     <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>

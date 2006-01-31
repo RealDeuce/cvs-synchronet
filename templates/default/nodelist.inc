@@ -1,12 +1,12 @@
 
-<!-- $Id: nodelist.inc,v 1.8 2005/10/03 06:53:07 rswindell Exp $ -->
+<!-- $Id: nodelist.inc,v 1.9 2006/01/31 23:13:43 runemaster Exp $ -->
 
     <td class="main" valign="top"><br />
         <br />
 
     <!-- Main Content -->
      
-<!-- start Nodelisting -->
+<!-- Start Nodelisting -->
 
     <table class="main_nodelist"><tbody>
     <tr>

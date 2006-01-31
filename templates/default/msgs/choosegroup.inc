@@ -1,4 +1,4 @@
-<!-- $Id: choosegroup.inc,v 1.2 2005/04/19 02:47:51 deuce Exp $ -->
+<!-- $Id: choosegroup.inc,v 1.3 2006/01/31 23:14:21 runemaster Exp $ -->
 
 <!-- Main Content -->  
     

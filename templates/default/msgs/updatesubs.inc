@@ -1,4 +1,4 @@
-<!-- $Id: updatesubs.inc,v 1.2 2005/04/19 14:18:17 deuce Exp $ -->
+<!-- $Id: updatesubs.inc,v 1.3 2006/01/31 23:14:21 runemaster Exp $ -->
 
 <!-- Main Content -->  
     

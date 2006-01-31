@@ -1,4 +1,4 @@
-<!-- $Id: choosesubs.inc,v 1.3 2005/04/21 13:03:15 runemaster Exp $ -->
+<!-- $Id: choosesubs.inc,v 1.4 2006/01/31 23:14:21 runemaster Exp $ -->
 
 <!-- Main Content -->  
     
@@ -32,7 +32,7 @@
 </tr>
 <<END REPEAT subs>>
 <tr>
-  <td colspan="6" class="sublist" align="center"><input type="image" src="/graphics/update_new_scan.gif" value="Update New Scan" /></td>
+  <td colspan="6" class="sublist" align="center"><input type="image" src="@@image_dir@@/update_new_scan.gif" value="Update New Scan" /></td>
 </tr>
 </table>
 </form>
