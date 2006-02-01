@@ -1,4 +1,4 @@
-/* $Id: changepw.ssjs,v 1.7 2006/01/29 21:35:27 runemaster Exp $ */
+/* $Id: changepw.ssjs,v 1.8 2006/02/01 00:10:21 runemaster Exp $ */
 
 var sub="";
 

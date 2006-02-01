@@ -1,3 +1,5 @@
+/* $Id: inline.ssjs,v 1.5 2006/02/01 00:08:35 runemaster Exp $ */
+
 /* 
  * Inline attachment FS emulator
  * Request attachments in the form:

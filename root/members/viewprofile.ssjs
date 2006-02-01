@@ -1,4 +1,4 @@
-/* $Id: viewprofile.ssjs,v 1.7 2006/01/16 20:07:51 runemaster Exp $ */
+/* $Id: viewprofile.ssjs,v 1.8 2006/02/01 00:10:21 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -151,10 +151,15 @@ if(is_sysop) {
 	template.profile.push({html: '</table><br />' });
 }
 
-write_template("header.inc");
-load("../web/lib/topnav_html.ssjs");
+if(do_header)
+	write_template("header.inc");
+if(do_topnav)
+	load("../web/lib/topnav_html.ssjs");
+if(do_leftnav)
 load("../web/lib/leftnav_html.ssjs");
-if(CurrTheme=="NewLayout")
+if(do_rightnav)
 	write_template("rightnav.inc");
 write_template("profile.inc");
-write_template("footer.inc");
+if(do_footer)
+	write_template("footer.inc");
+

@@ -1,4 +1,4 @@
-/* $Id: updatesubs.ssjs,v 1.2 2005/03/24 19:15:05 runemaster Exp $ */
+/* $Id: updatesubs.ssjs,v 1.3 2006/02/01 00:08:35 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 load("../web/lib/msgslib.ssjs");
@@ -57,7 +57,14 @@ for(s in msg_area.grp[grp].sub_list) {
     template.subs.push(thissub);
 }
 
-load("../web/lib/topnav_html.ssjs");
+if(do_header)
+	write_template("header.inc");
+if(do_topnav)
+	load("../web/lib/topnav_html.ssjs");
+if(do_leftnav)
 load("../web/lib/leftnav_html.ssjs");
+if(do_rightnav)
+	write_template("rightnav.inc");
 write_template("msgs/updatesubs.inc");
-write_template("footer.inc");
+if(do_footer)
+	write_template("footer.inc");

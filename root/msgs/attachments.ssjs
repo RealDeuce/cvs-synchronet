@@ -1,3 +1,5 @@
+/* $Id: attachments.ssjs,v 1.7 2006/02/01 00:08:35 runemaster Exp $ */
+
 /* 
  * Attachment FS emulator
  * Request attachments in the form:

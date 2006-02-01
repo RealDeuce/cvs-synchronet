@@ -1,4 +1,4 @@
-/* $Id: newpw.ssjs,v 1.4 2005/04/25 14:53:00 runemaster Exp $ */
+/* $Id: newpw.ssjs,v 1.5 2006/02/01 00:10:21 runemaster Exp $ */
 
 var sub="";
 load("sbbsdefs.js");
@@ -11,8 +11,15 @@ template.title = "Change User Password";
 if(user.security.password_date!=0)
     template.pwchangedate=strftime("%A, %B %d, %Y." ,user.security.password_date);
 
-write_template("header.inc");
-load("../web/lib/topnav_html.ssjs");
+if(do_header)
+	write_template("header.inc");
+if(do_topnav)
+	load("../web/lib/topnav_html.ssjs");
+if(do_leftnav)
 load("../web/lib/leftnav_html.ssjs");
+if(do_rightnav)
+	write_template("rightnav.inc");
 write_template("newpw.inc");
-write_template("footer.inc");
+if(do_footer)
+	write_template("footer.inc");
+
