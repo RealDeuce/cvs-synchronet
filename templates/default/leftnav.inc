@@ -1,4 +1,4 @@
-<!-- $Id: leftnav.inc,v 1.17 2006/01/31 23:13:43 runemaster Exp $ -->
+<!-- $Id: leftnav.inc,v 1.18 2006/02/01 02:49:45 runemaster Exp $ -->
 
     <!-- Left Navigation (Includes Main table start) -->
         
@@ -12,13 +12,7 @@
     <td valign="top" width="1%">
     <div id="pageNav"> 
         <div id="sectionLinks"> 
-            <p>
-                <a href="/nodelist.ssjs">Who's Online</a>
-                <<REPEAT leftnav>>
-                    @@leftnav:html@@
-                <<END REPEAT leftnav>>
-                <a href="@@ftp_url@@%%ftpidx%%">File Libraries</a>
-            </p>
+			<ul><li><a href="/nodelist.ssjs">Who's Online</a></li><<REPEAT leftnav>>@@leftnav:html@@<<END REPEAT leftnav>><li><a href="@@ftp_url@@%%ftpidx%%">File Libraries</a></li></ul>
     	</div>
 
 <!-- start Nodelisting -->
