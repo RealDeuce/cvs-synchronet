@@ -1,7 +1,7 @@
-<!-- $Id: newuser.inc,v 1.11 2006/01/31 23:13:43 runemaster Exp $ -->
+<!-- $Id: newuser.inc,v 1.12 2006/02/01 00:58:09 runemaster Exp $ -->
 
 <!-- Main Content -->  
-    
+<td class="main" valign="top" >    
 <center>
     (<b>%%required%%</b> indicates required fields)<br /><br />
     %%err_message%%
