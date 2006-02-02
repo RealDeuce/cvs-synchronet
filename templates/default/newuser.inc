@@ -1,6 +1,7 @@
-<!-- $Id: newuser.inc,v 1.12 2006/02/01 00:58:09 runemaster Exp $ -->
+<!-- $Id: newuser.inc,v 1.13 2006/02/02 05:41:42 runemaster Exp $ -->
 
-<!-- Main Content -->  
+<!-- Main Content -->
+
 <td class="main" valign="top" >    
 <center>
     (<b>%%required%%</b> indicates required fields)<br /><br />
@@ -62,7 +63,7 @@
             <td class="newuser">&nbsp;</td>
             <td class="newuser">
                 <br />
-                <input type="button" value="Join!" />
+                <input type="image" src="@@image_dir@@/join.gif" value="Join!" />
             </td>
             </tr>
         </table>
