@@ -1,8 +1,13 @@
-/* $Id: updateprofile.ssjs,v 1.4 2006/02/01 00:10:21 runemaster Exp $ */
+/* $Id: updateprofile.ssjs,v 1.5 2006/02/22 02:13:31 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
 var is_sysop=false;
+
+if(http_request.header.referer!=undefined) {
+var p = http_request.header.referer.indexOf("/members/");
+var virtual_referer=http_request.header.referer.slice(p)
+}
 
 if(user.number==1 || user.security.level>=90)
 	is_sysop=true;
@@ -86,7 +91,10 @@ if(file_exists(prefs_dir +format("%04d.html_prefs",usr.number))) {
 	}
 }
 
-template.backurl='<a href="/members/userlist.ssjs">Back to Userlist</a>';
+if(virtual_referer=="/members/viewprofile.ssjs")
+	template.backurl='<a href="' +virtual_referer+ '">Back</a>';
+else
+	template.backurl='<a href="/members/info.ssjs">Back</a>';
 
 template.update_message="Profile has been Updated."
 
