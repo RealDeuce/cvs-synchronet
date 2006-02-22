@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.39 2006/02/22 17:42:23 runemaster Exp $ */
+/* $Id: msg.ssjs,v 1.40 2006/02/22 17:58:12 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -12,7 +12,7 @@ template.author_avatar = '';
 /* file corresponding to the page you want to overide the */
 /*           default display type for the theme			  */
 
-if(CurrTheme=="NightShade") {
+if(do_extra) {
 	do_leftnav=false;
 	do_rightnav=false;
 }
