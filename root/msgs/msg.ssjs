@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.38 2006/02/01 00:08:35 runemaster Exp $ */
+/* $Id: msg.ssjs,v 1.39 2006/02/22 17:42:23 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -33,6 +33,7 @@ if(hdr.from_ext!=undefined) {
 	usr = new User(template.u_num);
 	template.author_firston = strftime("%m/%d/%y",usr.stats.firston_date);
 	template.author_posts = usr.stats.total_posts;
+	if(sub!='mail') {
 	if((user.compare_ars(msg_area.sub[sub].operator_ars) && msg_area.sub[sub].operator_ars != '' || user.number==1) && show_ip==true) {
 		template.author_ip='IP: ' + usr.note + '<br /><br />';
 	}
@@ -50,6 +51,7 @@ if(hdr.from_ext!=undefined) {
 			prefsfile.close();
 		}
 	}
+}
 }
 
 template.can_delete=can_delete(m);
