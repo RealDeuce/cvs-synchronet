@@ -1,4 +1,4 @@
-/* $Id: */
+/* $Id: index.ssjs,v 1.31 2006/02/22 02:10:57 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -44,14 +44,12 @@ if(do_leftnav)
         host = http_request.host;
     if(host==undefined || !host.length)
         host = system.host_name;
-    var port = host.indexOf(':');
-    if(port>=0)
-        host=host.slice(0,port);
-        
+	  
 	template.additional_services ='[' + ("java telnet".link("telnet/")) + '] ';
     template.additional_services+='[' + ("telnet".link("telnet://"+host +telnet_port)) + '] ';
     template.additional_services+='[' + ("rlogin".link("rlogin://"+host +rlogin_port)) + '] ';
     template.additional_services+='[' + ("ftp".link("ftp://"+host +ftp_port)) + '] ';
+	template.additional_services+='[' + ("java irc".link("irc/")) + '] ';
     template.additional_services+='[' + ("irc".link("irc://"+host +irc_port)) + '] ';
     template.additional_services+='[' + ("news".link("news://"+host +nntp_port)) + '] ';
     template.additional_services+='[' + ("gopher".link("gopher://"+host +gopher_port)) + '] ';
