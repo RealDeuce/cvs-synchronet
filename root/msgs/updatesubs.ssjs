@@ -1,4 +1,4 @@
-/* $Id: updatesubs.ssjs,v 1.3 2006/02/01 00:08:35 runemaster Exp $ */
+/* $Id: updatesubs.ssjs,v 1.4 2006/02/22 03:15:41 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 load("../web/lib/msgslib.ssjs");
@@ -9,8 +9,6 @@ grp = http_request.query.msg_grp;
 
 template.group=msg_area.grp[grp];
 template.subs=new Array;
-
-write_template("header.inc");
 
 for(obj in http_request.query) {
       if(obj.substr(0,4)=='sub-') {
