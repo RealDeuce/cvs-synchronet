@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
- <!-- $Id: header.inc,v 1.1 2006/02/22 02:16:17 runemaster Exp $ -->
+ <!-- $Id: header.inc,v 1.2 2006/02/25 16:44:50 runemaster Exp $ -->
 
 <head>
 <title>%%title%%</title>

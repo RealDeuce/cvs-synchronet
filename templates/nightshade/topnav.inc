@@ -1,10 +1,10 @@
-<!-- $Id: topnav.inc,v 1.1 2006/02/22 02:16:17 runemaster Exp $ -->
+<!-- $Id: topnav.inc,v 1.2 2006/02/25 16:44:50 runemaster Exp $ -->
 
 <!-- Begin topnav -->
 
 	<div id="breadcrumb">
       <<REPEAT topnav>>
-		@@topnav:html@@
+		<div id="tlink">@@topnav:html@@</div>
       <<END REPEAT topnav>>
 	</div>
 <div id="container">
