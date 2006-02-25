@@ -1,4 +1,4 @@
-/* $Id: nodelist.ssjs,v 1.7 2006/02/01 00:08:01 runemaster Exp $ */
+/* $Id: nodelist.ssjs,v 1.8 2006/02/25 21:40:04 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -9,9 +9,9 @@ var sub='';
 if(do_header)
 	write_template("header.inc");
 if(do_topnav)
-	load("../web/lib/topnav_html.ssjs");
+	load(topnav_html);
 if(do_leftnav)
-load("../web/lib/leftnav_html.ssjs");
+load(leftnav_html);
 if(do_rightnav)
 	write_template("rightnav.inc");
 write_template("nodelist.inc");

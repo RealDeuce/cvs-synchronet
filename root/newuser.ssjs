@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.33 2006/02/01 00:08:01 runemaster Exp $ */
+/* $Id: newuser.ssjs,v 1.34 2006/02/25 21:40:04 runemaster Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 
@@ -351,9 +351,9 @@ else {
 	if(do_header)
 	    write_template("header.inc");
 	if(do_topnav)
-	    load("../web/lib/topnav_html.ssjs");
+	    load(topnav_html);
 	if(do_leftnav)
-	    load("../web/lib/leftnav_html.ssjs");
+	    load(leftnav_html);
 	if(do_rightnav)
 		write_template("rightnav.inc");
     if(http_request.query.netmail != undefined && http_request.query.netmail != '')
@@ -379,9 +379,9 @@ function showform() {
 	if(do_header)
 	    write_template("header.inc");
 	if(do_topnav)
-	    load("../web/lib/topnav_html.ssjs");
+	    load(topnav_html);
 	if(do_leftnav)
-    	load("../web/lib/leftnav_html.ssjs");
+    	load(leftnav_html);
 	if(do_rightnav)
 		write_template("rightnav.inc");
     write_template("newuser.inc");

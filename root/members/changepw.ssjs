@@ -1,4 +1,4 @@
-/* $Id: changepw.ssjs,v 1.8 2006/02/01 00:10:21 runemaster Exp $ */
+/* $Id: changepw.ssjs,v 1.9 2006/02/25 21:40:35 runemaster Exp $ */
 
 var sub="";
 
@@ -60,9 +60,9 @@ else
 if(do_header)
 	write_template("header.inc");
 if(do_topnav)
-	load("../web/lib/topnav_html.ssjs");
+	load(topnav_html);
 if(do_leftnav)
-load("../web/lib/leftnav_html.ssjs");
+load(leftnav_html);
 if(do_rightnav)
 	write_template("rightnav.inc");
 write_template("changepw.inc");

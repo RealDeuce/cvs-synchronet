@@ -1,4 +1,4 @@
-/*  $Id: post.ssjs,v 1.15 2006/02/01 00:08:35 runemaster Exp $ */
+/*  $Id: post.ssjs,v 1.16 2006/02/25 21:41:08 runemaster Exp $ */
 
 /* 
  * ToDo:
@@ -54,8 +54,8 @@ if(sub=='mail') {
 
 template.title="Post a message in " + template.sub.description;
 write_template("header.inc");
-load("../web/lib/topnav_html.ssjs");
-load("../web/lib/leftnav_html.ssjs");
+load(topnav_html);
+load(leftnav_html);
 write_template("msgs/post.inc");
 write_template("footer.inc");
 

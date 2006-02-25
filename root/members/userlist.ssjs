@@ -2,7 +2,7 @@
 
 // A sample user listing script for Synchronet v3.1+
 
-// $Id: userlist.ssjs,v 1.15 2006/02/01 00:10:21 runemaster Exp $
+// $Id: userlist.ssjs,v 1.16 2006/02/25 21:40:35 runemaster Exp $
 
 http_reply.fast=true;
 load("sbbsdefs.js");
@@ -43,9 +43,9 @@ if(http_request.query["sort"]!=undefined)
 if(do_header)
 	write_template("header.inc");
 if(do_topnav)
-	load("../web/lib/topnav_html.ssjs");
+	load(topnav_html);
 if(do_leftnav)
-load("../web/lib/leftnav_html.ssjs");
+load(leftnav_html);
 if(do_rightnav)
 	write_template("rightnav.inc");
 write_template("userlist.inc");

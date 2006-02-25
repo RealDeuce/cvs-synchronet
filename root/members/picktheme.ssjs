@@ -1,4 +1,4 @@
-/* $Id: picktheme.ssjs,v 1.10 2006/02/01 00:10:21 runemaster Exp $ */
+/* $Id: picktheme.ssjs,v 1.11 2006/02/25 21:40:35 runemaster Exp $ */
 
 /* 
  * Write new theme file BEFORE loading the template lib so the
@@ -33,9 +33,9 @@ template.theme=Themes[CurrTheme];
 if(do_header)
 	write_template("header.inc");
 if(do_topnav)
-	load("../web/lib/topnav_html.ssjs");
+	load(topnav_html);
 if(do_leftnav)
-	load("../web/lib/leftnav_html.ssjs");
+	load(leftnav_html);
 if(do_rightnav)
 	write_template("rightnav.inc");
 write_template("picktheme.inc");
