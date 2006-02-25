@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <!-- $Id: header.inc,v 1.14 2006/02/02 04:51:48 runemaster Exp $ -->
+    <!-- $Id: header.inc,v 1.15 2006/02/25 16:43:51 runemaster Exp $ -->
 <head>
 <title>%%title%%</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -30,7 +30,7 @@
 
 
 
-@@name_logo@@
+<h1 id="siteName">@@name_logo@@</h1>
 
    <div id="Greeting"> 
         @@user_greeting@@

@@ -1,4 +1,4 @@
-<!-- $Id: topnav.inc,v 1.5 2006/01/31 23:13:43 runemaster Exp $ -->
+<!-- $Id: topnav.inc,v 1.6 2006/02/25 16:43:51 runemaster Exp $ -->
 
     <!-- Top Navigation -->
     
@@ -6,9 +6,7 @@
   <tr>
     <td class="ltn"><img src="@@image_dir@@/tnav_left.gif" width="5" height="32" alt="" /></td>
     <td class="tn">
-      <<REPEAT topnav>>
-	@@topnav:html@@
-      <<END REPEAT topnav>>
+      <div id='tlink'><<REPEAT topnav>>@@topnav:html@@<<END REPEAT topnav>></div>
     </td>
     <td class="rtn"><img src="@@image_dir@@/tnav_right.gif" width="5" height="32" alt="" /></td>
   </tr>
