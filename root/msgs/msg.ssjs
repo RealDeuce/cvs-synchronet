@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.41 2006/02/25 21:41:08 runemaster Exp $ */
+/* $Id: msg.ssjs,v 1.42 2006/02/27 14:11:41 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
