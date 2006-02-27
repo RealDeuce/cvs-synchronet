@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
- <!-- $Id: header.inc,v 1.2 2006/02/25 16:44:50 runemaster Exp $ -->
+ <!-- $Id: header.inc,v 1.3 2006/02/27 01:02:24 runemaster Exp $ -->
 
 <head>
 <title>%%title%%</title>
@@ -43,6 +43,12 @@ html>body #more_invisible {
 }
 </style>
 <![endif]-->
+
+<!--[if gte IE 5.5000]>
+	<script src="/js/pngfix.js" type="text/javascript">
+	</script>
+<![endif]-->
+
 	<div id="banner">
 		@@name_logo@@
 		<div id="greeting">
