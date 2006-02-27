@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.42 2006/02/27 14:11:41 runemaster Exp $ */
+/* $Id: msg.ssjs,v 1.43 2006/02/27 14:14:33 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -125,7 +125,7 @@ if(msg.attachments!=undefined) {
 }
 
 if(template.hdr != null)  {
-    if(Themes[CurrTheme].do_forumlook==true)
+    if(Themes[CurrTheme].do_forumlook==true && sub!='mail')
 	template.title="Reading Messages in "+msg_area.grp[msg_area.sub[sub].grp_name];
 	else
 	template.title="Message: "+template.hdr.subject;
