@@ -1,4 +1,4 @@
-/* $Id: reply.ssjs,v 1.16 2006/02/25 21:41:08 runemaster Exp $ */
+/* $Id: reply.ssjs,v 1.17 2006/03/04 00:20:59 deuce Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -60,7 +60,9 @@ template.number=hdr.number;
 
 template.body=msgbase.get_msg_body(false,parseInt(http_request.query.reply_to),true);
 if(this.word_wrap != undefined)  {
-	template.body=quote_msg(word_wrap(template.body,79),79);
+	// quote_msg adds three chars to each line.  Re-wrap to 76 chars...
+	// with the extra three, we're still under 80 *.
+	template.body=quote_msg(word_wrap(template.body,76),79);
 }
 else  {
 	template.body=template.body.replace(/^(.)/mg,"> $1");

@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.16 2005/11/03 03:36:55 rswindell Exp $
+// $Id: rss.ssjs,v 1.17 2006/03/04 00:20:52 deuce Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.16 $".split(' ')[1];
+var REVISION = "$Revision: 1.17 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -84,7 +84,7 @@ if(http_request.query["item"]) {
 		}
 		/* Plain text */
 		else {
-			template.body=word_wrap(template.body,80);
+			template.body=word_wrap(template.body);
 			template.body=html_encode(template.body,true,false,false,false);
 		}
 	}

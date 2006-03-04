@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.43 2006/02/27 14:14:33 runemaster Exp $ */
+/* $Id: msg.ssjs,v 1.44 2006/03/04 00:20:59 deuce Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -112,7 +112,7 @@ if(msg.type=="plain") {
     }
     /* Plain text */
     else {
-        template.body=word_wrap(template.body,80);
+        template.body=word_wrap(template.body);
         template.body=html_encode(template.body,true,false,false,false);
     }
 }

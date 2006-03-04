@@ -1,4 +1,4 @@
-/* $Id: savemsg.ssjs,v 1.28 2006/02/25 21:41:08 runemaster Exp $ */
+/* $Id: savemsg.ssjs,v 1.29 2006/03/04 00:20:59 deuce Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -38,7 +38,7 @@ else {
 
 var body=http_request.query.body[0];
 body=body.replace(/([^\r])\n/g,"$1\r\n");
-body=word_wrap(body, 80);
+body=word_wrap(body);
 
 hdrs.from=user.alias;
 hdrs.from_ext=user.number;
