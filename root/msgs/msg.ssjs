@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.44 2006/03/04 00:20:59 deuce Exp $ */
+/* $Id: msg.ssjs,v 1.45 2006/03/12 17:34:30 runemaster Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -109,11 +109,13 @@ if(msg.type=="plain") {
     /* ANSI */
     if(template.body.indexOf('\x1b[')>=0 || template.body.indexOf('\x01')>=0) {
         template.body=html_encode(template.body,true,false,true,true);
+		template.body=make_links(template.body);
     }
     /* Plain text */
     else {
-        template.body=word_wrap(template.body);
+        template.body=word_wrap(template.body,80);
         template.body=html_encode(template.body,true,false,false,false);
+		template.body=make_links(template.body);
     }
 }
 if(msg.attachments!=undefined) {
