@@ -1,8 +1,10 @@
-/* $Id: lastcallers.ssjs,v 1.3 2006/02/25 21:40:35 runemaster Exp $ */
+/* $Id: lastcallers.ssjs,v 1.4 2006/03/18 02:45:33 runemaster Exp $ */
 
 load("../web/lib/template.ssjs");
 
 var sub="";
+
+template.title="Last Few Callers to " +system.name;
 
 if(do_extra)
 	do_rightnav=false;
