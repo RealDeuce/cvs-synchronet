@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.18 2006/03/21 18:45:30 runemaster Exp $
+// $Id: rss.ssjs,v 1.19 2006/03/21 20:51:09 runemaster Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.18 $".split(' ')[1];
+var REVISION = "$Revision: 1.19 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -128,7 +128,7 @@ if(channel.description==undefined)	channel.description		=sub.description;
 if(channel.link==undefined)			channel.link			=link_root;
 if(channel.language==undefined)		channel.language		='en-us';
 
-if(channel.image_url==undefined)	channel.image_url		='http://syncdev.darktech.org:6080//images/nightshade/logo.png';
+if(channel.image_url==undefined)	channel.image_url		='/images/default/sync_pbgj1_white_bg.gif';
 if(channel.image_title==undefined)	channel.image_title		=channel.title;
 if(channel.image_link==undefined)	channel.image_link		=channel.link;
 if(channel.maxmessages==undefined)	channel.maxmessages		=defaults.maxmessages;
