@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.34 2006/02/25 21:40:04 runemaster Exp $ */
+/* $Id: newuser.ssjs,v 1.35 2006/04/05 23:56:06 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 
@@ -28,7 +28,7 @@ var maxlengths={alias:25,name:25,handle:8,netmail:60,address:30,location:30,zipc
 var err=0;
 template.err_message='';
 var gender='';
-var pwchars='ACDEFHJKLMNPQRTUVWXY3479!?-=+&%*()';
+var pwchars='ACDEFHJKLMNPQRTUVWXY3479!?-=+&*()';	// Removed '%', rswindell
 var newpw='';
 template.title=system.name+" new user signup";
 
