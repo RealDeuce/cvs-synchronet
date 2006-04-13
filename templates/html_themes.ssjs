@@ -1,8 +1,8 @@
-/* $Id: html_themes.ssjs,v 1.10 2006/02/25 21:44:45 runemaster Exp $ */
+/* $Id: html_themes.ssjs,v 1.11 2006/04/13 18:58:32 rswindell Exp $ */
 
 /* Set default theme name */
 
-var DefaultTheme="NightShade";
+var DefaultTheme="Default";
 
 /* Edit this bit to add/remove/modify theme descriptions, dirs */
 
