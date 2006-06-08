@@ -1,4 +1,4 @@
-/* $Id: savemsg.ssjs,v 1.29 2006/03/04 00:20:59 deuce Exp $ */
+/* $Id: savemsg.ssjs,v 1.30 2006/06/08 23:39:17 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -94,9 +94,10 @@ if(!msgbase.save_msg(hdrs,client,body)) {
 	error(msgbase.last_error);
 } else {
 	if(sub=='mail') {
-		user.sent_email();
+		if(user.sent_email!=undefined)
+			user.sent_email();
 	}
-	else
+	else if(user.posted_message!=undefined)
 		user.posted_message();
 } 
 
