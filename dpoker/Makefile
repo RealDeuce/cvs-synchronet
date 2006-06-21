@@ -6,10 +6,12 @@
 # @format.tab-size 4, @format.use-tabs true								#
 #########################################################################
 
-# $Id: Makefile,v 1.4 2005/09/21 06:43:55 deuce Exp $
+# $Id: Makefile,v 1.5 2006/06/21 08:25:12 rswindell Exp $
 
 XSDK		=	..\sdk
-SRC_ROOT	=	..\..\src
+!ifndef SRC_ROOT
+	SRC_ROOT=	..\..\src
+!endif
 !include $(SRC_ROOT)\build\Common.bmake
 
 .path.c = .;$(XSDK)
