@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: rss.ssjs,v 1.19 2006/03/21 20:51:09 runemaster Exp $
+// $Id: rss.ssjs,v 1.20 2006/08/16 01:51:51 deuce Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.19 $".split(' ')[1];
+var REVISION = "$Revision: 1.20 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -135,6 +135,7 @@ if(channel.maxmessages==undefined)	channel.maxmessages		=defaults.maxmessages;
 
 http_reply.header["Content-Type"]='application/rss+xml';
 writeln('<?xml version="1.0" ?>');
+writeln('<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">');
 writeln('<rss version="0.91">');
 writeln('\t<channel>');
 writeln('\t\t<title>'		+ channel.title			+ '</title>');
