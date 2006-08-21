@@ -2,9 +2,11 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.36 2006/04/21 19:03:03 rswindell Exp $ */
+/* $Id: newuser.ssjs,v 1.37 2006/08/21 09:25:52 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
+
+var send_user_info_to_sysop=false;
 
 /* These two strings *must* be different! */
 var required_str="*";
@@ -348,11 +350,12 @@ else {
     nuser.shell=http_request.query.shell;
     nuser.editor=http_request.query.editor;
 
-    sendUserInfoToSysop(
-    	nuser,
-    	system.name + " New User Information (web)",
-    	"" /* TODO: Create a comment textarea field, and put the result here */
-    );
+    if(send_user_info_to_sysop)
+	sendUserInfoToSysop(
+		nuser,
+		system.name + " New User Information (web)",
+		"" /* TODO: Create a comment textarea field, and put the result here */
+	);
 
     template.title="New user created";
 	if(do_header)
