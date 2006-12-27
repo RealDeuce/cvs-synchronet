@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: atom.ssjs,v 1.1 2006/11/17 06:26:09 deuce Exp $
+// $Id: atom.ssjs,v 1.2 2006/12/27 07:49:11 rswindell Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.1 $".split(' ')[1];
+var REVISION = "$Revision: 1.2 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -128,7 +128,7 @@ if(channel.description==undefined)	channel.description		=sub.description;
 if(channel.link==undefined)			channel.link			=link_root;
 if(channel.language==undefined)		channel.language		='en-us';
 
-if(channel.image_url==undefined)	channel.image_url		='graphics/sync_pbgj1_white_bg.gif';
+if(channel.image_url==undefined)	channel.image_url		='/images/default/sync_pbgj1_white_bg.gif';
 if(channel.image_title==undefined)	channel.image_title		=channel.title;
 if(channel.image_link==undefined)	channel.image_link		=channel.link;
 if(channel.maxmessages==undefined)	channel.maxmessages		=defaults.maxmessages;
@@ -189,7 +189,7 @@ if(msgbase.open()) {
             writeln('\t\t\t\t<link rel="alternate" href="' + link_root + '&amp;item=' + hdr.number + '" />');
         else    // v3.12b
             writeln('\t\t\t\t<link rel="alternate" href="' + 'http://' + http_request.header.host + '/msgs/msg.ssjs?msg_sub=' + 
-                    channel.name + '&amp;message=' + hdr.number + '" />');
+                    channel.sub + '&amp;message=' + hdr.number + '" />');
 		writeln('\t\t\t</entry>');
 		msgs++;
 		if(msgs>=channel.maxmessages)
