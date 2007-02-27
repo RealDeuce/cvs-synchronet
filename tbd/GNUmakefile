@@ -10,7 +10,7 @@
 # FreeBSD: make -f Makefile.gnu os=freebsd								#
 #########################################################################
 
-# $Id: GNUmakefile,v 1.3 2006/01/11 02:19:16 deuce Exp $
+# $Id: GNUmakefile,v 1.4 2007/02/27 03:44:27 deuce Exp $
 
 XSDK		=	../sdk
 SRC_ROOT	?=	../../src
@@ -30,13 +30,13 @@ $(TBD): $(OBJS)
    endif
 	$(QUIET)$(CC) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(LDFLAGS) $^ -o $@ $(XPDEV-MT_LIBS)
 
-$(MAPMAKER): mapmaker.o
+$(MAPMAKER): $(MAPMAKER_OBJS)
    ifndef bcc
 	@echo Linking $@
    endif
 	$(QUIET)$(CC) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(LDFLAGS) $^ -o $@ $(XPDEV-MT_LIBS)
 
-$(REROLL): reroll.o
+$(REROLL): $(REROLL_OBJS)
    ifndef bcc
 	@echo Linking $@
    endif
