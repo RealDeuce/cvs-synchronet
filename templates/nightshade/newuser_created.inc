@@ -1,4 +1,4 @@
-<!-- $Id: newuser_created.inc,v 1.1 2006/02/22 02:16:17 runemaster Exp $ -->
+<!-- $Id: newuser_created.inc,v 1.2 2007/05/25 00:49:22 deuce Exp $ -->
 
 <!-- Main Content -->  
 
@@ -6,7 +6,7 @@
 	<div id="content2">
 
 <br />
-<p>Your account has been created and the password has been mailed to: <b>%%posted:netmail%%</b></p>
+%%response%%
 <p>You can Login using your Username and the supplied password by using the <b>Login</b> button on the left.</p>
 <br />
 <br />
