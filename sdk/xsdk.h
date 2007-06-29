@@ -2,7 +2,7 @@
 
 /* Synchronet XSDK function prototypes */
 
-/* $Id: xsdk.h,v 1.22 2005/11/08 19:59:46 deuce Exp $ */
+/* $Id: xsdk.h,v 1.23 2007/06/29 21:01:35 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -295,8 +295,8 @@ void checkline(void);
 void center(char *str);
 
 #ifdef _MSC_VER
-int lock(int file, long offset, int size);
-int unlock(int file, long offset, int size);
+int lock(int file, long offset, long size);
+int unlock(int file, long offset, long size);
 #endif
 
 #ifdef __cplusplus
