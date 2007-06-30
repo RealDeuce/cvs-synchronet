@@ -6,7 +6,7 @@
 # @format.tab-size 4, @format.use-tabs true								#
 #########################################################################
 
-# $Id: Makefile,v 1.5 2006/06/21 08:25:12 rswindell Exp $
+# $Id: Makefile,v 1.6 2007/06/30 03:57:11 rswindell Exp $
 
 XSDK		=	..\sdk
 !ifndef SRC_ROOT
@@ -21,10 +21,6 @@ CFLAGS	=	$(CFLAGS) -I$(XSDK) -DUSE_XPDEV $(XPDEV-MT_CFLAGS) $(UIFC-MT_CFLAGS) $(
 $(DPOKER): $(OBJS)
 	@echo Linking $@
 	$(QUIET)$(CC) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(LDFLAGS) $** -e$@ $(XPDEV-MT_LIBS)
-
-$(DPCLEAN): $(DPCLEAN_OBJS)
-	@echo Linking $@
-	$(QUIET)$(CC) $(CFLAGS) $(MT_LDFLAGS) $(XPDEV-MT_LDFLAGS) $(LDFLAGS) $** -e$@ $(XPDEV-MT_LIBS)
 
 $(DPCONFIG): $(DPCONFIG_OBJS)
 	@echo Linking $@
