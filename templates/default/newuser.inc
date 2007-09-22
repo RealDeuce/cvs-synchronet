@@ -1,11 +1,11 @@
-<!-- $Id: newuser.inc,v 1.13 2006/02/02 05:41:42 runemaster Exp $ -->
+<!-- $Id: newuser.inc,v 1.14 2007/09/22 08:43:30 rswindell Exp $ -->
 
 <!-- Main Content -->
 
 <td class="main" valign="top" >    
 <center>
     (<b>%%required%%</b> indicates required fields)<br /><br />
-    %%err_message%%
+    <font size="+1" color="red"><b>%%err_message%%</b></font>
 </center>
     <form action="newuser.ssjs" method="post">
         <table class="newuser" cellpadding="0" cellspacing="2">
