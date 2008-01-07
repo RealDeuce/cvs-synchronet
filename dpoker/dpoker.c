@@ -1,4 +1,4 @@
-/* $Id: dpoker.c,v 1.12 2007/06/30 03:58:59 rswindell Exp $ */
+/* $Id: dpoker.c,v 1.13 2008/01/07 01:51:51 rswindell Exp $ */
 
 /******************************************************************************
   DPOKER.EXE: Domain Poker online multi-player poker BBS door game for
@@ -142,6 +142,17 @@ enum { INACTIVE, WAITING, BETTING, DISCARDING, FOLDED, DEALING };
 /* These or for determining what stage the game is in */
 enum { OPEN, DEAL, BET, DISCARD, BET2, GET_WINNER };
 
+#ifdef _WIN32	/* necessary for compatibility with SBBS v2 */
+#pragma pack(push)
+#pragma pack(1)
+#endif
+
+#ifdef __GNUC__ 
+	#define _PACK __attribute__ ((packed))
+#else
+	#define _PACK
+#endif
+
 int main(int argc, char **argv)
 {
     char	ch,str[256],*buf;
@@ -153,13 +164,13 @@ int main(int argc, char **argv)
 	int		opts;
 	char	key_name[8];
 	BOOL	cleanup=FALSE;
-    struct {
+    struct _PACK {
         char name[25];
         ulong time;
         long points;
     } player_stuff;
 
-	sscanf("$Revision: 1.12 $", "%*s %s", revision);
+	sscanf("$Revision: 1.13 $", "%*s %s", revision);
 	DESCRIBE_COMPILER(compiler);
 
     memset(node,'\0',MAX_NODES);
