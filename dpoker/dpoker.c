@@ -1,4 +1,4 @@
-/* $Id: dpoker.c,v 1.14 2008/01/07 04:00:03 rswindell Exp $ */
+/* $Id: dpoker.c,v 1.15 2008/12/29 23:11:40 deuce Exp $ */
 
 /******************************************************************************
   DPOKER.EXE: Domain Poker online multi-player poker BBS door game for
@@ -164,20 +164,28 @@ int main(int argc, char **argv)
 	int		opts;
 	char	key_name[8];
 	BOOL	cleanup=FALSE;
+	char	*env_node;
     struct _PACK {
         char name[25];
         ulong time;
         long points;
     } player_stuff;
 
-	sscanf("$Revision: 1.14 $", "%*s %s", revision);
+	sscanf("$Revision: 1.15 $", "%*s %s", revision);
 	DESCRIBE_COMPILER(compiler);
 
     memset(node,'\0',MAX_NODES);
 
 	/* ToDo... this should seed better */
     srand(time(NULL));
-    sprintf(node_dir,"%s",getenv("SBBSNODE"));
+	env_node=getenv("SBBSNODE");
+	if(env_node==NULL) {
+		printf("\nDomain Poker v%s-%s/XSDK v%s  Copyright %s Domain "
+				"Entertainment\n",VERSION,revision,xsdk_ver,__DATE__+7);
+		printf("\nERROR: SBBSNODE Environment variable not set!\n");
+		return(1);
+	}
+    sprintf(node_dir,"%s",env_node);
 	backslash(node_dir);
 
     for (x=1; x<argc; x++) {
