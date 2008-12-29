@@ -1,4 +1,4 @@
-/* $Id: dpoker.c,v 1.15 2008/12/29 23:11:40 deuce Exp $ */
+/* $Id: dpoker.c,v 1.16 2008/12/29 23:29:32 deuce Exp $ */
 
 /******************************************************************************
   DPOKER.EXE: Domain Poker online multi-player poker BBS door game for
@@ -171,7 +171,7 @@ int main(int argc, char **argv)
         long points;
     } player_stuff;
 
-	sscanf("$Revision: 1.15 $", "%*s %s", revision);
+	sscanf("$Revision: 1.16 $", "%*s %s", revision);
 	DESCRIBE_COMPILER(compiler);
 
     memset(node,'\0',MAX_NODES);
@@ -231,7 +231,10 @@ int main(int argc, char **argv)
             delfiles(".","gamestat.*");
             delfiles(".","deck.*");
             delfiles(".","message.*");
-            unlink("dpoker.plr"); } }
+            unlink("dpoker.plr");
+			close(file);
+		}
+	}
 /* ToDo...
     if((file=nopen("dpoker.mnt",O_RDWR|O_DENYALL))==-1) { */
     if((file=nopen("dpoker.mnt",O_RDWR))==-1) {
@@ -248,8 +251,10 @@ int main(int argc, char **argv)
             delfiles(".","gamestat.*");
             delfiles(".","deck.*");
             delfiles(".","message.*");
-            unlink("dpoker.plr"); }
-        close(file); }
+            unlink("dpoker.plr");
+		}
+        close(file);
+	}
 
 	inifile=fopen("dpoker.ini","r");
 	iniReadString(inifile,NULL,"ComputerName","King Drafus",comp_name);
