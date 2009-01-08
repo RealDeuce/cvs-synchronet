@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.38 2009/01/01 12:45:59 deuce Exp $ */
+/* $Id: xsdk.c,v 1.39 2009/01/08 22:32:46 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -2174,7 +2174,7 @@ char *xsdk_username(uint usernumber)
 /* Returns the number of the user 'username' from the NAME.DAT file.        */
 /* If the username is not found, the function returns 0.					*/
 /****************************************************************************/
-uint xsdk_usernumber(char *username)
+uint usernumber(char *username)
 {
 	char str[128];
 	int i,file;
