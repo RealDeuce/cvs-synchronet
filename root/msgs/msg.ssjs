@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.48 2008/11/08 03:12:16 rswindell Exp $ */
+/* $Id: msg.ssjs,v 1.49 2009/02/02 20:42:47 deuce Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -27,6 +27,14 @@ if(msgbase.open!=undefined && msgbase.open()==false) {
 var hdr=msgbase.get_msg_header(false,m);
 if(hdr==null)
 	error(msgbase.last_error);
+if((!(system.settings & SYS_USRVDELM)) || (user.security.level >= 90 && (!(system.settings & SYS_SYSVDELM))) ) {
+	if(hdr.attr & MSG_DELETE)
+		error("Message has been deleted");
+}
+if(hdr.attr & MSG_MODERATED) {
+	if(!(hdr.attr & MSG_VALIDATED))
+		error("Message pending moderator validation");
+}
 if(hdr.from_ext != null) {
 	template.u_num = hdr.from_ext;
 	usr = new User(template.u_num);
