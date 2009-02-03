@@ -1,4 +1,4 @@
-/* $Id: editprofile.ssjs,v 1.7 2009/02/03 09:59:45 deuce Exp $ */
+/* $Id: editprofile.ssjs,v 1.8 2009/02/03 20:30:48 deuce Exp $ */
 
 load("../web/lib/template.ssjs");
 load("../web/lib/profile_config.ssjs");
@@ -14,7 +14,7 @@ else
 
 template.title=system.name +" - Edit Your Profile";
 
-use=new HTML_Profile(user.number);
+usr=new HTML_Profile(user.number);
 
 template.profile = new Array;
 

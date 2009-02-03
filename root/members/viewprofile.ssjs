@@ -1,4 +1,4 @@
-/* $Id: viewprofile.ssjs,v 1.11 2009/02/03 09:59:45 deuce Exp $ */
+/* $Id: viewprofile.ssjs,v 1.12 2009/02/03 20:30:48 deuce Exp $ */
 
 load("../web/lib/template.ssjs");
 load("../web/lib/profile_config.ssjs");
@@ -38,7 +38,7 @@ if(is_sysop) {
 	if(system.newuser_questions & UQ_ADDRESS)
 		template.profile.push({html: '<tr><td class="userstatsright" align="right">Zip/Postal Code: </td><td class="userstats" align="left"><input type="text" name="zipcode" size="50" maxlength="50" value="' + usr.zipcode + '" /></td></tr>' });
 	if(system.newuser_questions & UQ_PHONE)
-		template.profile.push({html: '<tr><td class="userstatsright" align="right">Phone: </td><td class="userstats" align="left"><input type="text" name="phone" size="50" maxlength="50" value="' + usr.phonee + '" /></td></tr>' });
+		template.profile.push({html: '<tr><td class="userstatsright" align="right">Phone: </td><td class="userstats" align="left"><input type="text" name="phone" size="50" maxlength="50" value="' + usr.phone + '" /></td></tr>' });
 		template.profile.push({html: '<tr><td class="userstatsright" align="right">Last Connected Via: </td><td class="userstats" align="left"><input type="text" name="phone" size="50" maxlength="50" value="' + usr.connection + '" disabled="disabled" /></td></tr>' });
 		template.profile.push({html: '<tr><td class="userstatsright" align="right">Last Logon Date: </td><td class="userstats" align="left"><input type="text" name="phone" size="50" maxlength="50" value="' + usr.logon + '" disabled="disabled" /></td></tr>' });
 	template.profile.push({html: '</table>' });
