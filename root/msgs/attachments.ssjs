@@ -1,4 +1,4 @@
-/* $Id: attachments.ssjs,v 1.8 2009/05/05 22:57:25 rswindell Exp $ */
+/* $Id: attachments.ssjs,v 1.9 2009/05/05 23:23:38 rswindell Exp $ */
 
 /* 
  * Attachment FS emulator
@@ -9,7 +9,7 @@
 load("../web/lib/template.ssjs");
 load("../web/lib/mime_decode.ssjs");
 
-var path=http_request.path_info.split(/\//);
+var path=http_request.path_info.split(/[\\\/]/);
 if(path==undefined) {
 	error("No path info!");
 }
