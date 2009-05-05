@@ -1,4 +1,4 @@
-/* $Id: inline.ssjs,v 1.5 2006/02/01 00:08:35 runemaster Exp $ */
+/* $Id: inline.ssjs,v 1.6 2009/05/05 23:33:06 rswindell Exp $ */
 
 /* 
  * Inline attachment FS emulator
@@ -9,13 +9,17 @@
 load("../web/lib/template.ssjs");
 load("../web/lib/mime_decode.ssjs");
 
-var path=http_request.path_info.split(/\//);
+var path=http_request.path_info.split(/[\\\/]/);
 if(path==undefined) {
 	error("No path info!");
 }
 var sub=path[1];
 var id=parseInt(path[2]);
 var cid=path[3];
+
+if(sub==undefined || cid==undefined) {
+    error("Invalid path: " + http_request.path_info);
+}
 
 var msgbase = new MsgBase(sub);
 if(msgbase.open!=undefined && msgbase.open()==false) {
