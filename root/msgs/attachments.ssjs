@@ -1,4 +1,4 @@
-/* $Id: attachments.ssjs,v 1.7 2006/02/01 00:08:35 runemaster Exp $ */
+/* $Id: attachments.ssjs,v 1.8 2009/05/05 22:57:25 rswindell Exp $ */
 
 /* 
  * Attachment FS emulator
@@ -16,6 +16,10 @@ if(path==undefined) {
 var sub=path[1];
 var id=parseInt(path[2]);
 var filename=path[3];
+
+if(sub==undefined || filename==undefined) {
+    error("Invalid path: " + http_request.path_info);
+}
 
 var msgbase = new MsgBase(sub);
 if(msgbase.open!=undefined && msgbase.open()==false) {
