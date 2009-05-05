@@ -1,4 +1,4 @@
-/* $Id: attachments.ssjs,v 1.9 2009/05/05 23:23:38 rswindell Exp $ */
+/* $Id: attachments.ssjs,v 1.10 2009/05/05 23:39:24 rswindell Exp $ */
 
 /* 
  * Attachment FS emulator
@@ -31,7 +31,7 @@ if(hdr==undefined) {
 	error("No such message!");
 }
 body=msgbase.get_msg_body(false,id);
-if(path==undefined) {
+if(body==undefined) {
 	error("Can not read message body!");
 }
 

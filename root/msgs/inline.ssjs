@@ -1,4 +1,4 @@
-/* $Id: inline.ssjs,v 1.6 2009/05/05 23:33:06 rswindell Exp $ */
+/* $Id: inline.ssjs,v 1.7 2009/05/05 23:39:24 rswindell Exp $ */
 
 /* 
  * Inline attachment FS emulator
@@ -31,7 +31,7 @@ if(hdr==undefined) {
 	error("No such message!");
 }
 body=msgbase.get_msg_body(false,id);
-if(path==undefined) {
+if(body==undefined) {
 	error("Can not read message body!");
 }
 
