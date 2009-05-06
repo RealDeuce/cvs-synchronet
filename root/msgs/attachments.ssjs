@@ -1,4 +1,4 @@
-/* $Id: attachments.ssjs,v 1.11 2009/05/06 21:38:45 deuce Exp $ */
+/* $Id: attachments.ssjs,v 1.12 2009/05/06 21:44:09 deuce Exp $ */
 
 /* 
  * Attachment FS emulator
@@ -30,7 +30,7 @@ hdr=msgbase.get_msg_header(false,id);
 if(hdr==undefined) {
 	error("No such message!");
 }
-if(sub=='mail' && hdr.from_ext!=user.number)
+if(sub=='mail' && hdr.to_ext!=user.number)
     error("You can only read e-mail attachments addressed to yourself!");
 
 body=msgbase.get_msg_body(false,id);
