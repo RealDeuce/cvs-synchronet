@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.39 2008/02/15 08:48:08 rswindell Exp $ */
+/* $Id: newuser.ssjs,v 1.40 2009/11/21 20:34:16 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 
@@ -326,7 +326,7 @@ else {
     }
 
 	try { 
-		nuser=system.new_user(http_request.query.alias);
+		nuser=system.new_user(http_request.query.alias, client);
 	} catch(e) {
 		template.err_message = e;
 		log(LOG_ERR,"JavaScript exception: " + e);
