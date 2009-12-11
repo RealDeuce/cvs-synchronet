@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.40 2009/11/21 20:34:16 rswindell Exp $ */
+/* $Id: newuser.ssjs,v 1.41 2009/12/11 09:24:04 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 
@@ -409,7 +409,11 @@ function gen_editor_list(current) {
     var retval="";
     retval='<select name="editor">\n';
     retval+='<option value=""'+(current==''?' selected':'')+'>Internal Line Editor</option>\n';
+	user.settings|=USER_ANSI;
+	user.cached=true;
     for(ed in xtrn_area.editor) {
+		if(!user.compare_ars(xtrn_area.editor[ed].ars))
+			continue;
         retval+='<option value="'+ed+'"'+(current==ed?' selected':'')+'>'+xtrn_area.editor[ed].name+'</option>\n';
     }
     retval+='</select>';
