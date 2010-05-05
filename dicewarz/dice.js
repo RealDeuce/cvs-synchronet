@@ -1,7 +1,7 @@
 /*
 	***************BBS DICE WARZ***************
-	$Id: dice.js,v 1.48 2010/05/05 18:57:41 mcmlxxix Exp $
-	$Revision: 1.48 $
+	$Id: dice.js,v 1.49 2010/05/05 19:52:24 mcmlxxix Exp $
+	$Revision: 1.49 $
 	for use with Synchronet v3.14+
 	by Matt Johnson (2008)  
 	*******************************************
@@ -1574,7 +1574,10 @@ function	GameStatusInfo()
 							this.yourTurn.push(ggg);
 						} else {
 							var nextTurn=gm.nextTurn;
-							while(gm.players[gm.turnOrder[nextTurn]].user<0) nextTurn++;
+							while(gm.players[gm.turnOrder[nextTurn]].user<0) {
+								nextTurn++;
+								if(nextTurn==gm.maxPlayers) nextTurn=0;
+							}
 							if(gm.turnOrder[nextTurn]==playerNumber) {
 								this.yourTurn.push(ggg);
 							}
