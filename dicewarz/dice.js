@@ -1,7 +1,7 @@
 /*
 	***************BBS DICE WARZ***************
-	$Id: dice.js,v 1.49 2010/05/05 19:52:24 mcmlxxix Exp $
-	$Revision: 1.49 $
+	$Id: dice.js,v 1.50 2010/05/05 20:05:07 mcmlxxix Exp $
+	$Revision: 1.50 $
 	for use with Synchronet v3.14+
 	by Matt Johnson (2008)  
 	*******************************************
@@ -441,7 +441,7 @@ function 	processSelection(gameNumber)
 	var g=games.gameData[gameNumber];
 	var fileName=g.fileName;
 	var lastModified=file_date(fileName);
-	if(lastModified>g.lastModified) games.gameData[gameNumber]=loadGame(fileName,gameNumber,lastModified);
+	if(lastModified>g.lastModified) games.gameData[gameNumber]=games.loadGame(fileName,gameNumber,lastModified);
 	
 	if(g.status>=0)
 	{
