@@ -9,8 +9,8 @@
 	for Synchronet BBS systems.
 	-----------------------------------------------------------
 */
-//$Id: tanks.js,v 1.10 2010/09/16 19:20:28 mcmlxxix Exp $
-const VERSION="$Revision: 1.10 $".split(' ')[1];
+//$Id: tanks.js,v 1.11 2010/09/17 14:01:20 mcmlxxix Exp $
+const VERSION="$Revision: 1.11 $".split(' ')[1];
 
 var root=js.exec_dir;
 
@@ -781,9 +781,10 @@ function playGame(battle)
 	}
 	function moveShot(shot)
 	{
-		var newPosition=new Coords(0,0);
 		var count=0;
-		while(count<2) {
+		while(count<=2) {
+			count++;
+			var newPosition=new Coords(0,0);
 			switch(Number(shot.heading))
 			{
 			case 0:
@@ -853,7 +854,7 @@ function playGame(battle)
 			}
 			break;
 		}
-		if(count == 2) {
+		if(count > 2) {
 			log("ERROR: infinite loop detected!");
 			exit();
 		}
