@@ -1,6 +1,6 @@
 /* NightShade Theme */
 
-/* $Id: nightshade.css,v 1.5 2006/03/18 02:45:04 runemaster Exp $ */
+/* $Id: nightshade.css,v 1.6 2011/07/02 18:28:57 ree Exp $ */
 
  body {
 	margin: 0px;
@@ -887,3 +887,7 @@ td.sysinforight {
     background-color: #3f4568;
 	text-align:right;
 } 
+
+p.disclaimer {
+	font-size: 9pt;
+}

@@ -1,4 +1,4 @@
-/* $Id: default.css,v 1.7 2006/06/06 19:08:58 runemaster Exp $ */
+/* $Id: default.css,v 1.8 2011/07/02 18:28:57 ree Exp $ */
 
 /* This is the default CSS file */
 
@@ -884,4 +884,12 @@ pre.ftp_desc {
 
 div.ftp_ftr {
  font-size: 8pt;
+}
+
+ol.externals li {
+	list-style: decimal;
+}
+
+p.disclaimer {
+	font-size: 9pt;
 }
