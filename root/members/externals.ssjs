@@ -1,4 +1,4 @@
-/* $Id: externals.ssjs,v 1.1 2011/07/02 18:30:15 ree Exp $ */
+/* $Id: externals.ssjs,v 1.2 2011/07/03 00:35:45 ree Exp $ */
 
 load("../web/lib/template.ssjs");
 load("ftelnethelper.js");
@@ -8,16 +8,16 @@ var sub='';
 template.title = system.name + " - External Program Section";
 template.html = "";
 
-var webexternals = load("modopts.js", "webexternals");
-if (!webexternals.enabled) {
+var options = load("modopts.js", "logon");
+if (!options.rlogin_auto_xtrn) {
 	templatefile = "ftelnet_disabled.inc";
 	if (user.security.level >= 90) {
-		template.SysOpMessage = "Actually, it looks like you're the SysOp, so here's what you can do to enable it:<br /><ul><li>Enable the webexternals javascript module<ul><li>To do this, ensure that the <b>enabled=</b> line in the <b>[webexternals]</b> section of <b>sbbs/ctrl/modopts.ini</b> is set to true</pre></li></ul>";
+		template.SysOpMessage = "Actually, it looks like you're the SysOp, so here's what you can do to enable it:<br /><ul><li>Enable the rlogin_auto_xtrn feature of the logon module<ul><li>To do this, ensure that the <b>rlogin_auto_xtrn=</b> line in the <b>[logon]</b> section of <b>sbbs/ctrl/modopts.ini</b> is set to <b>true</b></li></ul>";
 	}
 } else if (!IsFlashSocketPolicyServerEnabled()) {
 	templatefile = "ftelnet_disabled.inc";
 	if (user.security.level >= 90) {
-		template.SysOpMessage = "Actually, it looks like you're the SysOp, so here's what you can do to enable it:<br /><ul><li>Enable the Flash Socket Policy Service<ul><li>To do this, add this block to your <b>sbbs/ctrl/services.ini file<pre>[FlashSocketPolicyService]\r\nPort=843\r\nOptions=NO_HOST_LOOKUP\r\nCommand=flashsocketpolicyservice.js</pre></li></ul>";
+		template.SysOpMessage = "Actually, it looks like you're the SysOp, so here's what you can do to enable it:<br /><ul><li>Enable the Flash Socket Policy Service<ul><li>To do this, add this block to your <b>sbbs/ctrl/services.ini file<pre>[FlashPolicy]\r\nPort=843\r\nOptions=NO_HOST_LOOKUP\r\nCommand=flashpolicyserver.js</pre></li></ul>";
 	}
 } else if (!IsRLoginEnabled()) {
 	templatefile = "ftelnet_disabled.inc";

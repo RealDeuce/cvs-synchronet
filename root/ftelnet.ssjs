@@ -1,4 +1,4 @@
-/* $Id: ftelnet.ssjs,v 1.1 2011/07/02 18:28:57 ree Exp $ */
+/* $Id: ftelnet.ssjs,v 1.2 2011/07/03 00:35:32 ree Exp $ */
 
 load("../web/lib/template.ssjs");
 load("ftelnethelper.js");
@@ -10,7 +10,7 @@ template.title = system.name + " - fTelnet (Flash Telnet)";
 if (!IsFlashSocketPolicyServerEnabled()) {
 	templatefile = "ftelnet_disabled.inc";
 	if (user.security.level >= 90) {
-		template.SysOpMessage = "Actually, it looks like you're the SysOp, so here's what you can do to enable it:<br /><ul><li>Enable the Flash Socket Policy Service<ul><li>To do this, add this block to your <b>sbbs/ctrl/services.ini file<pre>[FlashSocketPolicyService]\r\nPort=843\r\nOptions=NO_HOST_LOOKUP\r\nCommand=flashsocketpolicyservice.js</pre></li></ul>";
+		template.SysOpMessage = "Actually, it looks like you're the SysOp, so here's what you can do to enable it:<br /><ul><li>Enable the Flash Socket Policy Service<ul><li>To do this, add this block to your <b>sbbs/ctrl/services.ini file<pre>[FlashPolicy]\r\nPort=843\r\nOptions=NO_HOST_LOOKUP\r\nCommand=flashpolicyserver.js</pre></li></ul>";
 	}
 } else {
 	templatefile = "ftelnet.inc";
