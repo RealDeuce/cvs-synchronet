@@ -2,7 +2,7 @@
  * New user sign-up form for Synchronet
  */
 
-/* $Id: newuser.ssjs,v 1.42 2011/07/21 23:23:47 rswindell Exp $ */
+/* $Id: newuser.ssjs,v 1.43 2011/07/21 23:50:43 rswindell Exp $ */
 
 /* ToDo: Deal with UQ_NODEF */
 
@@ -280,17 +280,15 @@ else {
         template.err_message+="Please choose a different alias.\r\n";
         template.errs["alias"]="Duplicate alias";
     }
-    else if((system.newuser_questions & UQ_ALIASES) && (system.newuser_questions & UQ_REALNAME)) {
-		if(!system.check_name(http_request.query["name"])) {
-			err=1;
-			template.err_message+="Please choose a different name.\r\n";
-			template.errs["name"]="Bad format";
-		}
-		if(http_request.query["name"].indexOf(' ') < 1) {
-			err=1;
-			template.err_message+="Please enter your first and last name.\r\n";
-			template.errs["name"]="Invalid name";
-		}
+    else if((system.newuser_questions & UQ_ALIASES) && (system.newuser_questions & UQ_REALNAME) && !system.check_name(http_request.query["name"])) {
+		err=1;
+		template.err_message+="Please enter your full real name.\r\n";
+		template.errs["name"]="Bad format";
+	}
+	else if((system.newuser_questions & UQ_ALIASES) && (system.newuser_questions & UQ_REALNAME) && http_request.query["name"].toString().indexOf(' ') < 1) {
+		err=1;
+		template.err_message+="Please enter your first and last name.\r\n";
+		template.errs["name"]="Invalid real name";
 	}
     else if((system.newuser_questions & UQ_DUPREAL) && system.matchuserdata(U_NAME,http_request.query["name"])) {
         err=1;
