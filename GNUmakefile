@@ -1,3 +1,4 @@
+# $Id: GNUmakefile,v 1.66 2011/10/20 00:09:50 sbbs Exp $
 # Global GNU makefile for Synchronet
 #
 # Usage:
