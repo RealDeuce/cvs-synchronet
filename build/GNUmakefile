@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.2 2011/10/23 02:04:46 deuce Exp $
+# $Id: GNUmakefile,v 1.3 2011/10/23 13:44:42 deuce Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
@@ -45,6 +45,6 @@ $(CRYPTLIB_BUILD): $(3RDP_ROOT)$(DIRSEP)dist/cryptlib.zip | $(CRYPT_SRC) $(CRYPT
 	@echo Creating $@ ...
 	$(QUIET)-rm -rf $(CRYPT_SRC)/*
 	$(QUIET)unzip -oua $(3RDPDISTDIR)$(DIRSEP)cryptlib.zip -d $(CRYPT_SRC)
-	$(QUIET)make -C $(CRYPT_SRC)
+	$(QUIET)env - PATH=$(PATH) make -C $(CRYPT_SRC)
 	$(QUIET)cp $(CRYPT_SRC)$(DIRSEP)libcl.a $(CRYPT_IDIR)
 	$(QUIET)cp $(CRYPT_SRC)$(DIRSEP)cryptlib.h $(CRYPT_IDIR)
