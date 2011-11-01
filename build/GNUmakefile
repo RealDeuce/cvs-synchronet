@@ -1,10 +1,10 @@
-# $Id: GNUmakefile,v 1.3 2011/10/23 13:44:42 deuce Exp $
+# $Id: GNUmakefile,v 1.4 2011/11/01 07:46:33 deuce Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
 include $(SRC_ROOT)/build/Common.gmake	# defines clean and output directory rules
 
-JS_CONFIGURE_ARGS += --with-system-nspr --disable-tests --enable-threadsafe --prefix=$(shell echo `pwd`$(DIRSEP)$(JS_IDIR))
+JS_CONFIGURE_ARGS += --with-system-nspr --disable-tests --disable-shared-js --enable-threadsafe --prefix=$(shell echo `pwd`$(DIRSEP)$(JS_IDIR))
 ifdef DEBUG
  JS_CONFIGURE_ARGS += --enable-debug-symbols --disable-optimize
 else
@@ -44,7 +44,7 @@ $(CRYPT_IDIR): | $(3RDPODIR)
 $(CRYPTLIB_BUILD): $(3RDP_ROOT)$(DIRSEP)dist/cryptlib.zip | $(CRYPT_SRC) $(CRYPT_IDIR)
 	@echo Creating $@ ...
 	$(QUIET)-rm -rf $(CRYPT_SRC)/*
-	$(QUIET)unzip -oua $(3RDPDISTDIR)$(DIRSEP)cryptlib.zip -d $(CRYPT_SRC)
+	$(QUIET)unzip -oa $(3RDPDISTDIR)$(DIRSEP)cryptlib.zip -d $(CRYPT_SRC)
 	$(QUIET)env - PATH=$(PATH) make -C $(CRYPT_SRC)
 	$(QUIET)cp $(CRYPT_SRC)$(DIRSEP)libcl.a $(CRYPT_IDIR)
 	$(QUIET)cp $(CRYPT_SRC)$(DIRSEP)cryptlib.h $(CRYPT_IDIR)
