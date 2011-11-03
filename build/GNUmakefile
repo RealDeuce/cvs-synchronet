@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.6 2011/11/01 22:05:59 deuce Exp $
+# $Id: GNUmakefile,v 1.7 2011/11/03 18:09:45 deuce Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
@@ -6,7 +6,7 @@ include $(SRC_ROOT)/build/Common.gmake	# defines clean and output directory rule
 
 JS_CONFIGURE_ARGS += --with-system-nspr --disable-tests --disable-shared-js --enable-threadsafe --prefix=$(shell echo `pwd`$(DIRSEP)$(JS_IDIR))
 ifdef DEBUG
- JS_CONFIGURE_ARGS += --enable-debug-symbols --disable-optimize
+ JS_CONFIGURE_ARGS += --enable-debug-symbols --disable-optimize --enable-valgrind
 else
  JS_CONFIGURE_ARGS += --enable-optimize=-O3
 endif
