@@ -1,12 +1,12 @@
 // rss.ssjs
 
-// $Id: atom.ssjs,v 1.2 2006/12/27 07:49:11 rswindell Exp $
+// $Id: atom.ssjs,v 1.3 2011/11/09 09:37:35 deuce Exp $
 
 // Tested successfully with SharpRead v0.9.5.1
 
 load("sbbsdefs.js");
 
-var REVISION = "$Revision: 1.2 $".split(' ')[1];
+var REVISION = "$Revision: 1.3 $".split(' ')[1];
 
 //log(LOG_INFO,"Synchronet RSS " + REVISION);
 
@@ -72,7 +72,7 @@ if(http_request.query["item"]) {
 		if(!template.hdr)
 			writeln(log(LOG_ERR,'Error: ' + msgbase.error));
 		else
-			template.body= msgbase.get_msg_body(false, template.hdr.number);
+			template.body= msgbase.get_msg_body(false, template.hdr.number, template.hdr);
 	}
 
 	msg=mime_decode(template.hdr,template.body);
@@ -171,7 +171,7 @@ if(msgbase.open()) {
 		var hdr = msgbase.get_msg_header(true,total_msgs-i);
 		if(!hdr || hdr.attr&MSG_DELETE)
 			continue;
-		var body = msgbase.get_msg_body(true,total_msgs-i);
+		var body = msgbase.get_msg_body(true,total_msgs-i, hdr);
 		if(!body)
 			continue;
 		var date=new Date(hdr.date);

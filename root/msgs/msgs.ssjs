@@ -1,4 +1,4 @@
-/* $Id: msgs.ssjs,v 1.42 2006/12/15 20:22:46 rswindell Exp $ */
+/* $Id: msgs.ssjs,v 1.43 2011/11/09 09:38:00 deuce Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -249,7 +249,7 @@ if(DateDescending) {
 	 template.messages[displayed.toString()].to=template.messages[displayed.toString()].to.substr(0,MAX_NAME_LEN);
 	 template.messages[displayed.toString()].from=template.messages[displayed.toString()].from.substr(0,MAX_NAME_LEN);
 	 template.messages[displayed.toString()].subject=template.messages[displayed.toString()].subject.substr(0,MAX_SUBJ_LEN);
-     template.messages[displayed.toString()].attachments=count_attachments(hdr,msgbase.get_msg_body(true,msgarray[last_offset].offset));
+     template.messages[displayed.toString()].attachments=count_attachments(hdr,msgbase.get_msg_body(true,msgarray[last_offset].offset,hdr));
      template.messages[displayed.toString()].offset=msgarray[last_offset].offset;
      displayed++;
   }
@@ -263,7 +263,7 @@ if(DateDescending) {
 	  template.messages[displayed.toString()].to=template.messages[displayed.toString()].to.substr(0,MAX_NAME_LEN);
 	  template.messages[displayed.toString()].from=template.messages[displayed.toString()].from.substr(0,MAX_NAME_LEN);
 	  template.messages[displayed.toString()].subject=template.messages[displayed.toString()].subject.substr(0,MAX_SUBJ_LEN);
-	  template.messages[displayed.toString()].attachments=count_attachments(hdr,msgbase.get_msg_body(true,msgarray[first_offset].offset));
+	  template.messages[displayed.toString()].attachments=count_attachments(hdr,msgbase.get_msg_body(true,msgarray[first_offset].offset,hdr));
       template.messages[displayed.toString()].offset=msgarray[first_offset].offset;
       displayed++;
   }

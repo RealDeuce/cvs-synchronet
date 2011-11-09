@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.51 2011/07/16 02:35:58 rswindell Exp $ */
+/* $Id: msg.ssjs,v 1.52 2011/11/09 09:38:00 deuce Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -104,7 +104,7 @@ if(idx_to_user(template.idx)) {
     msgbase.put_msg_header(false,m,template.hdr);
 }
 template.hdr=clean_msg_headers(template.hdr,0);
-template.body=msgbase.get_msg_body(false,m);
+template.body=msgbase.get_msg_body(false,m,template.hdr);
 
 msg=mime_decode(template.hdr,template.body);
 template.body=msg.body;
