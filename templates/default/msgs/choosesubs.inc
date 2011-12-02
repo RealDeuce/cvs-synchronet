@@ -1,10 +1,10 @@
-<!-- $Id: choosesubs.inc,v 1.4 2006/01/31 23:14:21 runemaster Exp $ -->
+<!-- $Id: choosesubs.inc,v 1.5 2011/12/02 03:17:33 deuce Exp $ -->
 
 <!-- Main Content -->  
     
     <td class="main" valign="top"><br />
 
-<form action="/msgs/updatesubs.ssjs" method="POST">
+<form action="/msgs/updatesubs.ssjs" method="post">
 <input type="hidden" value="%%group:name%%" name="msg_grp" />
 <table class="sublist" cellpadding="2" cellspacing="2">
 <tr>

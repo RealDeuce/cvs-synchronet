@@ -1,4 +1,4 @@
-<!-- $Id: choosesubs.inc,v 1.1 2006/02/22 02:16:41 runemaster Exp $ -->
+<!-- $Id: choosesubs.inc,v 1.2 2011/12/02 03:17:47 deuce Exp $ -->
 
 <!-- Main Content -->  
     
@@ -7,7 +7,7 @@
 	<div id="subslist">
 	<div align="center">
 
-<form action="/msgs/updatesubs.ssjs" method="POST">
+<form action="/msgs/updatesubs.ssjs" method="post">
 <input type="hidden" value="%%group:name%%" name="msg_grp" />
 <table class="sublist" cellpadding="2" cellspacing="1">
 <tr>
