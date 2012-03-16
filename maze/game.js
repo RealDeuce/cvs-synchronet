@@ -1,4 +1,4 @@
-//$Id: game.js,v 1.4 2012/03/16 03:34:41 mcmlxxix Exp $
+//$Id: game.js,v 1.5 2012/03/16 03:39:56 mcmlxxix Exp $
 /*
 	SYNCHRONET MAZE RACE 
 	A Javascript remake 
@@ -7,7 +7,7 @@
 	For Synchronet v3.15+
 	Matt Johnson(2008)
 */
-const VERSION="$Revision: 1.4 $".replace(/\$/g,'').split(' ')[1];
+const VERSION="$Revision: 1.5 $".replace(/\$/g,'').split(' ')[1];
 
 var oldpass=console.ctrlkey_passthru;
 var root=js.exec_dir;
@@ -18,6 +18,7 @@ load("json-chat.js");
 load("inputline.js");
 load("layout.js");
 load("graphic.js");
+load("funclib.js");
 load(root + "mazeobj.js");
 load(root + "menu.js");
 
