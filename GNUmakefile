@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.67 2011/10/21 22:11:17 deuce Exp $
+# $Id: GNUmakefile,v 1.68 2012/06/01 07:00:42 deuce Exp $
 # Global GNU makefile for Synchronet
 #
 # Usage:
@@ -27,7 +27,7 @@
 # SDL_CONFIG = Path to sdl-config program
 # CVSTAG = CVS tag to pull
 # NO_X = Don't include build conio library (ciolib) for X
-# NO_GLADE = Don't build Glade-based sysop tools
+# NO_GTK = Don't build GTK-based sysop tools
 # X_PATH = /path/to/X (if not /usr/X11R6)
 
 ifndef DEBUG
