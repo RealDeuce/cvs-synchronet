@@ -1,10 +1,10 @@
-//$Id: lobby.js,v 1.2 2012/08/02 20:53:11 mcmlxxix Exp $
+//$Id: lobby.js,v 1.3 2012/08/02 21:35:25 mcmlxxix Exp $
 /*
 	JAVASCRIPT TETRIS
 	For Synchronet v3.15+
 	Matt Johnson(2009)
 */
-const VERSION="$Revision: 1.2 $".split(' ')[1];
+const VERSION="$Revision: 1.3 $".split(' ')[1];
 
 load("json-chat.js");
 load("layout.js");
@@ -250,14 +250,22 @@ var lobby=(function() {
 			tile.frame.putmsg(splitPadded(gameStr,statusStr,tile.frame.width));
 			
 			tile.frame.gotoxy(1,8);
-			for each(var p in game.players) {
-				if(p.ready == true)
-					tile.frame.putmsg("\1g\1h * ");
-				else
-					tile.frame.putmsg("\1r\1h * ");
-				tile.frame.putmsg("\1n\1g" + p.name + "\r\n");
+			var list = [];
+			for each(var p in game.players)
+				list.push(p);
+			for(var l=0;l<3;l++) {
+				var p = list[l];
+				if(p) {
+					if(p.ready == true)
+						tile.frame.putmsg("\1g\1h * ");
+					else
+						tile.frame.putmsg("\1r\1h * ");
+					tile.frame.putmsg("\1n\1g" + p.name);
+				}
+				tile.frame.cleartoeol();
+				tile.frame.crlf();
 			}
-			tile.frame.crlf();
+			tile.frame.crlf();qq
 		}
 	}
 
