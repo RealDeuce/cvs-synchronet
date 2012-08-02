@@ -1,10 +1,10 @@
-//$Id: lobby.js,v 1.1 2012/08/02 18:03:02 mcmlxxix Exp $
+//$Id: lobby.js,v 1.2 2012/08/02 20:53:11 mcmlxxix Exp $
 /*
 	JAVASCRIPT TETRIS
 	For Synchronet v3.15+
 	Matt Johnson(2009)
 */
-const VERSION="$Revision: 1.1 $".split(' ')[1];
+const VERSION="$Revision: 1.2 $".split(' ')[1];
 
 load("json-chat.js");
 load("layout.js");
