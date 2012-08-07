@@ -1,10 +1,10 @@
-//$Id: lobby.js,v 1.6 2012/08/03 17:37:25 mcmlxxix Exp $
+//$Id: lobby.js,v 1.7 2012/08/07 14:47:45 mcmlxxix Exp $
 /*
 	JAVASCRIPT TETRIS
 	For Synchronet v3.15+
 	Matt Johnson(2009)
 */
-const VERSION="$Revision: 1.6 $".split(' ')[1];
+const VERSION="$Revision: 1.7 $".split(' ')[1];
 
 load("json-chat.js");
 load("layout.js");
@@ -271,7 +271,7 @@ var lobby=(function() {
 
 	/* show rankings */
 	function showScores()	{
-		var scoreFrame = new Frame(16,6,57,14,BG_BLUE + YELLOW,frame);
+		var scoreFrame = new Frame(12,6,57,14,BG_BLUE + YELLOW,frame);
 		var count = 0;
 		var scores_per_page = 10;
 		var list = sortScores("score");
