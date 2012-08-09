@@ -1,10 +1,10 @@
-//$Id: lobby.js,v 1.9 2012/08/08 16:33:50 mcmlxxix Exp $
+//$Id: lobby.js,v 1.10 2012/08/09 03:33:29 mcmlxxix Exp $
 /*
 	JAVASCRIPT TETRIS
 	For Synchronet v3.15+
 	Matt Johnson(2009)
 */
-const VERSION="$Revision: 1.9 $".split(' ')[1];
+const VERSION="$Revision: 1.10 $".split(' ')[1];
 
 load("json-chat.js");
 load("layout.js");
@@ -145,9 +145,9 @@ var lobby=(function() {
 	function initLobby() {
 		gameList = [
 			new GameInfo(2,3),
-			new GameInfo(22,3),
+			new GameInfo(21,3),
 			new GameInfo(2,13),
-			new GameInfo(22,13)
+			new GameInfo(21,13)
 		];
 	}
 
