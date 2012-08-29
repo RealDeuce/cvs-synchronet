@@ -1,4 +1,4 @@
-<!-- $Id: ftelnet_external.inc,v 1.1 2011/07/02 18:31:07 ree Exp $ -->
+<!-- $Id: ftelnet_external.inc,v 1.2 2012/08/29 14:24:09 ree Exp $ -->
 
 <div id="contentcontainer">
 	<div id="content2">
@@ -14,11 +14,11 @@
 		<script type="text/javascript" src="/ftelnet/swfobject.js"></script>
 		<script type="text/javascript">
 			ClientVars.RLogin = 1;
-			ClientVars.RLoginExternal = "@@External@@";
+			ClientVars.RLoginClientUserName = "@@ClientUserName@@";
 			ClientVars.RLoginHostName = "@@HostName@@";
-			ClientVars.RLoginPassword = "@@Password@@";
 			ClientVars.RLoginPort = @@Port@@;
-			ClientVars.RLoginUserName = "@@UserName@@";
+			ClientVars.RLoginServerUserName = "@@ServerUserName@@";
+			ClientVars.RLoginTerminalType = "@@TerminalType@@";
 			ClientVars.ServerName = "@@ServerName@@";
 			ClientVars.SocketPolicyPort = @@SocketPolicyPort@@;
 			swfobject.embedSWF(
