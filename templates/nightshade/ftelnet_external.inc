@@ -1,4 +1,4 @@
-<!-- $Id: ftelnet_external.inc,v 1.2 2012/08/29 14:24:09 ree Exp $ -->
+<!-- $Id: ftelnet_external.inc,v 1.3 2012/08/29 14:30:44 ree Exp $ -->
 
 <div id="contentcontainer">
 	<div id="content2">
@@ -8,6 +8,7 @@
 <!-- fTelnet --> 
 
 		<p style="text-align: center;"><span id="ClientContainer"></span></p>
+		<p style="text-align: center;">Keyboard Shortcuts: CTRL+UP ARROW = Scrollback, CTRL+PAGE UP = Upload, CTRL+PAGE DOWN = Download</p>
 		
 		<script type="text/javascript" src="/ftelnet/ClientVars.js"></script>
 		<script type="text/javascript" src="/ftelnet/ClientFuncs.js"></script>
