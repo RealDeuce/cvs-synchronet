@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.18 2012/10/15 10:00:11 deuce Exp $
+# $Id: GNUmakefile,v 1.19 2012/10/15 20:43:39 deuce Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
@@ -49,6 +49,6 @@ $(CRYPTLIB_BUILD): $(3RDP_ROOT)$(DIRSEP)dist/cryptlib.zip $(3RDP_ROOT)$(DIRSEP)b
 	$(QUIET)unzip -oa $(3RDPDISTDIR)$(DIRSEP)cryptlib.zip -d $(CRYPT_SRC)
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < random_exit.patch
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < SSL-fix.patch
-	$(QUIET)env - PATH=$(PATH) make -C $(CRYPT_SRC)
+	$(QUIET)cd $(CRYPT_SRC) && env - PATH=$(PATH) make
 	$(QUIET)cp $(CRYPT_SRC)$(DIRSEP)libcl.a $(CRYPT_IDIR)
 	$(QUIET)cp $(CRYPT_SRC)$(DIRSEP)cryptlib.h $(CRYPT_IDIR)
