@@ -3,20 +3,16 @@
 	For Synchronet v3.15+
 	Matt Johnson(2009)
 */
-//$Id: tetris.js,v 1.10 2012/08/02 18:03:02 mcmlxxix Exp $
+//$Id: tetris.js,v 1.11 2012/12/24 11:45:59 rswindell Exp $
 load("json-client.js");
 var root = js.exec_dir;
 
-if(!file_exists(root + "server.ini")) {
-	throw("server initialization file missing");
-}
-
-var server_file = new File(root + "server.ini");
+var server_file = new File(file_cfgname(root, "server.ini"));
 server_file.open('r',true);
 
 //var autoUpdate=server_file.iniGetValue(null,"autoUpdate");
-var serverAddr=server_file.iniGetValue(null,"host");
-var serverPort=server_file.iniGetValue(null,"port");
+var serverAddr=server_file.iniGetValue(null,"host","localhost");
+var serverPort=server_file.iniGetValue(null,"port",10088);
 server_file.close();
 
 var client=new JSONClient(serverAddr,serverPort);
