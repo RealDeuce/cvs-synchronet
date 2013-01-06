@@ -1,6 +1,6 @@
 /* FatFish
  *
- * $Id: fatfish.js,v 1.6 2013/01/06 12:45:21 art Exp $
+ * $Id: fatfish.js,v 1.7 2013/01/06 12:49:49 art Exp $
  *
  * WEBSITE:
  *  http://art.poorcoding.com/fatfish
@@ -1285,7 +1285,6 @@ function update_hi_scores(fish) {
             try {
                 if (user.alias.length > 0) {
                     // TODO: Only save the new best.FISHTYPE.
-                    ?
                     if (json == undefined) {
                         /* If no json object, try it again. */
                         json = new JSONClient(serverAddr, serverPort);
