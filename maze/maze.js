@@ -1,4 +1,4 @@
-//$Id: maze.js,v 1.8 2012/03/06 22:13:05 mcmlxxix Exp $
+//$Id: maze.js,v 1.9 2013/01/18 22:09:45 mcmlxxix Exp $
 /*
 	SYNCHRONET MAZE RACE 
 	A Javascript remake 
@@ -18,8 +18,8 @@ var server_file = new File(root + "server.ini");
 server_file.open('r',true);
 
 //var autoUpdate=server_file.iniGetValue(null,"autoUpdate");
-var serverAddr=server_file.iniGetValue(null,"host");
-var serverPort=server_file.iniGetValue(null,"port");
+var serverAddr=server_file.iniGetValue(null,"host","localhost");
+var serverPort=server_file.iniGetValue(null,"port",10088);
 server_file.close();
 
 var client=new JSONClient(serverAddr,serverPort);
