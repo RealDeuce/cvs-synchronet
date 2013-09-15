@@ -2,13 +2,13 @@
 
 /* Synchronet BBS List Macros, constants, and type definitions */
 
-/* $Id: sbldefs.h,v 1.10 2012/08/27 02:27:30 sbbs Exp $ */
+/* $Id: sbldefs.h,v 1.11 2013/09/15 09:16:47 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
  * @format.use-tabs true	(see http://www.synchro.net/ptsc_hdr.html)		*
  *																			*
- * Copyright 2000 Rob Swindell - http://www.synchro.net/copyright.html		*
+ * Copyright 2013 Rob Swindell - http://www.synchro.net/copyright.html		*
  *																			*
  * This program is free software; you can redistribute it and/or			*
  * modify it under the terms of the GNU General Public License				*
@@ -34,6 +34,8 @@
  *																			*
  * Note: If this box doesn't appear square, then you need to fix your tabs.	*
  ****************************************************************************/
+
+#include "gen_defs.h"
 
 #define MAX_SYSOPS  5
 #define MAX_NUMBERS 20
