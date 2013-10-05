@@ -4,7 +4,7 @@
 #
 # This file normally goes in your /etc/init.d directory
 #
-# $Id: sbbs.gentoo,v 1.1 2011/09/01 07:05:14 rswindell Exp $
+# $Id: sbbs.gentoo,v 1.2 2013/10/05 15:45:02 deuce Exp $
 
 ########################################
 # Synchronet BBS Gentoo startup script #
@@ -18,8 +18,6 @@ export SBBSCTRL=$SBBSDIR/ctrl
 
 PROG="$SBBSDIR/exec/sbbs"
 PIDFILE="/var/run/sbbs.pid"
-
-opts="${opts} restart"
 
 depend() {
 	need localmount
