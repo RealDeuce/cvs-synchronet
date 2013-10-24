@@ -1,4 +1,4 @@
-//$Id: game.js,v 1.11 2012/03/30 15:22:57 mcmlxxix Exp $
+//$Id: game.js,v 1.12 2013/10/24 15:09:18 mcmlxxix Exp $
 /*
 	SYNCHRONET MAZE RACE 
 	A Javascript remake 
@@ -7,7 +7,7 @@
 	For Synchronet v3.15+
 	Matt Johnson(2008)
 */
-const VERSION="$Revision: 1.11 $".replace(/\$/g,'').split(' ')[1];
+const VERSION="$Revision: 1.12 $".replace(/\$/g,'').split(' ')[1];
 
 var oldpass=console.ctrlkey_passthru;
 var root=js.exec_dir;
@@ -661,10 +661,16 @@ function race(gameNumber)	{
 		}
 	}
 	function endGame() {
+	
+		if(countPlayers() > 1) {
+			game.winner = player.name;
+			data.storeRaceWinner(gameNumber,game.winner);
+		}
+
 		end_time = Date.now();
-		game.winner = player.name;
 		game.raceTime = end_time - start_time;
-		data.storeGameWinner(gameNumber,game.raceTime,game.winner);
+		data.storeRaceTime(gameNumber,game.raceTime,player.name);
+		
 		data.storeGameStatus(gameNumber,status.FINISHED);
 	}
 	function showWinner() {
@@ -703,6 +709,13 @@ function race(gameNumber)	{
 			str+=format("%-*s",8,bstr);	
 			info.putmsg(str);
 		}
+	}
+	function countPlayers() {
+		var count=0;
+		for each(var p in maze.players) {
+			count++;
+		}
+		return count;
 	}
 
 	/* movement */
