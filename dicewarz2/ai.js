@@ -1,4 +1,4 @@
-/* $Id: ai.js,v 1.19 2014/01/05 10:44:45 rswindell Exp $ */
+/* $Id: ai.js,v 1.20 2014/01/06 05:04:29 rswindell Exp $ */
 
 load("json-client.js");
 
@@ -401,8 +401,8 @@ function initClient() {
 	
 	var server_file = new File(file_cfgname(root, "server.ini"));
 	server_file.open('r',true);
-	var serverAddr=server_file.iniGetValue(null,"host");
-	var serverPort=server_file.iniGetValue(null,"port");
+	var serverAddr=server_file.iniGetValue(null,"host","localhost");
+	var serverPort=server_file.iniGetValue(null,"port",10088);
 	server_file.close();
 	client = new JSONClient(serverAddr,serverPort);
 }

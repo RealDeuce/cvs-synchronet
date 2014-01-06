@@ -1,11 +1,11 @@
-/* $Id: service.js,v 1.13 2014/01/05 10:44:45 rswindell Exp $ */
+/* $Id: service.js,v 1.14 2014/01/06 05:04:29 rswindell Exp $ */
 
 var root = argv[0];
 /* load server connection information from server.ini */
 var server_file = new File(file_cfgname(root, "server.ini"));
 server_file.open('r',true);
-var serverAddr=server_file.iniGetValue(null,"host");
-var serverPort=server_file.iniGetValue(null,"port");
+var serverAddr=server_file.iniGetValue(null,"host","localhost");
+var serverPort=server_file.iniGetValue(null,"port",10088);
 server_file.close();
 
 load("json-client.js");
