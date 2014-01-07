@@ -1,7 +1,7 @@
 /*
 	***************BBS DICE WARZ***************
-	$Id: dice.js,v 1.54 2012/04/27 16:49:50 mcmlxxix Exp $
-	$Revision: 1.54 $
+	$Id: dice.js,v 1.55 2014/01/07 16:31:27 mcmlxxix Exp $
+	$Revision: 1.55 $
 	for use with Synchronet v3.14+
 	by Matt Johnson (2008)  
 	*******************************************
@@ -1594,6 +1594,9 @@ function	GameStatusInfo()
 		}
 		for(var completed in this.completed) {
 			var gm=this.completed[completed];
+			/* skip games that have already been deleted */
+			if(!this.gameData[gm])
+				continue;
 			var daysOld=(time()-this.gameData[gm].lastModified)/daySeconds;
 			if(this.gameData[gm].singlePlayer===true || daysOld>=settings.keepGameData)	{
 				file_remove(this.gameData[gm].fileName);
