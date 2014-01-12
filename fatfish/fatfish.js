@@ -1,6 +1,6 @@
 /* FatFish
  *
- * $Id: fatfish.js,v 1.11 2014/01/09 14:12:45 art Exp $
+ * $Id: fatfish.js,v 1.12 2014/01/12 03:29:31 echicken Exp $
  *
  * WEBSITE:
  *  http://art.poorcoding.com/fatfish
@@ -34,9 +34,6 @@ var USING_GLOBAL_SERVER = false;
 	 */
 var RENDER_MODE = 1;
 
-console.write(ANSI.DEFAULT);
-console.clear();
-
 load("sbbsdefs.js");
 load("event-timer.js");
 load("json-client.js");
@@ -48,6 +45,9 @@ load(PATH_FATFISH + "Fish.js");
 load(PATH_FATFISH + "Rod.js");
 load(PATH_FATFISH + "safe_pause.js");
 load(PATH_FATFISH + "shop.js");
+
+console.write(ANSI.DEFAULT);
+console.clear();
 
 /* Version. */
 var FF_VER = "0.6b";
