@@ -1,4 +1,4 @@
-/* $Id: ftelnet.ssjs,v 1.3 2011/08/10 17:40:45 ree Exp $ */
+/* $Id: ftelnet.ssjs,v 1.4 2014/03/14 07:47:05 rswindell Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -26,7 +26,7 @@ if (!ftelnethelperloaded) {
 	}
 } else {
 	templatefile = "ftelnet.inc";
-	template.HostName = system.inet_addr;
+	template.HostName = system.host_name;
 	template.Port = GetTelnetPort();
 	template.ServerName = system.name;
 	template.SocketPolicyPort = GetFlashSocketPolicyServicePort();
