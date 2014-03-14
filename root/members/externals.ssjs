@@ -1,4 +1,4 @@
-/* $Id: externals.ssjs,v 1.5 2012/08/29 14:23:46 ree Exp $ */
+/* $Id: externals.ssjs,v 1.6 2014/03/14 07:54:29 rswindell Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -57,10 +57,10 @@ if (!options) {
 		}
 	} else {
 		templatefile = "ftelnet_external.inc";
-		template.ClientUserName = UsingSecondRLoginName() ? user.security.password : user.alias;
-		template.ServerUserName = UsingSecondRLoginName() ? user.alias : user.security.password;
+		template.ClientUserName = user.security.password;
+		template.ServerUserName = user.alias;
 		template.TerminalType = "xtrn=" + http_request.query.code;
-		template.HostName = system.inet_addr;
+		template.HostName = system.host_name;
 		template.Port = GetRLoginPort();
 		template.ServerName = system.name;
 		template.SocketPolicyPort = GetFlashSocketPolicyServicePort();
