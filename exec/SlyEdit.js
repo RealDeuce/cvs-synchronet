@@ -13,46 +13,25 @@
  * 2009-08-22 Eric Oulashin     Version 1.00
  *                              Initial public release
  * ....Removed some comments...
- * 2013-10-22 Eric Oulashin     Version 1.36 Beta
- *                              Worked on debugging & fixing a bug when quoting
- *                              with author initials to fix a bug where a large
- *                              section in certain messages wasn't getting quoted.
- * 2013-10-28 Eric Oulashin     Version 1.36
- *                              Releasing this version, as it seems to be quoting
- *                              all messages well with author initials.
- * 2013-11-09 Eric Oulashin     Version 1.37 Beta
- *                              Started trying to debug an issue where SlyEdit
- *                              sometimes uses the replying user's initials
- *                              in the last line of a paragraph of the original
- *                              author's message.
- * 2013-11-10 Eric Oulashin     Version 1.37
- *                              Releasing this version
- * 2013-11-11 Eric Oulashin     Version 1.38
- *                              Minor bug fix: If there are no text replacements
- *                              to list when the user tries to list them, the cursor
- *                              now returns to its proper place after displaying
- *                              the error.
- * 2013-11-25 Eric Oulashin     Version 1.39 Beta
- *                              Minor bug fix in wrapQuoteLinesUsingAuthorInitials() in
- *                              SlyEdit_Misc.js starting on line 2739: Added more
- *                              checks to ensure that the gQuoteLines object it
- *                              references is valid.
- *                              Minor bug fix: Updated the Ice-style color display
- *                              for the control key help text in the lower right so
- *                              that normal/high attributes don't interfere with the
- *                              high blue color of the parenthesis.
- * 2013-11-27 Eric Oulashin     Version 1.39
- *                              Releasing this version after having done some testing.
- * 2014-05-12 Eric Oulashin     Version 1.40 (not released yet)
- *                              Added a check in wrapQuoteLinesUsingAuthorInitials() in
- *                              SlyEdit_Misc.js: When building the last section info object,
- *                              added a check to the while loop that makes sure
- *                              sectionInfo.endArrIndex is greater than 0 to avoid an index
- *                              out-of-bounds issue with the check that references
- *                              gQuoteLines[sectionInfo.endArrIndex-1].  This should hopefully
- *                              fix a bug with SlyEdit crashing at that point.
- * 2014-05-21 Eric Oulashin     Version 1.40
- *                              Going ahead and releasing this version
+ * 2014-11-01 Eric Oulashin     Version 1.41 Beta
+ *                              Added support for PageUp & PageDown keys for
+ *                              message & quote line scrolling
+ * 2014-11-08 Eric OUlashin     Started working on improved paragraph detection
+ *                              for paragraphs where the first line is indented
+ *                              when wrapping non-quoted text in reply messages
+ * 2014-11-09 Eric Oulashin     Bug fix in doQuoteSelection(): Reset gQuoteLinesIndex
+ *                              to 0 when re-formatting the quote lines to ensure
+ *                              valid behavior.  gQuoteLinesTopIndex was already
+ *                              being reset to 0.
+ * 2014-11-15 Eric Oulashin     Version 1.41
+ *                              Decided to release this version with the PageUp/PageDown
+ *                              key support, improved paragraph detetion & wrapping
+ *                              for quote lines, backspace fix, and fixed DCT quote
+ *                              window top border for wide terminals.
+ * 2014-11-15 Eric Oulashin     Version 1.42
+ *                              Updated the cross-post selection box to use the
+ *                              PageUp & PageDown keys for paging instead of P
+ *                              and N.
  */
 
 /* Command-line arguments:
@@ -130,8 +109,8 @@ if (!console.term_supports(USER_ANSI))
 }
 
 // Constants
-const EDITOR_VERSION = "1.40";
-const EDITOR_VER_DATE = "2014-05-21";
+const EDITOR_VERSION = "1.42";
+const EDITOR_VER_DATE = "2014-11-15";
 
 
 // Program variables
@@ -387,6 +366,9 @@ bbs.sys_status &=~SS_PAUSEON;
 bbs.sys_status |= SS_PAUSEOFF;
 var gOldPassthru = console.ctrlkey_passthru;
 console.ctrlkey_passthru = "+ACGKLOPQRTUVWXYZ_";
+// Set some on-exit code to ensure that the original ctrl key passthru & system
+// status settings are restored upon script exit, even if there is a runtime error.
+js.on_exit("console.ctrlkey_passthru = gOldPassthru; bbs.sys_status = gOldStatus;");
 // Enable delete line in SyncTERM (Disabling ANSI Music in the process)
 console.write("\033[=1M");
 console.clear();
@@ -797,10 +779,8 @@ function doEditLoop()
    const CMDLIST_HELP_KEY          = CTRL_P;
    const QUOTE_KEY                 = CTRL_Q;
    const PROGRAM_INFO_HELP_KEY     = CTRL_R;
-   const PAGE_DOWN_KEY             = CTRL_S;
    const LIST_TXT_REPLACEMENTS_KEY = CTRL_T;
    const USER_SETTINGS_KEY         = CTRL_U;
-   const PAGE_UP_KEY               = CTRL_W;
    const EXPORT_FILE_KEY           = CTRL_X;
    const SAVE_KEY                  = CTRL_Z;
 
@@ -829,7 +809,7 @@ function doEditLoop()
    var continueOn = true;
    while (continueOn)
    {
-      userInput = getUserKey(K_NOCRLF|K_NOSPIN, gConfigSettings);
+      userInput = getKeyWithESCChars(K_NOCRLF|K_NOSPIN, gConfigSettings);
       // If userInput is blank, then the input timeout was probably
       // reached, so abort.
       if (userInput == "")
@@ -870,6 +850,7 @@ function doEditLoop()
             returnCode = 0; // Save
             continueOn = false;
             break;
+         case KEY_F1:
          case CMDLIST_HELP_KEY:
             displayCommandList(true, true, true, gCanCrossPost, gConfigSettings.userIsSysop,
                                gConfigSettings.enableTextReplacements, gConfigSettings.allowUserSettings);
@@ -1249,7 +1230,7 @@ function doEditLoop()
             currentWordLength = retObj.currentWordLength;
             console.print(chooseEditColor()); // Make sure the edit color is correct
             break;
-         case PAGE_UP_KEY: // Move 1 page up in the message
+         case KEY_PAGE_UP: // Move 1 page up in the message
             // Calculate the index of the message line shown at the top
             // of the edit area.
             var topEditIndex = gEditLinesIndex-(curpos.y-gEditTop);
@@ -1296,7 +1277,7 @@ function doEditLoop()
             }
             console.print(chooseEditColor()); // Make sure the edit color is correct
             break;
-         case PAGE_DOWN_KEY: // Move 1 page down in the message
+         case KEY_PAGE_DOWN: // Move 1 page down in the message
             // Calculate the index of the message line shown at the top
             // of the edit area, and the index of the line that would be
             // shown at the bottom of the edit area.
@@ -1576,6 +1557,11 @@ function doBackspace(pCurpos, pCurrentWordLength)
             // previous line.
             if (gEditLines[prevLineIndex].length() <= gEditWidth-1)
             {
+               // Copy the current line's "hard newline end" setting to the
+               // previous line (so that if there's a blank line below the
+               // current line, the blank line will be preserved), then remove
+               // the current edit line.
+               gEditLines[gEditLinesIndex-1].hardNewlineEnd = gEditLines[gEditLinesIndex].hardNewlineEnd;
                gEditLines.splice(gEditLinesIndex, 1);
 
                --gEditLinesIndex;
@@ -1866,10 +1852,6 @@ function doPrintableChar(pUserInput, pCurpos, pCurrentWordLength)
    // on the screen.
    if ((reAdjusted && (gEditLines[gEditLinesIndex].text != originalAfterCharApplied)) || madeTxtReplacement)
    {
-      // TODO: In case the user entered a whole line of text without any spaces,
-      // the new character would appear on the next line, so we need to figure
-      // out where the cursor location should be.
-
       // If gTextLineIndex is >= gEditLines[gEditLinesIndex].length(), then
       // we know the current word was wrapped to the next line.  Figure out what
       // retObj.x, retObj.currentWordLength, gEditLinesIndex, and gTextLineIndex
@@ -1877,8 +1859,8 @@ function doPrintableChar(pUserInput, pCurpos, pCurrentWordLength)
       // screen to update, and deal with scrolling if necessary.
       if (gTextLineIndex >= gEditLines[gEditLinesIndex].length())
       {
-         // TODO: I changed this on 2010-02-14 to (hopefully) place the cursor
-         // where it should be 
+         // I changed this on 2010-02-14 to (hopefully) place the cursor where
+         // it should be
          // Old line (prior to 2010-02-14):
          //var numChars = gTextLineIndex - gEditLines[gEditLinesIndex].length();
          // New (2010-02-14):
@@ -2441,7 +2423,10 @@ function doQuoteSelection(pCurpos, pCurrentWordLength)
                gQuoteLines.push(doQuoteSelection.backupQuoteLines[i]);
          }
 
-         gQuoteLinesTopIndex = gQuoteLinesIndex = 0; // To prevent bad things
+         // Reset the selected quote line index & top displayed quote line index
+         // back to 0 to ensure valid screen display & scrolling behavior
+         gQuoteLinesIndex = 0;
+         gQuoteLinesTopIndex = 0;
 
          // Update the quote line prefix text and wrap the quote lines
          setQuotePrefix();
@@ -2469,6 +2454,12 @@ function doQuoteSelection(pCurpos, pCurrentWordLength)
    const quoteWinTopScreenRow = quoteTopScreenRow-1;
    const quoteWinWidth = gEditRight - gEditLeft + 1;
 
+   // For pageUp/pageDown functionality - Calculate the top quote line index
+   // for the last page.
+   var quoteWinInnerHeight = quoteBottomScreenRow - quoteTopScreenRow + 1; // # of quote lines in the quote window
+   var numPages = Math.ceil(gQuoteLines.length / quoteWinInnerHeight);
+   var topIndexForLastPage = (quoteWinInnerHeight * numPages) - quoteWinInnerHeight;
+
    // Display the top border of the quote window.
    fpDrawQuoteWindowTopBorder(quoteWinHeight, gEditLeft, gEditRight);
 
@@ -2487,7 +2478,7 @@ function doQuoteSelection(pCurpos, pCurrentWordLength)
    while (continueOn)
    {
       // Get a keypress from the user
-      userInput = getUserKey(K_UPPER|K_NOCRLF|K_NOSPIN, gConfigSettings);
+      userInput = getKeyWithESCChars(K_UPPER|K_NOCRLF|K_NOSPIN|K_NOECHO, gConfigSettings);
       if (userInput == "")
       {
          // The input timeout was reached.  Abort.
@@ -2548,6 +2539,93 @@ function doQuoteSelection(pCurpos, pCurrentWordLength)
             gQuoteLinesIndex = downRetObj.quoteLinesIndex;
             screenLine = downRetObj.screenLine;
             quoteLine = downRetObj.quoteLine;
+            break;
+         case KEY_HOME: // Select the first quote line on the current page
+            if (gQuoteLinesIndex != gQuoteLinesTopIndex)
+            {
+               gQuoteLinesIndex = gQuoteLinesTopIndex;
+               // Write the current quote line with unhighlighted colors
+               console.gotoxy(gEditLeft, screenLine);
+               printf(gFormatStrWithAttr, gQuoteWinTextColor, quoteLine);
+               // Calculate the new screen line and draw the new quote line with
+               // highlighted colors
+               screenLine = quoteTopScreenRow + (gQuoteLinesIndex - gQuoteLinesTopIndex);
+               quoteLine = getQuoteTextLine(gQuoteLinesIndex, quoteWinWidth);
+               console.gotoxy(gEditLeft, screenLine);
+               printf(gFormatStrWithAttr, gQuoteLineHighlightColor, quoteLine);
+               console.gotoxy(gEditLeft, screenLine);
+            }
+            break;
+         case KEY_END: // Select the last quote line on the current page
+            var lastIndexForCurrentPage = gQuoteLinesTopIndex + quoteWinInnerHeight - 1;
+            if (gQuoteLinesIndex != lastIndexForCurrentPage)
+            {
+               gQuoteLinesIndex = lastIndexForCurrentPage;
+               // Write the current quote line with unhighlighted colors
+               console.gotoxy(gEditLeft, screenLine);
+               printf(gFormatStrWithAttr, gQuoteWinTextColor, quoteLine);
+               // Calculate the new screen line and draw the new quote line with
+               // highlighted colors
+               screenLine = quoteTopScreenRow + (gQuoteLinesIndex - gQuoteLinesTopIndex);
+               quoteLine = getQuoteTextLine(gQuoteLinesIndex, quoteWinWidth);
+               console.gotoxy(gEditLeft, screenLine);
+               printf(gFormatStrWithAttr, gQuoteLineHighlightColor, quoteLine);
+               console.gotoxy(gEditLeft, screenLine);
+            }
+            break;
+         case KEY_PAGE_UP: // Go up 1 page in the quote lines
+            // If the current top quote line index is greater than 0, then go to
+            // the previous page of quote lines and select the top index on that
+            // page as the current selected quote line.
+            if (gQuoteLinesTopIndex > 0)
+            {
+               gQuoteLinesTopIndex -= quoteWinInnerHeight;
+               if (gQuoteLinesTopIndex < 0)
+                  gQuoteLinesTopIndex = 0;
+               gQuoteLinesIndex = gQuoteLinesTopIndex;
+               quoteLine = getQuoteTextLine(gQuoteLinesIndex, quoteWinWidth);
+               screenLine = quoteTopScreenRow + (gQuoteLinesIndex - gQuoteLinesTopIndex);
+               displayQuoteWindowLines(gQuoteLinesTopIndex, quoteWinHeight, quoteWinWidth, true,
+                                       gQuoteLinesIndex);
+            }
+            break;
+         case KEY_PAGE_DOWN: // Go down 1 page in the quote lines
+            // If the current top quote line index is below the top index for the
+            // last page, then go to the next page of quote lines and select the
+            // top index on that page as the current selected quote line.
+            if (gQuoteLinesTopIndex < topIndexForLastPage)
+            {
+               gQuoteLinesTopIndex += quoteWinInnerHeight;
+               if (gQuoteLinesTopIndex > topIndexForLastPage)
+                  gQuoteLinesTopIndex = topIndexForLastPage;
+               gQuoteLinesIndex = gQuoteLinesTopIndex;
+               quoteLine = getQuoteTextLine(gQuoteLinesIndex, quoteWinWidth);
+               screenLine = quoteTopScreenRow + (gQuoteLinesIndex - gQuoteLinesTopIndex);
+               displayQuoteWindowLines(gQuoteLinesTopIndex, quoteWinHeight, quoteWinWidth, true,
+                                       gQuoteLinesIndex);
+            }
+            break;
+         case "F": // Go to the first page
+            if (gQuoteLinesTopIndex > 0)
+            {
+               gQuoteLinesTopIndex = 0;
+               gQuoteLinesIndex = gQuoteLinesTopIndex;
+               quoteLine = getQuoteTextLine(gQuoteLinesIndex, quoteWinWidth);
+               screenLine = quoteTopScreenRow + (gQuoteLinesIndex - gQuoteLinesTopIndex);
+               displayQuoteWindowLines(gQuoteLinesTopIndex, quoteWinHeight, quoteWinWidth, true,
+                                       gQuoteLinesIndex);
+            }
+            break;
+         case "L": // Go to the last page
+            if (gQuoteLinesTopIndex < topIndexForLastPage)
+            {
+               gQuoteLinesTopIndex = topIndexForLastPage;
+               gQuoteLinesIndex = gQuoteLinesTopIndex;
+               quoteLine = getQuoteTextLine(gQuoteLinesIndex, quoteWinWidth);
+               screenLine = quoteTopScreenRow + (gQuoteLinesIndex - gQuoteLinesTopIndex);
+               displayQuoteWindowLines(gQuoteLinesTopIndex, quoteWinHeight, quoteWinWidth, true,
+                                       gQuoteLinesIndex);
+            }
             break;
          case KEY_ENTER:
             // numTimesToMoveDown specifies how many times to move the cursor
@@ -2648,8 +2726,8 @@ function doQuoteSelection(pCurpos, pCurrentWordLength)
 //  pQuoteWinHeight: The height of the quote window
 //  pQuoteWinWidth: The width of the quote window
 //  pQuoteBottomScreenLine: The bottommost screen line where quote lines are displayed
-function moveDownOneQuoteLine(pQuoteLinesIndex, pScreenLine, pQuoteWinHeight, pQuoteWinWidth,
-                               pQuoteBottomScreenLine)
+function moveDownOneQuoteLine(pQuoteLinesIndex, pScreenLine, pQuoteWinHeight,
+                               pQuoteWinWidth, pQuoteBottomScreenLine)
 {
    // Create the return object
    var returnObj = new Object();
@@ -3930,10 +4008,10 @@ function drawInitialCrossPostSelBoxBottomBorder(pBottomLeft, pWidth, pBorderColo
 {
   console.gotoxy(pBottomLeft);
   console.print(pBorderColor + LOWER_LEFT_SINGLE + RIGHT_T_SINGLE +
-                "nhcb, cb, cNy)bext, cPy)brev, cFy)birst, cLy)bast, cEntery=b"
+                "nhcb, cb, cPgUpb, cPgDnb, cFy)birst, cLy)bast, cEntery=b"
                 + (pMsgSubs ? "Toggle" : "Select") + ", cCtrl-Cnc/hQy=bEnd, c?y=bHelpn"
                 + pBorderColor + LEFT_T_SINGLE);
-  len = pWidth - 73;
+  len = pWidth - 71;
   for (var i = 0; i < len; ++i)
     console.print(HORIZONTAL_SINGLE);
   console.print(LOWER_RIGHT_SINGLE);
@@ -4049,8 +4127,6 @@ function doCrossPosting(pOriginalCurpos)
     // write the "Choose group" text
     console.gotoxy(pSelBoxUpperLeft.x+17, pSelBoxUpperLeft.y);
     console.print("n" + gConfigSettings.genColors.listBoxBorderText + "Choose group");
-    //Choose group
-    //Areas in <xxxxx>
     // Re-write the border characters to overwrite the message group name
     grpDesc = msg_area.grp_list[pGrpIndex].description.substr(0, pSelBoxInnerWidth-25);
     // Write the updated border character(s)
@@ -4152,7 +4228,7 @@ function doCrossPosting(pOriginalCurpos)
     pageNum = calcPageNum(topMsgGrpIndex, selBoxInnerHeight);
 
     // Get a key from the user (upper-case) and take action based upon it.
-    userInput = getUserKey(K_UPPER|K_NOCRLF|K_NOSPIN, gConfigSettings);
+    userInput = getKeyWithESCChars(K_UPPER|K_NOCRLF|K_NOSPIN, gConfigSettings);
     switch (userInput)
     {
       case KEY_UP: // Move up one message group in the list
@@ -4256,7 +4332,7 @@ function doCrossPosting(pOriginalCurpos)
             console.gotoxy(curpos);
          }
          break;
-      case 'N': // Go to the next page
+      case KEY_PAGE_DOWN: // Go to the next page
          var nextPageTopIndex = topMsgGrpIndex + numItemsPerPage;
          if (nextPageTopIndex < msg_area.grp_list.length)
          {
@@ -4274,7 +4350,7 @@ function doCrossPosting(pOriginalCurpos)
             console.gotoxy(curpos);
          }
          break;
-      case 'P': // Go to the previous page
+      case KEY_PAGE_UP: // Go to the previous page
          var prevPageTopIndex = topMsgGrpIndex - numItemsPerPage;
          if (prevPageTopIndex >= 0)
          {
@@ -4343,7 +4419,7 @@ function doCrossPosting(pOriginalCurpos)
 
          // Update the Enter action text in the bottom border to say "Select"
          // (instead of "Toggle").
-         console.gotoxy(selBoxUpperLeft.x+43, selBoxLowerRight.y);
+         console.gotoxy(selBoxUpperLeft.x+41, selBoxLowerRight.y);
          console.print("nhbSelect");
          // Refresh the top border of the selection box, refresh the list of
          // message groups in the box, and move the cursor back to its original
@@ -4419,7 +4495,7 @@ function doCrossPosting(pOriginalCurpos)
                }
                // Update the Enter action text in the bottom border to say "Select"
                // (instead of "Toggle").
-               console.gotoxy(selBoxUpperLeft.x+43, selBoxLowerRight.y);
+               console.gotoxy(selBoxUpperLeft.x+41, selBoxLowerRight.y);
                console.print("nhbSelect");
                // Refresh the top border of the selection box
                reWriteInitialTopBorderText(selBoxUpperLeft, selBoxInnerWidth, chosenGrpIndex);
@@ -4689,7 +4765,7 @@ function crossPosting_selectSubBoardInGrp(pGrpIndex, pSelBoxUpperLeft, pSelBoxLo
 
   // Update the Enter action text in the bottom border to say "Toggle"
   // (instead of "Select").
-  console.gotoxy(pSelBoxUpperLeft.x+43, pSelBoxLowerRight.y);
+  console.gotoxy(pSelBoxUpperLeft.x+41, pSelBoxLowerRight.y);
   console.print("nhbToggle");
 
   // Variables for keeping track of the message group/area list
@@ -4727,7 +4803,7 @@ function crossPosting_selectSubBoardInGrp(pGrpIndex, pSelBoxUpperLeft, pSelBoxLo
     pageNum = calcPageNum(topMsgSubIndex, pSelBoxInnerHeight);
 
     // Get a key from the user (upper-case) and take action based upon it.
-    userInput = getUserKey(K_UPPER|K_NOCRLF|K_NOSPIN, gConfigSettings);
+    userInput = getKeyWithESCChars(K_UPPER|K_NOCRLF|K_NOSPIN, gConfigSettings);
     switch (userInput)
     {
       case KEY_UP: // Move up one message sub-board in the list
@@ -4839,7 +4915,7 @@ function crossPosting_selectSubBoardInGrp(pGrpIndex, pSelBoxUpperLeft, pSelBoxLo
             console.gotoxy(curpos);
          }
          break;
-      case 'N': // Go to the next page
+      case KEY_PAGE_DOWN: // Go to the next page
          var nextPageTopIndex = topMsgSubIndex + numItemsPerPage;
          if (nextPageTopIndex < msg_area.grp_list[pGrpIndex].sub_list.length)
          {
@@ -4857,7 +4933,7 @@ function crossPosting_selectSubBoardInGrp(pGrpIndex, pSelBoxUpperLeft, pSelBoxLo
             console.gotoxy(curpos);
          }
          break;
-      case 'P': // Go to the previous page
+      case KEY_PAGE_UP: // Go to the previous page
          var prevPageTopIndex = topMsgSubIndex - numItemsPerPage;
          if (prevPageTopIndex >= 0)
          {
@@ -4946,7 +5022,7 @@ function crossPosting_selectSubBoardInGrp(pGrpIndex, pSelBoxUpperLeft, pSelBoxLo
          break;
       case '?': // Display cross-post help
          displayCrossPostHelp(pSelBoxUpperLeft, pSelBoxLowerRight);
-         console.gotoxy(pSelBoxUpperLeft.x+1, pSelBoxLowerRight.y);
+         console.gotoxy(pSelBoxUpperLeft.x+1, pSelBoxLowerRight.y-1);
          console.pause();
          ListScreenfulOfMsgSubs(pGrpIndex, topMsgSubIndex, selectedMsgSubIndex,
                          pSelBoxUpperLeft.y+1, pSelBoxUpperLeft.x+1, pSelBoxLowerRight.y-1,
