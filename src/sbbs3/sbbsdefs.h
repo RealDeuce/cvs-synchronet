@@ -2,7 +2,7 @@
 
 /* Synchronet constants, macros, and structure definitions */
 
-/* $Id$ */
+/* $Id: sbbsdefs.h,v 1.190 2014/03/13 07:17:32 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -50,10 +50,10 @@
 /* Constants */
 /*************/
 
-#define VERSION 	"3.16"  /* Version: Major.minor  */
-#define REVISION	'a'     /* Revision: lowercase letter */
-#define VERSION_NUM	(31600	 + (tolower(REVISION)-'a'))
-#define VERSION_HEX	(0x31600 + (tolower(REVISION)-'a'))
+#define VERSION 	"3.17-CoA"  /* Version: Major.minor  */
+#define REVISION	'!'     /* Revision: lowercase letter */
+#define VERSION_NUM	(31700	 + (tolower(REVISION)-'a'))
+#define VERSION_HEX	(0x31700 + (tolower(REVISION)-'a'))
 
 #define VERSION_NOTICE		"Synchronet BBS for "PLATFORM_DESC\
 								"  Version " VERSION

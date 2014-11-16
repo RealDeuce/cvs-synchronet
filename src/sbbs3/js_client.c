@@ -2,7 +2,7 @@
 
 /* Synchronet JavaScript "Client" Object */
 
-/* $Id$ */
+/* $Id: js_client.c,v 1.25 2013/02/07 00:49:49 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -51,14 +51,14 @@ enum {
 
 #ifdef BUILD_JSDOCS
 	static char* client_prop_desc[] = {
-	 "client's IP address (in dotted-decimal format)"
+	 "instance of <a href=#Socket>Socket class</a> representing client's TCP/IP connection"
+	,"client's IP address (in dotted-decimal format)"
 	,"client's host name (up to 64 characters)"
 	,"client's TCP or UDP port number"
 	,"date/time of initial connection (in time_t format)"
 	,"protocol description (e.g. 'Telnet', 'FTP', etc.)"
 	,"user's name/alias (if logged in)"
 	/* this next one must be last */
-	,"instance of <a href=#Socket>Socket class</a> representing client's TCP/IP connection"
 	,NULL
 	};
 #endif

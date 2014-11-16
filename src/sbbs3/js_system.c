@@ -2,7 +2,7 @@
 
 /* Synchronet JavaScript "system" Object */
 
-/* $Id$ */
+/* $Id: js_system.c,v 1.157 2014/08/19 01:14:24 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -1206,7 +1206,7 @@ js_hacklog(JSContext *cx, uintN argc, jsval *arglist)
 	char*		user=NULL;
 	char*		text=NULL;
 	char*		host=NULL;
-	SOCKADDR_IN	addr;
+	union xp_sockaddr	addr;
 	scfg_t*		cfg;
 	jsrefcount	rc;
 	BOOL		ret;
@@ -1220,10 +1220,10 @@ js_hacklog(JSContext *cx, uintN argc, jsval *arglist)
 	for(i=0;i<argc;i++) {
 		if(JSVAL_IS_NUMBER(argv[i])) {
 			JS_ValueToInt32(cx,argv[i],&i32);
-			if(addr.sin_addr.s_addr==0)
-				addr.sin_addr.s_addr=i32;
+			if(addr.in.sin_addr.s_addr==0)
+				addr.in.sin_addr.s_addr=i32;
 			else
-				addr.sin_port=(ushort)i32;
+				addr.in.sin_port=(ushort)i32;
 			continue;
 		}
 		if(!JSVAL_IS_STRING(argv[i]))

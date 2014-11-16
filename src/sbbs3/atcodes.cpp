@@ -2,7 +2,7 @@
 
 /* Synchronet "@code" functions */
 
-/* $Id$ */
+/* $Id: atcodes.cpp,v 1.62 2011/11/13 01:17:03 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -635,11 +635,8 @@ const char* sbbs_t::atcode(char* sp, char* str, size_t maxlen)
 	if(!strcmp(sp,"CID") || !strcmp(sp,"IP"))
 		return(cid);
 
-	if(!strcmp(sp,"LOCAL-IP")) {
-		struct in_addr in_addr;
-		in_addr.s_addr=local_addr;
-		return(inet_ntoa(in_addr));
-	}
+	if(!strcmp(sp,"LOCAL-IP"))
+		return(local_addr);
 
 	if(!strcmp(sp,"CRLF"))
 		return("\r\n");
