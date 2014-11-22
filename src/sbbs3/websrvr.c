@@ -2,7 +2,7 @@
 
 /* Synchronet Web Server */
 
-/* $Id: websrvr.c,v 1.576 2014/11/03 01:48:22 rswindell Exp $ */
+/* $Id: websrvr.c,v 1.577 2014/11/20 05:13:39 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -48,8 +48,6 @@
  * 
  */
 
-//#define ONE_JS_RUNTIME
-
 /* Headers for CGI stuff */
 #if defined(__unix__)
 	#include <sys/wait.h>		/* waitpid() */
@@ -87,7 +85,9 @@ static const char*	error_302="302 Moved Temporarily";
 static const char*	error_404="404 Not Found";
 static const char*	error_416="416 Requested Range Not Satisfiable";
 static const char*	error_500="500 Internal Server Error";
+static const char*	error_503="503 Service Unavailable\r\nConnection: close\r\nContent-Length: 0\r\n\r\n";
 static const char*	unknown="<unknown>";
+static int len_503 = 0;
 
 #define TIMEOUT_THREAD_WAIT		60		/* Seconds */
 #define MAX_REQUEST_LINE		1024	/* NOT including terminator */
@@ -4735,7 +4735,6 @@ static BOOL js_setup(http_session_t* session)
 {
 	JSObject*	argv;
 
-#ifndef ONE_JS_RUNTIME
 	if(session->js_runtime == NULL) {
 		lprintf(LOG_DEBUG,"%04d JavaScript: Creating runtime: %lu bytes"
 			,session->socket,startup->js.max_bytes);
@@ -4745,7 +4744,6 @@ static BOOL js_setup(http_session_t* session)
 			return(FALSE);
 		}
 	}
-#endif
 
 	if(session->js_cx==NULL) {	/* Context not yet created, create it now */
 		/* js_initcx() begins a context */
@@ -5512,13 +5510,11 @@ void http_session_thread(void* arg)
 		session.js_cx=NULL;
 	}
 
-#ifndef ONE_JS_RUNTIME
 	if(session.js_runtime!=NULL) {
 		lprintf(LOG_DEBUG,"%04d JavaScript: Destroying runtime",socket);
 		jsrt_Release(session.js_runtime);
 		session.js_runtime=NULL;
 	}
-#endif
 
 #ifdef _WIN32
 	if(startup->hangup_sound[0] && !(startup->options&BBS_OPT_MUTE)) 
@@ -5611,7 +5607,7 @@ const char* DLLCALL web_ver(void)
 
 	DESCRIBE_COMPILER(compiler);
 
-	sscanf("$Revision: 1.576 $", "%*s %s", revision);
+	sscanf("$Revision: 1.577 $", "%*s %s", revision);
 
 	sprintf(ver,"%s %s%s  "
 		"Compiled %s %s with %s"
@@ -5752,9 +5748,7 @@ void DLLCALL web_server(void* arg)
 	struct in_addr	iaddr;
 	void			*acc_type;
 	char			ssl_estr[SSL_ESTR_LEN];
-#ifdef ONE_JS_RUNTIME
-	JSRuntime*      js_runtime;
-#endif
+	struct timespec	sem_timeout;
 
 	startup=(web_startup_t*)arg;
 
@@ -5787,8 +5781,8 @@ void DLLCALL web_server(void* arg)
 	if(startup->default_auth_list[0]==0)	SAFECOPY(startup->default_auth_list,WEB_DEFAULT_AUTH_LIST);
 	if(startup->cgi_dir[0]==0)				SAFECOPY(startup->cgi_dir,WEB_DEFAULT_CGI_DIR);
 	if(startup->default_cgi_content[0]==0)	SAFECOPY(startup->default_cgi_content,WEB_DEFAULT_CGI_CONTENT);
-	if(startup->max_inactivity==0) 			startup->max_inactivity=120; /* seconds */
-	if(startup->max_cgi_inactivity==0) 		startup->max_cgi_inactivity=120; /* seconds */
+	if(startup->max_inactivity==0) 			startup->max_inactivity=WEB_DEFAULT_MAX_INACTIVITY; /* seconds */
+	if(startup->max_cgi_inactivity==0) 		startup->max_cgi_inactivity=WEB_DEFAULT_MAX_CGI_INACTIVITY; /* seconds */
 	if(startup->sem_chk_freq==0)			startup->sem_chk_freq=2; /* seconds */
 	if(startup->js.max_bytes==0)			startup->js.max_bytes=JAVASCRIPT_MAX_BYTES;
 	if(startup->js.cx_stack==0)				startup->js.cx_stack=JAVASCRIPT_CONTEXT_STACK;
@@ -5946,21 +5940,6 @@ void DLLCALL web_server(void* arg)
 			_beginthread(http_logging_thread, 0, startup->logfile_base);
 		}
 
-#ifdef ONE_JS_RUNTIME
-	    if(js_runtime == NULL) {
-    	    lprintf(LOG_DEBUG,"JavaScript: Creating runtime: %lu bytes"
-        	    ,startup->js.max_bytes);
-
-    	    if((js_runtime=jsrt_GetNew(startup->js.max_bytes, 0, __FILE__, __LINE__))==NULL) {
-        	    lprintf(LOG_ERR,"!ERROR creating JavaScript runtime");
-				/* Sleep 15 seconds then try again */
-				/* ToDo: Something better should be used here. */
-				SLEEP(15000);
-				continue;
-        	}
-    	}
-#endif
-
 		/* Setup recycle/shutdown semaphore file lists */
 		shutdown_semfiles=semfile_list_init(scfg.ctrl_dir,"shutdown","web");
 		recycle_semfiles=semfile_list_init(scfg.ctrl_dir,"recycle","web");
@@ -6023,7 +6002,6 @@ void DLLCALL web_server(void* arg)
 				/* FREE()d at the start of the session thread */
 				if((session=malloc(sizeof(http_session_t)))==NULL) {
 					lprintf(LOG_CRIT,"!ERROR allocating %u bytes of memory for http_session_t", sizeof(http_session_t));
-					mswait(3000);
 					continue;
 				}
 				memset(session, 0, sizeof(http_session_t));
@@ -6061,10 +6039,12 @@ void DLLCALL web_server(void* arg)
 			if(startup->max_clients && protected_uint32_value(active_clients)>=startup->max_clients) {
 				lprintf(LOG_WARNING,"%04d !MAXIMUM CLIENTS (%d) reached, access denied"
 					,client_socket, startup->max_clients);
-				mswait(3000);
+				if (!len_503)
+					len_503 = strlen(error_503);
+				sendsocket(client_socket, error_503, len_503);
 				close_socket(&client_socket);
 				continue;
-			}
+            }
 
 			host_port=inet_addrport(&client_addr);
 
@@ -6084,10 +6064,6 @@ void DLLCALL web_server(void* arg)
 			session->js_callback.limit=startup->js.time_limit;
 			session->js_callback.gc_interval=startup->js.gc_interval;
 			session->js_callback.yield_interval=startup->js.yield_interval;
-#ifdef ONE_JS_RUNTIME
-			session->js_runtime=js_runtime;
-#endif
-
 			pthread_mutex_unlock(&session->struct_filled);
 			session=NULL;
 			served++;
@@ -6130,14 +6106,6 @@ void DLLCALL web_server(void* arg)
 				mswait(100);
 			}
 		}
-
-#ifdef ONE_JS_RUNTIME
-    	if(js_runtime!=NULL) {
-        	lprintf(LOG_DEBUG,"JavaScript: Destroying runtime");
-        	jsrt_Release(js_runtime);
-    	    js_runtime=NULL;
-	    }
-#endif
 
 		cleanup(0);
 

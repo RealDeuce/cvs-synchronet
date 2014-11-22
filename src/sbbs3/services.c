@@ -2,7 +2,7 @@
 
 /* Synchronet Services */
 
-/* $Id: services.c,v 1.274 2014/03/14 08:25:46 rswindell Exp $ */
+/* $Id: services.c,v 1.275 2014/11/18 06:11:30 deuce Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -789,6 +789,10 @@ js_initcx(JSRuntime* js_runtime, SOCKET sock, service_client_t* service_client, 
 
 		/* COM Class */
 		if(js_CreateCOMClass(js_cx, *glob)==NULL)
+			break;
+
+		/* CryptContext Class */
+		if(js_CreateCryptContextClass(js_cx, *glob)==NULL)
 			break;
 
 		/* user-specific objects */
@@ -1625,7 +1629,7 @@ const char* DLLCALL services_ver(void)
 
 	DESCRIBE_COMPILER(compiler);
 
-	sscanf("$Revision: 1.274 $", "%*s %s", revision);
+	sscanf("$Revision: 1.275 $", "%*s %s", revision);
 
 	sprintf(ver,"Synchronet Services %s%s  "
 		"Compiled %s %s with %s"

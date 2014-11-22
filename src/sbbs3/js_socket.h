@@ -28,7 +28,7 @@ extern "C" {
 
 extern int cryptInitialized;
 
-int do_cryptInit(void);
+DLLEXPORT int DLLCALL do_cryptInit(void);
 
 #ifdef __cplusplus
 }

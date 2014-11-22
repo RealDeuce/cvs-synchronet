@@ -75,7 +75,7 @@ static int do_cryptAttribute(const CRYPT_CONTEXT session, CRYPT_ATTRIBUTE_TYPE a
 	return ret;
 }
 
-int do_cryptInit(void)
+int DLLCALL do_cryptInit(void)
 {
 	int ret;
 
