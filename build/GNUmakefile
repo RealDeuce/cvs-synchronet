@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.29 2014/08/22 10:34:39 deuce Exp $
+# $Id: GNUmakefile,v 1.30 2014/11/23 06:55:42 deuce Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
@@ -76,6 +76,7 @@ $(CRYPTLIB_BUILD): $(3RDP_ROOT)$(DIRSEP)dist/cryptlib.zip $(3RDP_ROOT)$(DIRSEP)b
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < cl-mingw32-static.patch
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < cl-ranlib.patch
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < cl-tls-psk-userfix.patch
+	$(QUIET)patch -p0 -d $(CRYPT_SRC) < cl-vcxproj.patch
 ifeq ($(CC),mingw32-gcc)
 	$(QUIET)cd $(CRYPT_SRC) && env - PATH=$(PATH) CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) make directories
 	$(QUIET)cd $(CRYPT_SRC) && env - PATH=$(PATH) CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) make toolscripts
