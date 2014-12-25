@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.30 2014/11/23 06:55:42 deuce Exp $
+# $Id: GNUmakefile,v 1.31 2014/12/25 21:35:46 deuce Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
@@ -69,6 +69,7 @@ $(CRYPTLIB_BUILD): $(3RDP_ROOT)$(DIRSEP)dist/cryptlib.zip $(3RDP_ROOT)$(DIRSEP)b
 	@echo Creating $@ ...
 	$(QUIET)-rm -rf $(CRYPT_SRC)/*
 	$(QUIET)unzip -oa $(3RDPDISTDIR)$(DIRSEP)cryptlib.zip -d $(CRYPT_SRC)
+	$(QUIET)perl -pi.bak -e 's/\r//' $(CRYPT_SRC)/crypt32.vcxproj
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < random_exit.patch
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < SSL-fix.patch
 	$(QUIET)patch -p0 -d $(CRYPT_SRC) < Dynamic-linked-static-lib.patch
