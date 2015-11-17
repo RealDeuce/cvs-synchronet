@@ -1,4 +1,4 @@
-/* $Id: savemsg.ssjs,v 1.30 2006/06/08 23:39:17 rswindell Exp $ */
+/* $Id: savemsg.ssjs,v 1.31 2015/11/17 08:10:42 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -25,9 +25,11 @@ if(sub!='mail')  {
 }
 else {
 	hdrs.to_net_type=netaddr_type(http_request.query.to);
-	if(hdrs.to_net_type!=NET_NONE)
+	if(hdrs.to_net_type!=NET_NONE) {
+		if(user.security.restrictions&UFLAG_M)
+			error("You do not have permission to send netmail");
 		hdrs.to_net_addr=http_request.query.to;
-	else {
+	} else {
 		var usr=system.matchuser(http_request.query.to);
 		if(usr!=0)
 			hdrs.to_ext=usr;
