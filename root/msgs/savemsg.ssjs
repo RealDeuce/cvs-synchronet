@@ -1,4 +1,4 @@
-/* $Id: savemsg.ssjs,v 1.32 2015/11/23 08:46:08 rswindell Exp $ */
+/* $Id: savemsg.ssjs,v 1.33 2015/12/03 04:33:18 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -30,7 +30,7 @@ else {
 		if(user.security.restrictions&UFLAG_M)
 			error("You do not have permission to send netmail");
         var at = to.indexOf('@');
-        if(at > 0) {
+        if(hdrs.to_net_type!=NET_INTERNET && at > 0) {
             hdrs.to_net_addr = to.slice(at + 1);
             to = to.slice(0, at);
         } else
