@@ -1,4 +1,4 @@
-/* $Id: reply.ssjs,v 1.17 2006/03/04 00:20:59 deuce Exp $ */
+/* $Id: reply.ssjs,v 1.18 2016/02/18 10:15:36 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -44,12 +44,16 @@ template.subject=hdr.subject;
 if(template.subject.search(/^re:\s+/i)==-1)
 	template.subject='Re: '+template.subject;
 if(sub=='mail') {
-	if(hdr.replyto_net_addr!=undefined && hdr.replyto_net_addr != '')
+	if(hdr.replyto_net_addr!=undefined && hdr.replyto_net_addr != '') {
 		template.from=hdr.replyto_net_addr;
-	else {
-		if(hdr.from_net_addr != undefined && hdr.from_net_addr != '')
+        if(template.from.indexOf('@') < 0)
+            template.from=hdr.replyto+'@'+hdr.replyto_net_addr;
+	} else {
+		if(hdr.from_net_addr != undefined && hdr.from_net_addr != '') {
 			template.from=hdr.from_net_addr;
-		else
+            if(template.from.indexOf('@') < 0)
+                template.from=hdr.from+'@'+hdr.from_net_addr;
+		} else
 			template.from=hdr.from;
 	}
 }
