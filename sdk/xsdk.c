@@ -2,13 +2,13 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.39 2009/01/08 22:32:46 deuce Exp $ */
+/* $Id: xsdk.c,v 1.40 2016/08/11 22:08:49 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
  * @format.use-tabs true	(see http://www.synchro.net/ptsc_hdr.html)		*
  *																			*
- * Copyright 2008 Rob Swindell - http://www.synchro.net/copyright.html		*
+ * Copyright Rob Swindell - http://www.synchro.net/copyright.html			*
  *																			*
  * This library is free software; you can redistribute it and/or			*
  * modify it under the terms of the GNU Lesser General Public License		*
@@ -2253,7 +2253,9 @@ void xsdk_getnodedat(int number, node_t *node, char lockit)
 			continue; }
 		if(read(nodefile,node,sizeof(node_t))==sizeof(node_t))
 			break;
-		count++; }
+		count++; 
+		mswait(10);
+	}
 	if(count==LOOP_NODEDAB)
 		bputs("\7Error unlocking and reading node.dab\r\n");
 }
