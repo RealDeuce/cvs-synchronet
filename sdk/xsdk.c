@@ -2,7 +2,7 @@
 
 /* Synchronet External Program Software Development Kit	*/
 
-/* $Id: xsdk.c,v 1.40 2016/08/11 22:08:49 rswindell Exp $ */
+/* $Id: xsdk.c,v 1.41 2016/08/13 18:57:00 rswindell Exp $ */
 
 /****************************************************************************
  * @format.tab-size 4		(Plain Text/Source Code File Header)			*
@@ -2257,7 +2257,7 @@ void xsdk_getnodedat(int number, node_t *node, char lockit)
 		mswait(10);
 	}
 	if(count==LOOP_NODEDAB)
-		bputs("\7Error unlocking and reading node.dab\r\n");
+		bprintf("\7Error %d %s reading node %u in node.dab\r\n", errno, lockit ? "unlocking and " : "", number+1);
 }
 
 /****************************************************************************/
@@ -2273,8 +2273,9 @@ void xsdk_putnodedat(int number, node_t node)
 	lseek(nodefile,(long)number*sizeof(node_t),SEEK_SET);
 	if(write(nodefile,&node,sizeof(node_t))!=sizeof(node_t)) {
 		unlock(nodefile,(long)number*sizeof(node_t),sizeof(node_t));
-		bprintf("\7Error writing node.dab for node %u\r\n",number+1);
-		return; }
+		bprintf("\7Error %d writing node.dab for node %u\r\n", errno, number+1);
+		return; 
+	}
 	unlock(nodefile,(long)number*sizeof(node_t),sizeof(node_t));
 }
 
