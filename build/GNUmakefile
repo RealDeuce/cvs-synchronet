@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.33 2015/03/21 04:35:07 deuce Exp $
+# $Id: GNUmakefile,v 1.34 2016/11/11 09:12:33 rswindell Exp $
 
 SRC_ROOT = ../../src
 # Cross platform/compiler definitions
@@ -10,6 +10,7 @@ ifdef DEBUG
 else
  JS_CONFIGURE_ARGS += --enable-optimize=-O3
 endif
+JS_CONFIGURE_ENV += 'CXXFLAGS=-std=gnu++98'
 ifeq ($(shell perl -e 'print "$(machine)"=~/\.arm/?"YES":"NO"'),YES)
  ifeq ($(shell perl -e 'print "$(machine)"=~/\.armv[1-6]/?"YES":"NO"'),YES)
   JS_CONFIGURE_ARGS += --with-cpu-arch=armv5te
