@@ -1,4 +1,4 @@
-/* $Id: subs.ssjs,v 1.22 2006/02/25 21:41:08 runemaster Exp $ */
+/* $Id: subs.ssjs,v 1.23 2016/11/24 11:34:12 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -43,14 +43,17 @@ for(s in msg_area.grp[grp].sub_list) {
 	msgbase = new MsgBase(msg_area.grp[grp].sub_list[s].code);
 	if(msgbase.open()) {
 		var lastdate="N/A";
-        msgs=msgbase.total_msgs;
-		if(msgs != undefined && msgs > 0) {
-			lastdate=msgbase.get_msg_index(true,msgs-1);
-			if(lastdate!=undefined && lastdate != null) {
-				lastdate=lastdate.time;
-				if(lastdate>0)
-					lastdate=strftime("%b-%d-%y %H:%M",lastdate);
+        var msgs=msgbase.total_msgs;
+		while(msgs != undefined && msgs > 0) {
+			var lastmsg=msgbase.get_msg_index(true,msgs-1);
+			if(lastmsg!=undefined && lastmsg != null) {
+				var date=lastmsg.time;
+				if(date>0) {
+					lastdate=strftime("%b-%d-%y %H:%M",date);
+					break;
+				}
 			}
+			msgs--;
         }
         msgbase.close();
         thissub.messages=msgs;
