@@ -1,4 +1,4 @@
-// $Id: DDMsgReader.js,v 1.91 2017/03/13 04:08:52 nightfox Exp $
+// $Id: DDMsgReader.js,v 1.92 2017/04/06 02:41:21 nightfox Exp $
 
 /* This is a message reader/lister door for Synchronet.  Features include:
  * - Listing messages in the user's current message area with the ability to
@@ -301,8 +301,8 @@ if (system.version_num < 31500)
 }
 
 // Reader version information
-var READER_VERSION = "1.17 Beta 34";
-var READER_DATE = "2017-03-12";
+var READER_VERSION = "1.17 Beta 35";
+var READER_DATE = "2017-04-05";
 
 // Keyboard key codes for displaying on the screen
 var UP_ARROW = ascii(24);
@@ -12452,7 +12452,7 @@ function DigDistMsgReader_GetMsgInfoForEnhancedReader(pMsgHdr, pWordWrap, pDeter
 		//if (lastANSIIdx <= 160)
 		// If less than 6% of the message is ANSI codes, then consider those ANSI
 		// codes unwanted and convert them to Synchronet and remove unwanted ANSI.
-		if (percentANSICodes < 6)
+		if (percentANSICodes < 7)
 		{
 			msgTextAltered = cvtANSIToSyncAndRemoveUnwantedANSI(msgTextAltered);
 			//msgTextAltered = removeANSIFromStr(msgTextAltered, gANSIRegexes);
