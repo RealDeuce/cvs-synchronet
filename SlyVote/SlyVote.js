@@ -1,4 +1,4 @@
-// $Id: SlyVote.js,v 1.32 2017/08/04 02:35:15 nightfox Exp $
+// $Id: SlyVote.js,v 1.33 2017/08/04 03:27:48 nightfox Exp $
 
 /* This is a voting door for Synchronet.  It requires Synchronet 3.17 or higher, since
  * it makes use of the new voting features added to the message bases in Synchronet
@@ -1460,11 +1460,11 @@ function GetVoteTopicHdrs(pSubBoardCode, pCheckIfUserVoted)
 	if (msgbase.open())
 	{
 		var msgHdrs = msgbase.get_all_msg_headers(true);
-		retObj.pollsExist = (Object.keys(msgHdrs).length > 0);
 		for (var prop in msgHdrs)
 		{
 			if ((msgHdrs[prop].type & MSG_TYPE_POLL) == MSG_TYPE_POLL)
 			{
+				retObj.pollsExist = true;
 				if (pCheckIfUserVoted)
 				{
 					if (!HasUserVotedOnMsg(msgHdrs[prop].number, pSubBoardCode, msgbase, user))
