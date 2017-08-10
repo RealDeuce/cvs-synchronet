@@ -1,4 +1,4 @@
-//$Id: game.js,v 1.16 2015/03/03 22:34:43 mcmlxxix Exp $
+//$Id: game.js,v 1.17 2017/08/10 03:01:20 mcmlxxix Exp $
 /*
 	SYNCHRONET MAZE RACE 
 	A Javascript remake 
@@ -7,7 +7,7 @@
 	For Synchronet v3.15+
 	Matt Johnson(2008)
 */
-const VERSION="$Revision: 1.16 $".replace(/\$/g,'').split(' ')[1];
+const VERSION="$Revision: 1.17 $".replace(/\$/g,'').split(' ')[1];
 
 var oldpass=console.ctrlkey_passthru;
 var root=js.exec_dir;
@@ -105,7 +105,7 @@ function lobby() {
 		chatWindow.show_border=false;
 		chat.chatView = chatWindow;
 		chat.join("#mazerace");
-		profile=data.profiles[user.alias];
+		profile=data.profiles[user.alias.replace(/\./g,"_")];
 		menu.disable("L");
 		menu.disable("R");
 		menu.disable("D");
@@ -208,7 +208,7 @@ function lobby() {
 		}
 		if(readyToRace()) {
 			data.mazes[gnum] = client.read(game_id,"mazes." + gnum,1);
-			race(gnum);
+			race(gnum, profile);
 			leaveMaze();
 			menu.draw();
 		}
@@ -459,7 +459,7 @@ function lobby() {
 	main();
 	close();
 }
-function race(gameNumber)	{
+function race(gameNumber, profile)	{
 	
 	/* bitwise compass */
 	const N=1;
@@ -470,7 +470,7 @@ function race(gameNumber)	{
 	/* mazeplay variables */
 	var maze = data.mazes[gameNumber];
 	var game = data.games[gameNumber];
-	var player = maze.players[user.alias];
+	var player = maze.players[profile.name];
 
 	/* display frames */
 	var screen = new Frame(1,1,80,23,BG_BLACK | CYAN,frame);
@@ -554,6 +554,7 @@ function race(gameNumber)	{
 					var x = update.data.x+1;
 					var y = update.data.y+1;
 					maze.players[pName].frame.moveTo(x,y);
+					clearFog(p);
 				}
 				else if(p[0].toUpperCase() == "HEALTH") {
 					maze.players[pName].health = update.data;
@@ -705,9 +706,8 @@ function race(gameNumber)	{
 			game.winner = player.name;
 			data.storeRaceWinner(gameNumber,game.winner);
 		}
-		if(game.fog) {
+		if(game.fog)
 			fog.close();
-		}
 		end_time = Date.now();
 		game.raceTime = end_time - start_time;
 		data.storeRaceTime(gameNumber,game.raceTime,player.name);
