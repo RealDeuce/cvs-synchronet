@@ -1,4 +1,4 @@
-// $Id: SlyVote.js,v 1.42 2017/08/18 02:42:51 nightfox Exp $
+// $Id: SlyVote.js,v 1.43 2017/08/18 05:51:04 nightfox Exp $
 
 /* This is a voting door for Synchronet.  It requires Synchronet 3.17 or higher, since
  * it makes use of the new voting features added to the message bases in Synchronet
@@ -1790,6 +1790,7 @@ function ViewVoteResults(pSubBoardCode)
 								if (closePollWithOpenMsgbase(msgbase, pollMsgHdrs[currentMsgIdx].number))
 								{
 									pollMsgHdrs[currentMsgIdx].auxattr |= POLL_CLOSED;
+									++gSubBoardPollCountObj.numClosedPolls;
 									pollCloseMsg = "\1n\1cThis poll was successfully closed.";
 								}
 								else
