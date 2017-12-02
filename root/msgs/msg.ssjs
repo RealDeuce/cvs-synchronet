@@ -1,4 +1,4 @@
-/* $Id: msg.ssjs,v 1.52 2011/11/09 09:38:00 deuce Exp $ */
+/* $Id: msg.ssjs,v 1.53 2017/12/02 08:51:10 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -24,7 +24,7 @@ if(msgbase.open!=undefined && msgbase.open()==false) {
 /* Check author info if message base is local and display it */
 /*    on the new expanded message read page for new theme    */
 
-var hdr=msgbase.get_msg_header(false,m);
+var hdr=msgbase.get_msg_header(false,m, /* expand headers: */false);
 if(hdr==null)
 	error(msgbase.last_error);
 if(hdr.attr&MSG_DELETE)
