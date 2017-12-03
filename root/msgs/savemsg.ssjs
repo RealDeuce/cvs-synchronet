@@ -1,4 +1,4 @@
-/* $Id: savemsg.ssjs,v 1.33 2015/12/03 04:33:18 rswindell Exp $ */
+/* $Id: savemsg.ssjs,v 1.34 2017/12/03 21:24:09 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -113,7 +113,7 @@ if(!msgbase.save_msg(hdrs,client,body)) {
 if(hdrs.thread_orig!=undefined)  {
 	var orig_idx=msgbase.get_msg_index(false,hdrs.thread_orig);
 	if(idx_to_user(orig_idx)) {
-		var orig_hdrs=msgbase.get_msg_header(false,hdrs.thread_orig);
+		var orig_hdrs=msgbase.get_msg_header(false,hdrs.thread_orig, /* expand_fields: */false);
 		orig_hdrs.attr|=MSG_REPLIED;
 		msgbase.put_msg_header(false,hdrs.thread_orig,orig_hdrs);
 	}
