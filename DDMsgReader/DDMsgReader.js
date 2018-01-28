@@ -1,4 +1,4 @@
-// $Id: DDMsgReader.js,v 1.113 2018/01/28 06:42:13 nightfox Exp $
+// $Id: DDMsgReader.js,v 1.114 2018/01/28 06:50:14 nightfox Exp $
 
 /* This is a message reader/lister door for Synchronet.  Features include:
  * - Listing messages in the user's current message area with the ability to
@@ -1095,7 +1095,7 @@ function DigDistMsgReader(pSubBoardCode, pScriptArgs)
 		this.enhMsgHeaderLines.push(hdrLine2);
 		var hdrLine3 = "\1n\1h\1k" + VERTICAL_SINGLE + BLOCK1 + BLOCK2 + BLOCK3
 					 + "\1gF\1n\1grom\1h\1c: \1b@MSG_FROM_AND_FROM_NET-L";
-		numChars = console.screen_columns - 23;
+		numChars = console.screen_columns - 36;
 		for (var i = 0; i < numChars; ++i)
 			hdrLine3 += "#";
 		hdrLine3 += "@\1k" + VERTICAL_SINGLE;
