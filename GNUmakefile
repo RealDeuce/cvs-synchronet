@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.72 2018/02/28 03:16:21 rswindell Exp $
+# $Id: GNUmakefile,v 1.73 2018/02/28 03:39:41 rswindell Exp $
 # Global GNU makefile for Synchronet
 #
 # Usage:
@@ -30,6 +30,8 @@
 # NO_GTK = Don't build GTK-based sysop tools
 # X_PATH = /path/to/X (if not /usr/X11R6)
 
+# the magic bit:
+MKFLAGS += MAKEFLAGS=
 ifndef DEBUG
  ifndef RELEASE
   RELEASE	:=	1
