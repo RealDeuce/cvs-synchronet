@@ -1,4 +1,4 @@
-/* $Id: index.ssjs,v 1.34 2011/07/02 18:28:57 ree Exp $ */
+/* $Id: index.ssjs,v 1.35 2018/03/05 16:54:42 ree Exp $ */
 
 load("../web/lib/template.ssjs");
 
@@ -45,7 +45,7 @@ if(do_leftnav)
     if(host==undefined || !host.length)
         host = system.host_name;
 	  
-	template.additional_services ='[' + ("flash telnet".link("ftelnet.ssjs")) + '] ';
+	template.additional_services ='[' + ("web telnet".link("ftelnet.ssjs")) + '] ';
 	template.additional_services+='[' + ("java telnet".link("telnet/")) + '] ';
     template.additional_services+='[' + ("telnet".link("telnet://"+host +telnet_port)) + '] ';
     template.additional_services+='[' + ("rlogin".link("rlogin://"+host +rlogin_port)) + '] ';
