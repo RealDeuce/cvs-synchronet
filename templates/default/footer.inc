@@ -1,4 +1,4 @@
-<!-- $Id: footer.inc,v 1.11 2006/01/31 23:13:43 runemaster Exp $ -->
+<!-- $Id: footer.inc,v 1.12 2018/03/14 02:17:41 deuce Exp $ -->
 
 <!-- Begin Footer -->
 
@@ -25,7 +25,7 @@
         <td>
             <div align="right">
             <a href="http://validator.w3.org/check?uri=referer"><img
-            src="http://www.w3.org/Icons/valid-xhtml10" title="Valid XHTML 1.0!"
+            src="https://www.w3.org/Icons/valid-xhtml10" title="Valid XHTML 1.0!"
             alt="Valid XHTML 1.0!" height="31" width="88" border="0" /></a><br />
             </div>
         </td>
