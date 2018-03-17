@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.73 2018/02/28 03:39:41 rswindell Exp $
+# $Id: GNUmakefile,v 1.74 2018/03/17 05:44:29 deuce Exp $
 # Global GNU makefile for Synchronet
 #
 # Usage:
@@ -197,6 +197,7 @@ ifeq ($(INSTALL),UNIX)
 	fail
 else
 	@echo Installing to $(SBBSDIR)
+	$(INSBIN) $(SBBSDIR)/src/sbbs3/$(CCPRE).$(machine).exe.$(BUILDPATH)/showstat $(SBBSDIR)/exec/showstat
 	$(INSBIN) $(SBBSDIR)/src/sbbs3/$(CCPRE).$(machine).exe.$(BUILDPATH)/readsauce $(SBBSDIR)/exec/readsauce
 	$(INSBIN) $(SBBSDIR)/src/sbbs3/$(CCPRE).$(machine).exe.$(BUILDPATH)/dstsedit $(SBBSDIR)/exec/dstsedit
 	$(INSBIN) $(SBBSDIR)/src/sbbs3/$(CCPRE).$(machine).exe.$(BUILDPATH)/smbactiv $(SBBSDIR)/exec/smbactiv
