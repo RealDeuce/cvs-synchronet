@@ -1,4 +1,4 @@
-<!-- $Id: ftelnet_external.inc,v 1.4 2018/03/05 17:02:49 ree Exp $ -->
+<!-- $Id: ftelnet_external.inc,v 1.5 2018/03/18 20:30:51 ree Exp $ -->
 
 <td class="main" valign="top"><br />
     <br />
@@ -10,6 +10,7 @@
 	<div id="fTelnetContainer" class="fTelnetContainer"></div>
 	<script>document.write('<script src="//embed-v2.ftelnet.ca/js/ftelnet-loader.norip.noxfer.js?v=' + (new Date()).getTime() + '"><\/script>');</script>
 	<script>
+        var WSS = (location.protocol.toLowerCase() == 'https:');
 		var Options = new fTelnetOptions();
 		Options.BareLFtoCRLF = false;
 		Options.BitsPerSecond = 57600;
@@ -20,12 +21,13 @@
 		Options.ForceWss = false;
 		Options.Hostname = '@@HostName@@';
 		Options.LocalEcho = false;
-		Options.Port = @@Port@@;
+		Options.Port = (WSS ? @@WSSPort@@ : @@WSPort@@);
 		Options.RLoginClientUsername = '@@ClientUserName@@';
 		Options.RLoginServerUsername = '@@ServerUserName@@';
 		Options.RLoginTerminalType = '@@TerminalType@@';
 		Options.ScreenColumns = 80;
 		Options.ScreenRows = 25;
+        Options.WebSocketUrlPath = '/?Port=@@RLoginPort@@';
 		var fTelnet = new fTelnetClient('fTelnetContainer', Options);
 		fTelnet.Connect();
 	</script>
