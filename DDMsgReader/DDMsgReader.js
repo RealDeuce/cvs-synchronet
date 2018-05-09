@@ -1,4 +1,4 @@
-// $Id: DDMsgReader.js,v 1.119 2018/05/09 04:12:04 nightfox Exp $
+// $Id: DDMsgReader.js,v 1.120 2018/05/09 05:09:05 nightfox Exp $
 
 /* This is a message reader/lister door for Synchronet.  Features include:
  * - Listing messages in the user's current message area with the ability to
@@ -8561,8 +8561,7 @@ function DigDistMsgReader_ParseMsgAtCodes(pTextLine, pMsgHdr, pDisplayMsgNum, pD
 	// If the user is not the sysop and the message was posted anonymously,
 	// then replace the from name @-codes with "Anonymous".  Otherwise,
 	// replace the from name @-codes with the actual from name.
-	//if (!gIsSysop && ((pMsgHdr.attr & MSG_ANONYMOUS) == MSG_ANONYMOUS))
-	if (true && ((pMsgHdr.attr & MSG_ANONYMOUS) == MSG_ANONYMOUS))
+	if (!gIsSysop && ((pMsgHdr.attr & MSG_ANONYMOUS) == MSG_ANONYMOUS))
 	{
 		newTxtLine = newTxtLine.replace(/@MSG_FROM@/gi, "Anonymous")
 		                       .replace(/@MSG_FROM_AND_FROM_NET@/gi, "Anonymous")
