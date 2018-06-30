@@ -1,4 +1,4 @@
-/* $Id: msgs.ssjs,v 1.43 2011/11/09 09:38:00 deuce Exp $ */
+/* $Id: msgs.ssjs,v 1.44 2018/06/30 19:41:49 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 load("../web/lib/mime_decode.ssjs");
@@ -9,7 +9,7 @@ if(msgbase.open!=undefined && msgbase.open()==false) {
 
 var ShowMsgs=GET_ALL_MESSAGES;
 var MAX_NAME_LEN=25;
-var MAX_SUBJ_LEN=50;
+var MAX_SUBJ_LEN=70;
 
 if(file_exists(prefs_dir +format("%04d.html_prefs",user.number))) {
   prefsfile=new File(prefs_dir +format("%04d.html_prefs",user.number));
