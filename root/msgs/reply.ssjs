@@ -1,4 +1,4 @@
-/* $Id: reply.ssjs,v 1.18 2016/02/18 10:15:36 rswindell Exp $ */
+/* $Id: reply.ssjs,v 1.19 2018/08/20 13:46:33 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -81,10 +81,15 @@ if(sub=='mail') {
 }
 
 title="Reply to message";
-write_template("header.inc");
-load(topnav_html);
-load(leftnav_html);
+
+if(do_header)
+    write_template("header.inc");
+if(do_topnav)
+    load(topnav_html);
+if(do_leftnav)
+    load(leftnav_html);
 write_template("msgs/reply.inc");
-write_template("footer.inc");
+if(do_footer)
+    write_template("footer.inc");
 
 msgs_done();
