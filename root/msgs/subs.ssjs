@@ -1,4 +1,4 @@
-/* $Id: subs.ssjs,v 1.23 2016/11/24 11:34:12 rswindell Exp $ */
+/* $Id: subs.ssjs,v 1.24 2018/10/15 22:23:28 rswindell Exp $ */
 
 load("../web/lib/msgslib.ssjs");
 
@@ -27,6 +27,11 @@ else {
 	else
 		template.showall_toggle+='Yes">'+showall_subs_enable_html;
 	template.showall_toggle+='</a>';
+}
+if(!msg_area.grp[grp]) {
+    http_reply.status="404 Not Found";
+    write("<html><head><title>404 Error</title></head><body>Message group " + grp + " does not exist</body></html>");
+    exit();
 }
 template.title="Message Subs in Group: "+msg_area.grp[grp].description;
 
