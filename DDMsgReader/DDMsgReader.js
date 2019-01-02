@@ -1,4 +1,4 @@
-// $Id: DDMsgReader.js,v 1.123 2018/07/18 03:11:19 nightfox Exp $
+// $Id: DDMsgReader.js,v 1.124 2019/01/02 20:45:11 nightfox Exp $
 
 /* This is a message reader/lister door for Synchronet.  Features include:
  * - Listing messages in the user's current message area with the ability to
@@ -126,6 +126,11 @@
  *                              to another message area from the reader interface,
  *                              it now writes "Loading..." in case there are a
  *                              very large number of messages or sub-boards.
+ * 2019-01-02 Eric Oulashin     Version 1.17 (non-beta)
+ *                              Removed the "beta" status after the official release
+ *                              of Synchronet 3.17b.  Also, made use of
+ *                              file_cfgname() when finding the configuration file
+ *                              location.
  */
 
 // TODO: Support anonymous posts?  Bit values for sub[x].settings:
@@ -213,8 +218,8 @@ if (system.version_num < 31500)
 }
 
 // Reader version information
-var READER_VERSION = "1.17 Beta 63";
-var READER_DATE = "2018-07-17";
+var READER_VERSION = "1.17";
+var READER_DATE = "2019-01-02";
 
 // Keyboard key codes for displaying on the screen
 var UP_ARROW = ascii(24);
@@ -7357,11 +7362,11 @@ function DigDistMsgReader_ReadConfigFile()
 
 	// Open the main configuration file.  First look for it in the sbbs/mods
 	// directory, then sbbs/ctrl, then in the same directory as this script.
-	var cfgFilename = system.mods_dir + this.cfgFilename;
+	var cfgFilename = file_cfgname(system.mods_dir, this.cfgFilename);
 	if (!file_exists(cfgFilename))
-		cfgFilename = system.ctrl_dir + this.cfgFilename;
+		cfgFilename = file_cfgname(system.ctrl_dir, this.cfgFilename);
 	if (!file_exists(cfgFilename))
-		cfgFilename = gStartupPath + this.cfgFilename;
+		cfgFilename = file_cfgname(gStartupPath, this.cfgFilename);
 	var cfgFile = new File(cfgFilename);
 	if (cfgFile.open("r"))
 	{
