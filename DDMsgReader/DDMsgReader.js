@@ -1,4 +1,4 @@
-// $Id: DDMsgReader.js,v 1.126 2019/04/26 01:22:20 nightfox Exp $
+// $Id: DDMsgReader.js,v 1.127 2019/04/26 19:35:29 nightfox Exp $
 
 /* This is a message reader/lister door for Synchronet.  Features include:
  * - Listing messages in the user's current message area with the ability to
@@ -145,6 +145,9 @@
  * 2019-04-25 Eric Oulashin     Version 1.19
  *                              Updated to show message score values in the message list
  *                              if the terminal is wide enough (>= 86 characters)
+ * 2019-04-26 Eric Oulashin     Version 1.20
+ *                              Added configurable options for the message score colors
+ *                              for the message list
  */
 
 // TODO: Support anonymous posts?  Bit values for sub[x].settings:
@@ -232,8 +235,8 @@ if (system.version_num < 31500)
 }
 
 // Reader version information
-var READER_VERSION = "1.19";
-var READER_DATE = "2019-04-25";
+var READER_VERSION = "1.20";
+var READER_DATE = "2019-04-26";
 
 // Keyboard key codes for displaying on the screen
 var UP_ARROW = ascii(24);
@@ -7626,7 +7629,9 @@ function DigDistMsgReader_ReadConfigFile()
 						(setting == "enhReaderHelpLineBkgColor") || (setting == "enhReaderHelpLineGeneralColor") ||
 						(setting == "enhReaderHelpLineHotkeyColor") || (setting == "enhReaderHelpLineParenColor") ||
 						(setting == "hdrLineLabelColor") || (setting == "hdrLineValueColor") ||
-						(setting == "selectedMsgMarkColor"))
+						(setting == "selectedMsgMarkColor") || (setting ==  "msgListScoreColor") ||
+						(setting == "msgListToUserScoreColor") || (setting == "msgListFromUserScoreColor") ||
+						(setting == "msgListScoreHighlightColor"))
 					{
 						// Trim leading & trailing spaces from the value when
 						// setting a color.  Also, replace any instances of "\1"
