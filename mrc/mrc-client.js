@@ -1,4 +1,4 @@
-/* $Id: mrc-client.js,v 1.1 2019/04/24 15:13:03 echicken Exp $ */
+/* $Id: mrc-client.js,v 1.2 2019/04/29 16:47:43 echicken Exp $ */
 
 /**
  * Multi Relay Chat Client Module
@@ -228,7 +228,7 @@ function main() {
     while (!js.terminated && !break_loop) {
         session.cycle();
         user_input = inputline.getkey();
-        if (typeof user_input != 'undefined') {
+        if (typeof user_input == 'string') {
             if (input_state == 'chat') {
                 if (user_input.substring(0, 1) == '/') { // It's a command
                     cmd = user_input.split(' ');
