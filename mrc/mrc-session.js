@@ -1,4 +1,4 @@
-/* $Id: mrc-session.js,v 1.1 2019/04/24 15:13:03 echicken Exp $ */
+/* $Id: mrc-session.js,v 1.2 2019/05/04 04:59:06 echicken Exp $ */
 
 // Passes traffic between an mrc-connector.js server and a client application
 // See mrc-client.js for a bad example.
@@ -99,6 +99,7 @@ function MRC_Session(host, port, user, pass, alias) {
             } else if (msg.body.search(/just joined room/) > -1) {
                 send_command('USERLIST', 'ALL');
             }
+            emit('message', msg);
         }
     }
 
