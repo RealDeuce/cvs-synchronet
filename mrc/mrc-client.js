@@ -1,4 +1,4 @@
-/* $Id: mrc-client.js,v 1.4 2019/05/04 04:24:21 echicken Exp $ */
+/* $Id: mrc-client.js,v 1.5 2019/05/05 04:52:40 echicken Exp $ */
 
 /**
  * Multi Relay Chat Client Module
@@ -359,7 +359,7 @@ function main() {
         if (frames.top.cycle()) {
             frames.output_scroll.cycle();
             frames.nick_scroll.cycle();
-            console.gotoxy(console.screen_columns, console.screen_rows);
+            console.gotoxy(inputline.frame.__relations__.child[0].x, inputline.frame.y);
         }
         yield();
     }
