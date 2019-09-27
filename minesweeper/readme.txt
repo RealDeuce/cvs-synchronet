@@ -45,6 +45,12 @@ to 20. It's quite possible to "win" the game but not appear in the winners
 list depending on what other players have accomplished and the configured
 display threshold.
 
+Losers
+------
+Lost games are logged in an ever-growing line-delimited JSON file
+(losers.jsonl). The combined logs of local winners and losers is visible from
+within the game.
+
 Requirements
 ------------
 Tested with Synchronet v3.17c (in development). Older versions of Synchronet
@@ -97,19 +103,24 @@ Command-line arguments supported:
 
 "winners [num]"	- display list of top-[num] winners and exit
 "nocls"   		- don't clear the screen upon exit
-<level>   		- set the initial game difficulty level (1-5, don't prompt)
+<level>   		- set the initial game difficulty level (1-5)
 
 The ctrl/modopts.ini may contain a [minesweeper] section. The following
 options are supported (with default values):
     sub = syncdata
     timelimit = 60
+    timewarn = 5
     winners = 20
-    difficulty = 0
+    difficulty = 1
+    selector = 0
+    highlight = true
 
-If you do not want the user to be prompted to select a difficulty level when
-running the game, set the difficulty level in the modopts.ini file or on the
-command-line. The user can still change/choose a difficulty level when starting
-a new game.
+The user's choice of the following settings is saved to their user properties
+list and restored for future game plays:
+
+    difficulty
+    selector
+    highlight
 
 Upgrade
 -------
@@ -125,4 +136,4 @@ rename the data/minesweeper.jsonl to xtrn/minesweeper/winners.jsonl. If you
 don't care, the game will run fine and new winners will be added to the
 new/correct filename.
 
-$Id: readme.txt,v 1.2 2019/09/24 22:27:11 rswindell Exp $
+$Id: readme.txt,v 2.0 2019/09/27 03:01:45 rswindell Exp $
