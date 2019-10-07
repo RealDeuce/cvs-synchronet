@@ -116,7 +116,7 @@ options are supported (with default values):
     highlight = true
 
 The user's choice of the following settings is saved to their user properties
-list and restored for future game plays:
+file (data/user/*.ini) and used for future game plays:
 
     difficulty
     selector
@@ -136,4 +136,4 @@ rename the data/minesweeper.jsonl to xtrn/minesweeper/winners.jsonl. If you
 don't care, the game will run fine and new winners will be added to the
 new/correct filename.
 
-$Id: readme.txt,v 2.0 2019/09/27 03:01:45 rswindell Exp $
+$Id: readme.txt,v 2.1 2019/10/07 20:53:14 rswindell Exp $
