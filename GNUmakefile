@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.75 2019/07/03 20:59:41 rswindell Exp $
+# $Id: GNUmakefile,v 1.76 2020/03/23 03:52:02 rswindell Exp $
 # Global GNU makefile for Synchronet
 #
 # Usage:
@@ -148,7 +148,11 @@ binaries:	sbbs3 gtkuseredit gtkchat gtkmonitor gtkuserlist syncview sexpots
 externals:	sbj dpoker tbd
 
 sbbs3:	src $(SBBSDIR)/3rdp/dist
+ifeq ($(os),linux)
+	$(MAKE) -C $(SBBSDIR)/src/sbbs3 $(MKFLAGS) setcap
+else
 	$(MAKE) -C $(SBBSDIR)/src/sbbs3 $(MKFLAGS)
+endif
 
 sexpots:	src
 	$(MAKE) -C $(SBBSDIR)/src/sexpots $(MKFLAGS)
