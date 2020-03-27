@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.76 2020/03/23 03:52:02 rswindell Exp $
+# $Id: GNUmakefile,v 1.77 2020/03/27 01:52:33 rswindell Exp $
 # Global GNU makefile for Synchronet
 #
 # Usage:
@@ -141,7 +141,10 @@ ifndef NO_GTK
  endif
 endif
 
-all: binaries baja externals
+all: localdefs binaries baja externals
+
+localdefs: src
+	echo $(MKFLAGS) | tr ' ' '\n' > $(SBBSDIR)/src/build/localdefs.mk
 
 binaries:	sbbs3 gtkuseredit gtkchat gtkmonitor gtkuserlist syncview sexpots
 
