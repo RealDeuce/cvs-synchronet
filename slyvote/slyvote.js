@@ -1,4 +1,4 @@
-// $Id: slyvote.js,v 1.12 2020/04/04 22:08:16 nightfox Exp $
+// $Id: slyvote.js,v 1.13 2020/04/05 21:04:41 nightfox Exp $
 
 /* This is a voting door for Synchronet.  It requires Synchronet 3.17 or higher, since
  * it makes use of the new voting features added to the message bases in Synchronet
@@ -661,7 +661,7 @@ function CreateSubBoardMenu(pGrpIdx, pListTopRow, pDrawColRetObj, pMsgGrps)
 	}
 	// If the top item index is on the last page of the menu, then
 	// set the top item index to the first item on the last page.
-	if ((topItemIndex <= subBoardMenu.items.length - 1) && (topItemIndex >= subBoardMenu.GetTopItemIdxToTopOfLastPage()))
+	if ((topItemIndex <= subBoardMenu.items.length - 1) && (topItemIndex >= subBoardMenu.GetTopItemIdxOfLastPage()))
 		subBoardMenu.SetTopItemIdxToTopOfLastPage();
 	else
 		subBoardMenu.topItemIdx = topItemIndex;
