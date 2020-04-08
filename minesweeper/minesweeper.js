@@ -1,4 +1,4 @@
-// $Id: minesweeper.js,v 2.5 2020/04/06 04:00:04 rswindell Exp $
+// $Id: minesweeper.js,v 2.6 2020/04/08 07:27:59 rswindell Exp $
 
 // Minesweeper, the game
 
@@ -8,7 +8,7 @@
 
 const title = "Synchronet Minesweeper";
 const ini_section = "minesweeper";
-const REVISION = "$Revision: 2.5 $".split(' ')[1];
+const REVISION = "$Revision: 2.6 $".split(' ')[1];
 const author = "Digital Man";
 const header_height = 4;
 const winners_list = js.exec_dir + "winners.jsonl";
@@ -681,7 +681,7 @@ function draw_board(full)
 	}
 	var height = game.height;
 	if(full) {
-		if(game.height + header_height < console.screen_rows - 1) {
+		if(game.height + header_height < console.screen_rows) {
 			height++;
 			console.down();
 			console.creturn();
