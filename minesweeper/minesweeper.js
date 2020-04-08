@@ -1,4 +1,4 @@
-// $Id: minesweeper.js,v 2.7 2020/04/08 13:11:34 deuce Exp $
+// $Id: minesweeper.js,v 2.8 2020/04/08 15:50:36 deuce Exp $
 
 // Minesweeper, the game
 
@@ -8,7 +8,7 @@
 
 const title = "Synchronet Minesweeper";
 const ini_section = "minesweeper";
-const REVISION = "$Revision: 2.7 $".split(' ')[1];
+const REVISION = "$Revision: 2.8 $".split(' ')[1];
 const author = "Digital Man";
 const header_height = 4;
 const winners_list = js.exec_dir + "winners.jsonl";
@@ -1162,7 +1162,7 @@ function play()
 					console.attributes = LIGHTRED;
 					console.right((console.screen_columns - 16) / 2);
 					console.print("Quit Game (Y/N) ?");
-					if(console.getkey(K_UPPER) != 'Y') }
+					if(console.getkey(K_UPPER) != 'Y') {
 						console.write("\x1b[?1000;1006h");
 						break;
 					}
