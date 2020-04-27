@@ -1,4 +1,4 @@
-/* $Id: frame.js,v 1.82 2020/04/25 09:18:55 rswindell Exp $ */
+/* $Id: frame.js,v 1.87 2020/04/27 02:04:54 rswindell Exp $ */
 
 /**
  	Javascript Frame Library
@@ -927,6 +927,31 @@ Frame.prototype.clear = function (attr) {
 	this.home();
 	this.invalidate();
 }
+Frame.prototype.erase = function(ch, attr) {
+	if(attr == undefined)
+		attr = this.attr;
+	var px = this.__position__.offset.x;
+	var py = this.__position__.offset.y;
+	for(var y = 0; y< this.height; y++) {
+		if(!this.__properties__.data[py + y]) {
+			continue;
+		}
+		for(var x = 0; x<this.width; x++) {
+			if(!this.__properties__.data[py + y][px + x]) {
+				continue;
+			}
+			if((this.__properties__.data[py + y][px + x].ch === undefined || 
+				this.__properties__.data[py + y][px + x].ch === ch) && 
+				this.__properties__.data[py + y][px + x].attr == attr) {
+				continue;
+			}
+			this.__properties__.data[py + y][px + x].ch = undefined;
+			this.__properties__.data[py + y][px + x].attr = attr;
+			this.__properties__.display.updateChar(this, x, y);
+		}
+	}
+	this.home();
+}
 Frame.prototype.clearline = function(attr) {
 	if(attr == undefined)
 		attr = this.attr;
@@ -991,7 +1016,9 @@ Frame.prototype.putmsg = function(str,attr) {
 		var remainingWidth = this.width - this.__position__.cursor.x;
 		if(str.length > remainingWidth) {
 			str = word_wrap(str,remainingWidth,str.length,false).split('\n');
-			str = str.shift() + '\r\n' + word_wrap(str.join('\r\n'),this.width,remainingWidth,false).trimRight();
+			var trailing_newline = str[str.length - 1].length == 0;
+			str = str.shift() + '\r\n' + word_wrap(str.join('\r\n'),this.width,remainingWidth,false);
+			if(!trailing_newline) str = str.trimRight();
 		}
 	}
 	str = str.toString().split('');
@@ -1628,7 +1655,7 @@ Display.prototype.__drawChar__ = function(ch,attr,xpos,ypos) {
 Display.prototype.__getTopCanvas__ = function(x,y) {
 	var top = undefined;
 	for each(var c in this.__properties__.canvas) {
-		if(c.hasData(x,y))
+		if(c.frame.parent == undefined || c.hasData(x,y))
 			top = c;
 	}
 	return top;
