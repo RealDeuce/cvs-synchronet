@@ -1,6 +1,6 @@
 /* Copyright (C), 2007 by Stephen Hurd */
 
-/* $Id: conn_pty.c,v 1.37 2020/04/17 21:57:47 deuce Exp $ */
+/* $Id: conn_pty.c,v 1.39 2020/04/28 06:00:33 deuce Exp $ */
 
 #ifdef __unix__
 
@@ -391,6 +391,7 @@ int pty_connect(struct bbslist *bbs)
 	struct termios ts;
 	char	*termcap;
 	int	cols, rows;
+	int cp;
 
 	ts.c_iflag = TTYDEF_IFLAG;
 	ts.c_oflag = TTYDEF_OFLAG;
@@ -403,6 +404,7 @@ int pty_connect(struct bbslist *bbs)
 	ws.ws_col = cols;
 	ws.ws_row = rows;
 
+	cp = getcodepage();
 	child_pid = forkpty(&master, NULL, &ts, &ws);
 	switch(child_pid) {
 	case -1:
@@ -442,7 +444,7 @@ int pty_connect(struct bbslist *bbs)
 		termcap=xp_asprintf("%d",ws.ws_row);
 		setenv("LINES",termcap,1);
 		xp_asprintf_free(termcap);
-		setenv("MM_CHARSET", ciolib_cp[getcodepage()].name, 1);
+		setenv("MM_CHARSET", ciolib_cp[cp].name, 1);
 		if(bbs->addr[0])
 			execl("/bin/sh", "/bin/sh", "-c", bbs->addr, (char *)0);
 		else {
@@ -503,6 +505,7 @@ int pty_close(void)
 	destroy_conn_buf(&conn_outbuf);
 	FREE_AND_NULL(conn_api.rd_buf);
 	FREE_AND_NULL(conn_api.wr_buf);
+	close(master);
 	return(0);
 }
 
