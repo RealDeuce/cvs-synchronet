@@ -1,6 +1,6 @@
 /* Copyright (C), 2007 by Stephen Hurd */
 
-/* $Id: conn.c,v 1.77 2018/02/21 02:24:23 deuce Exp $ */
+/* $Id: conn.c,v 1.79 2020/04/29 08:59:36 deuce Exp $ */
 
 #include <stdlib.h>
 

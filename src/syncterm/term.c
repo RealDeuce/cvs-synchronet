@@ -1,6 +1,6 @@
 /* Copyright (C), 2007 by Stephen Hurd */
 
-/* $Id: term.c,v 1.368 2020/04/23 23:12:14 deuce Exp $ */
+/* $Id: term.c,v 1.370 2020/04/29 08:59:36 deuce Exp $ */
 
 #include <stdbool.h>
 
