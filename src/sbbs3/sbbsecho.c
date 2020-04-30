@@ -1,6 +1,6 @@
 /* Synchronet FidoNet EchoMail Scanning/Tossing and NetMail Tossing Utility */
 
-/* $Id: sbbsecho.c,v 3.168 2020/04/28 04:07:02 rswindell Exp $ */
+/* $Id: sbbsecho.c,v 3.170 2020/04/30 04:47:15 rswindell Exp $ */
 // vi: tabstop=4
 
 /****************************************************************************
@@ -3253,9 +3253,8 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 {
 	uchar	ch,stail[MAX_TAILLEN+1],*sbody;
 	char	msg_id[256],str[128],*p;
-	bool	done,esc,cr;
+	bool	done,cr;
 	int 	i;
-	uint	col;
 	ushort	xlat=XLAT_NONE,net;
 	ulong	l,m,length,bodylen,taillen;
 	ulong	save;
@@ -3320,7 +3319,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 		smb_freemsgmem(&msg);
 		return IMPORT_FAILURE;
 	}
-	length=strlen((char *)fbuf);
+	length=strlen(fbuf);
 	if((sbody=(uchar*)malloc((length+1)*2))==NULL) {
 		lprintf(LOG_ERR,"ERROR line %d allocating %lu bytes for body",__LINE__
 			,(length+1)*2L);
@@ -3328,9 +3327,9 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 		return IMPORT_FAILURE;
 	}
 
-	for(col=0,l=0,esc=0,done=0,bodylen=0,taillen=0,cr=1;l<length;l++) {
+	for(l=0,done=0,bodylen=0,taillen=0,cr=1;l<length;l++) {
 
-		if(!l && !strncmp((char *)fbuf,"AREA:",5)) {
+		if(!l && !strncmp(fbuf,"AREA:",5)) {
 			save=l;
 			l+=5;
 			while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
@@ -3350,29 +3349,28 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 		ch=fbuf[l];
 		if(ch==CTRL_A && !cr)
 			ch = '@';
+		else if(ch==CTRL_A) {	/* kludge line */
 
-		if(ch==CTRL_A) {	/* kludge line */
+			if(!strncmp(fbuf+l+1,"TOPT ",5))
+				destaddr.point=atoi(fbuf+l+6);
 
-			if(!strncmp((char *)fbuf+l+1,"TOPT ",5))
-				destaddr.point=atoi((char *)fbuf+l+6);
+			else if(!strncmp(fbuf+l+1,"FMPT ",5))
+				origaddr.point=atoi(fbuf+l+6);
 
-			else if(!strncmp((char *)fbuf+l+1,"FMPT ",5))
-				origaddr.point=atoi((char *)fbuf+l+6);
-
-			else if(!strncmp((char *)fbuf+l+1,"INTL ",5)) {
-				faddr=atofaddr((char *)fbuf+l+6);
+			else if(!strncmp(fbuf+l+1,"INTL ",5)) {
+				faddr=atofaddr(fbuf+l+6);
 				destaddr.zone=faddr.zone;
 				destaddr.net=faddr.net;
 				destaddr.node=faddr.node;
 				l+=6;
 				while(l<length && fbuf[l]!=' ') l++;
-				faddr=atofaddr((char *)fbuf+l+1);
+				faddr=atofaddr(fbuf+l+1);
 				origaddr.zone=faddr.zone;
 				origaddr.net=faddr.net;
 				origaddr.node=faddr.node;
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"MSGID:",6)) {
+			else if(!strncmp(fbuf+l+1,"MSGID:",6)) {
 				l+=7;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3381,7 +3379,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg,FIDOMSGID,(ushort)(m-l),fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"REPLY:",6)) {
+			else if(!strncmp(fbuf+l+1,"REPLY:",6)) {
 				l+=7;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3390,8 +3388,8 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg,FIDOREPLYID,(ushort)(m-l),fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"FLAGS ",6)		/* correct */
-				||  !strncmp((char *)fbuf+l+1,"FLAGS:",6)) {	/* incorrect */
+			else if(!strncmp(fbuf+l+1,"FLAGS ",6)		/* correct */
+				||  !strncmp(fbuf+l+1,"FLAGS:",6)) {	/* incorrect */
 				l+=7;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3401,7 +3399,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg,FIDOFLAGS,(ushort)(m-l),fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"PATH:",5)) {
+			else if(!strncmp(fbuf+l+1,"PATH:",5)) {
 				l+=6;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3411,7 +3409,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg,FIDOPATH,(ushort)(m-l),fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"PID:",4)) {
+			else if(!strncmp(fbuf+l+1,"PID:",4)) {
 				l+=5;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3421,7 +3419,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg,FIDOPID,(ushort)(m-l),fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"TID:",4)) {
+			else if(!strncmp(fbuf+l+1,"TID:",4)) {
 				l+=5;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3431,7 +3429,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg,FIDOTID,(ushort)(m-l),fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1, "NOTE:", 5)) {
+			else if(!strncmp(fbuf+l+1, "NOTE:", 5)) {
 				l+=6;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3441,7 +3439,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg, SMB_EDITOR, (ushort)(m-l), fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1, "CHRS:", 5)) {
+			else if(!strncmp(fbuf+l+1, "CHRS:", 5)) {
 				l+=6;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3452,7 +3450,7 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 				}
 			}
 
-			else if(!strncmp((char *)fbuf+l+1, "CHARSET:", 8)) {
+			else if(!strncmp(fbuf+l+1, "CHARSET:", 8)) {
 				l+=9;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				m=l;
@@ -3462,19 +3460,19 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 					smb_hfield(&msg, FIDOCHARSET, (ushort)(m-l), fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"TZUTC:",6)) {		/* FSP-1001 */
+			else if(!strncmp(fbuf+l+1,"TZUTC:",6)) {		/* FSP-1001 */
 				l+=7;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				msg.hdr.when_written.zone = fmsgzone(fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf+l+1,"TZUTCINFO:",10)) {	/* non-standard */
+			else if(!strncmp(fbuf+l+1,"TZUTCINFO:",10)) {	/* non-standard */
 				l+=11;
 				while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 				msg.hdr.when_written.zone = fmsgzone(fbuf+l);
 			}
 
-			else if(!strncmp((char *)fbuf + l + 1, "COLS:", 5)) {	/* SBBSecho */
+			else if(!strncmp(fbuf + l + 1, "COLS:", 5)) {	/* SBBSecho */
 				l += 6;
 				while(l<length && fbuf[l] <= ' ' && fbuf[l] >= 0) l++;
 				uint8_t columns = atoi(fbuf + l);
@@ -3494,13 +3492,20 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 			while(l<length && fbuf[l]!='\r') l++;
 			continue;
 		}
-
 		if(ch == '\n')
 			continue;
-		if(cr && (!strncmp((char *)fbuf+l,"--- ",4)
-			|| !strncmp((char *)fbuf+l,"---\r",4)))
+		if(cr && (!strncmp(fbuf+l,"--- ",4)
+			|| !strncmp(fbuf+l,"---\r",4)))
 			done=1; 			/* tear line and down go into tail */
-		if(done && cr && !strncmp((char *)fbuf+l,"SEEN-BY:",8)) {
+		else if(cr && !strncmp(fbuf+l," * Origin: ",11)) {
+			p=(char*)fbuf+l+11;
+			while(*p && *p!='\r') p++;	 /* Find CR */
+			while(p && *p!='(') p--;     /* rewind to '(' */
+			if(p)
+				origaddr=atofaddr(p+1); 	/* get orig address */
+			done=1;
+		}
+		else if(done && cr && !strncmp(fbuf+l,"SEEN-BY:",8)) {
 			l+=8;
 			while(l<length && fbuf[l]<=' ' && fbuf[l]>=0) l++;
 			m=l;
@@ -3517,10 +3522,8 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 		}
 		else
 			sbody[bodylen++]=ch;
-		col++;
 		if(ch=='\r') {
 			cr=1;
-			col=0;
 			if(done) {
 				if(taillen<MAX_TAILLEN)
 					stail[taillen++]='\n';
@@ -3528,31 +3531,8 @@ int fmsgtosmsg(char* fbuf, fmsghdr_t* hdr, uint user, uint subnum)
 			else
 				sbody[bodylen++]='\n';
 		}
-		else {
+		else
 			cr=0;
-			if(col==1 && !strncmp((char *)fbuf+l," * Origin: ",11)) {
-				p=(char*)fbuf+l+11;
-				while(*p && *p!='\r') p++;	 /* Find CR */
-				while(p && *p!='(') p--;     /* rewind to '(' */
-				if(p)
-					origaddr=atofaddr(p+1); 	/* get orig address */
-				done=1;
-			}
-			if(done)
-				continue;
-
-			if(ch==ESC) esc=1;		/* ANSI codes */
-			if(ch==' ' && col>40 && !esc) {	/* word wrap */
-				for(m=l+1;m<length;m++) 	/* find next space */
-					if(fbuf[m]<=' ' && fbuf[m]>=0)
-						break;
-				if(m<length && m-l>80-col) {  /* if it's beyond the eol */
-					sbody[bodylen++]='\r';
-					sbody[bodylen++]='\n';
-					col=0;
-				}
-			}
-		}
 	}
 
 	if(bodylen>=2 && sbody[bodylen-2]=='\r' && sbody[bodylen-1]=='\n')
@@ -3731,11 +3711,11 @@ void putfmsg(FILE* stream, const char* fbuf, fmsghdr_t* hdr, area_t area
 	if(area.tag == NULL && strstr(fbuf, "\1INTL ") == NULL)	/* NetMail, so add FSC-0004 INTL kludge */
 		fwrite_intl_control_line(stream, hdr);			/* If not already present */
 
-	len = strlen((char *)fbuf);
+	len = strlen(fbuf);
 
 	/* Write message body */
 	if(area.tag)
-		if(strncmp((char *)fbuf,"AREA:",5))                     /* No AREA: Line */
+		if(strncmp(fbuf,"AREA:",5))                     /* No AREA: Line */
 			fprintf(stream,"AREA:%s\r",area.tag);				/* So add one */
 	(void)fwrite(fbuf,len,1,stream);
 	lastlen=9;
@@ -3936,8 +3916,8 @@ void gen_psb(addrlist_t *seenbys, addrlist_t *paths, const char *inbuf, uint16_t
 		fbuf=inbuf;
 	FREE_AND_NULL(seenbys->addr);
 	addr.zone=addr.net=addr.node=addr.point=seenbys->addrs=0;
-	p=strstr((char *)fbuf,"\rSEEN-BY:");
-	if(!p) p=strstr((char *)fbuf,"\nSEEN-BY:");
+	p=strstr(fbuf,"\rSEEN-BY:");
+	if(!p) p=strstr(fbuf,"\nSEEN-BY:");
 	if(p) {
 		while(1) {
 			sprintf(str,"%-.100s",p+10);
@@ -3999,7 +3979,7 @@ void gen_psb(addrlist_t *seenbys, addrlist_t *paths, const char *inbuf, uint16_t
 
 	FREE_AND_NULL(paths->addr);
 	addr.zone=addr.net=addr.node=addr.point=paths->addrs=0;
-	if((p=strstr((char *)fbuf,"\1PATH:"))!=NULL) {
+	if((p=strstr(fbuf,"\1PATH:"))!=NULL) {
 		while(1) {
 			sprintf(str,"%-.100s",p+7);
 			if((p1=strchr(str,'\r'))!=NULL)
@@ -4093,9 +4073,9 @@ void strip_psb(char *inbuf)
 		fbuf=strstr(inbuf, FIDO_ORIGIN_PREFIX_FORM_2);
 	if(!fbuf)
 		fbuf=inbuf;
-	if((p=strstr((char *)fbuf,"\rSEEN-BY:"))!=NULL)
+	if((p=strstr(fbuf,"\rSEEN-BY:"))!=NULL)
 		*(p)=0;
-	if((p=strstr((char *)fbuf,"\r\1PATH:"))!=NULL)
+	if((p=strstr(fbuf,"\r\1PATH:"))!=NULL)
 		*(p)=0;
 }
 
@@ -6118,7 +6098,7 @@ int main(int argc, char **argv)
 		memset(&smb[i],0,sizeof(smb_t));
 	memset(&cfg,0,sizeof(cfg));
 
-	sscanf("$Revision: 3.168 $", "%*s %s", revision);
+	sscanf("$Revision: 3.170 $", "%*s %s", revision);
 
 	DESCRIBE_COMPILER(compiler);
 
